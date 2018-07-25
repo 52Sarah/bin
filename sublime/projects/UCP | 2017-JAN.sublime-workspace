@@ -1,0 +1,1926 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"forma",
+				"formatDate\t(ucp-webscript-utils.js)"
+			],
+			[
+				"parti",
+				"participationLink\t(campaignInbox.js)"
+			],
+			[
+				"user",
+				"userquizresults"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"adminL",
+				"adminLabel\t(campaignInbox.css)"
+			],
+			[
+				"cam",
+				"campaignInbox"
+			],
+			[
+				"campaignI",
+				"campaignInbox.js"
+			],
+			[
+				"onC",
+				"onCampaignNameClick"
+			],
+			[
+				"sepa",
+				"separatedFields"
+			],
+			[
+				"da",
+				"dateField"
+			],
+			[
+				"date",
+				"dateLike"
+			],
+			[
+				"end",
+				"endDate"
+			],
+			[
+				"start",
+				"startDate"
+			],
+			[
+				"get",
+				"getParameter"
+			],
+			[
+				"suffix",
+				"suffixArray"
+			],
+			[
+				"requ",
+				"requestInfo"
+			],
+			[
+				"json",
+				"json-simple"
+			],
+			[
+				"mav",
+				"mavenRepo"
+			],
+			[
+				"campai",
+				"campaignId"
+			],
+			[
+				"updated",
+				"updatedVideoAndCaptionPlayLink"
+			],
+			[
+				"pla",
+				"placeholder"
+			],
+			[
+				"orig",
+				"originalplayLink"
+			],
+			[
+				"bandwid",
+				"bandwidthButtonChanged"
+			],
+			[
+				"displa",
+				"displayVideo"
+			],
+			[
+				"origin",
+				"originalPlayLink"
+			],
+			[
+				"bandw",
+				"bandwidthButtonChanged"
+			],
+			[
+				"origi",
+				"originalPlayLink"
+			],
+			[
+				"switch",
+				"switchVideoResolution"
+			],
+			[
+				"band",
+				"bandwidthButtonChanged"
+			],
+			[
+				"string",
+				"stringify"
+			],
+			[
+				"deva",
+				"decho_and_eval"
+			],
+			[
+				"inb",
+				"inbox_url"
+			],
+			[
+				"T",
+				"TAIL__LOG_LINES"
+			],
+			[
+				"TA",
+				"TAIL__LOG_TABS"
+			],
+			[
+				"alf",
+				"alfrescoObjectId"
+			],
+			[
+				"videoThum",
+				"videoThumbWrapperDiv"
+			],
+			[
+				"toTab",
+				"toTabLabel"
+			],
+			[
+				"archive",
+				"archive_type"
+			],
+			[
+				"arch",
+				"archive_type"
+			],
+			[
+				"is_",
+				"is_ubuntu"
+			],
+			[
+				"bree",
+				"breezeSession"
+			],
+			[
+				"social",
+				"socialServices"
+			],
+			[
+				"starts",
+				"startsWith"
+			],
+			[
+				"handleQ",
+				"handleQuizResultSuccess"
+			],
+			[
+				"resourceFilt",
+				"resourceFilterId"
+			],
+			[
+				"resourceF",
+				"resourceFilterId"
+			],
+			[
+				"show",
+				"showSchool"
+			],
+			[
+				"click",
+				"clickThisTab"
+			],
+			[
+				"selected",
+				"selectedResource"
+			],
+			[
+				"sel",
+				"selectedDistrictType"
+			],
+			[
+				"getU",
+				"getUserQuizResults"
+			],
+			[
+				"firs",
+				"firstItem"
+			],
+			[
+				"hidd",
+				"hiddenVideoFilter"
+			],
+			[
+				"visi",
+				"visibleVideoFilter"
+			],
+			[
+				"socialSer",
+				"socialServicesFilter"
+			],
+			[
+				"thum",
+				"thumbnailsSelector"
+			],
+			[
+				"UCP_C",
+				"UCP_COOKIE_AUDIENCE_ENABLED"
+			],
+			[
+				"UCP",
+				"UCP_COOKIE_CATEGORY_ENABLED"
+			],
+			[
+				"match",
+				"match_portlet_name"
+			],
+			[
+				"UCP_",
+				"UCP_COOKIE_AUDIENCE_ENABLED"
+			],
+			[
+				"resto",
+				"restoreUserState"
+			],
+			[
+				"categ",
+				"categoryFilterId"
+			],
+			[
+				"vis",
+				"visibleFilterId"
+			],
+			[
+				"sav",
+				"savedAudience"
+			],
+			[
+				"sa",
+				"savedCategory"
+			],
+			[
+				"bui",
+				"build_name"
+			],
+			[
+				"mat",
+				"match_portlet_name"
+			],
+			[
+				"ema",
+				"emailAddress"
+			],
+			[
+				"scr",
+				"screenName"
+			],
+			[
+				"SQ",
+				"SQUIRREL_SQL_HOME"
+			],
+			[
+				"ALF",
+				"ALFRESCO_WAR_EXT"
+			],
+			[
+				"ALFRE",
+				"ALFRESCO_WAR"
+			],
+			[
+				"ALFR",
+				"ALFRESCO_HOME"
+			],
+			[
+				"MBS_OC",
+				"MBS_OC_MODULE"
+			],
+			[
+				"br",
+				"browser_args"
+			],
+			[
+				"brow",
+				"browser_args"
+			],
+			[
+				"Interfa",
+				"InterfaceName"
+			],
+			[
+				"vecho_a",
+				"vecho_and_eval"
+			],
+			[
+				"admin",
+				"adminEmail"
+			],
+			[
+				"exist",
+				"existUserEmail"
+			],
+			[
+				"campaignUser",
+				"campaignUserInstance"
+			],
+			[
+				"Camp",
+				"CampaignUserController"
+			],
+			[
+				"cha",
+				"changeCount"
+			],
+			[
+				"Admin",
+				"AdminCampaignReportJob"
+			],
+			[
+				"report",
+				"reportBuffer"
+			],
+			[
+				"after",
+				"afterPropertiesSet"
+			],
+			[
+				"Email",
+				"EmailUtil"
+			],
+			[
+				"Grails",
+				"GrailsApplication"
+			],
+			[
+				"decho_",
+				"decho_and_eval"
+			],
+			[
+				"scoid",
+				"scoidReportLabel"
+			],
+			[
+				"java",
+				"java_class_path"
+			],
+			[
+				"vech",
+				"vecho_and_eval"
+			],
+			[
+				"ucp_",
+				"ucp_env"
+			],
+			[
+				"userQ",
+				"userQuizResultLabel"
+			],
+			[
+				"scoidR",
+				"scoidReportCount"
+			],
+			[
+				"num",
+				"numberOfDaysBack"
+			],
+			[
+				"gra",
+				"grails_opts"
+			],
+			[
+				"lifer",
+				"liferayUser"
+			],
+			[
+				"quizSc",
+				"quizScoidLabel"
+			],
+			[
+				"UCP_AL",
+				"UCP_ALF_LIFE"
+			],
+			[
+				"distr",
+				"districtContentOwner"
+			],
+			[
+				"extra",
+				"extra_params"
+			],
+			[
+				"content",
+				"contentType"
+			],
+			[
+				"remote",
+				"remote_dir"
+			],
+			[
+				"thresh",
+				"thresholdIndex"
+			],
+			[
+				"memb",
+				"memberAgencies"
+			],
+			[
+				"resultsF",
+				"resultsForScoidTotalCount"
+			],
+			[
+				"res",
+				"resultsForScoid"
+			],
+			[
+				"quizS",
+				"quizScoId"
+			],
+			[
+				"resou",
+				"resourceSearch"
+			],
+			[
+				"liferayPathA",
+				"liferayPathAfter"
+			],
+			[
+				"current",
+				"currentPage"
+			],
+			[
+				"glo",
+				"globalResource"
+			],
+			[
+				"liferayPat",
+				"liferayPathSubstring"
+			],
+			[
+				"was_",
+				"was_string_true"
+			],
+			[
+				"free",
+				"freeKeys"
+			],
+			[
+				"SH_",
+				"SH_QUIET"
+			],
+			[
+				"extr",
+				"extra_opts"
+			],
+			[
+				"campaign",
+				"campaign_name_20"
+			],
+			[
+				"PE",
+				"UCP_PEM_FILES"
+			],
+			[
+				"ext_",
+				"ext_includes"
+			],
+			[
+				"en",
+				"engage-sql-utils"
+			],
+			[
+				"dir",
+				"dir_trimmed"
+			],
+			[
+				"env",
+				"env_type"
+			],
+			[
+				"ca",
+				"campaign_id"
+			],
+			[
+				"learning",
+				"learning_path_id"
+			],
+			[
+				"le",
+				"learning_path_id"
+			],
+			[
+				"CMD_",
+				"CMD_VERB_BANG"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 368.0,
+		"last_filter": "sche",
+		"selected_items":
+		[
+			[
+				"sche",
+				"UI: Select Color Scheme"
+			],
+			[
+				"scheme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"goto",
+				"SublimeBookmarks: Goto Bookmark"
+			],
+			[
+				"origami hi",
+				"Origami: Destroy Pane on the Right"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"copy",
+				"File: Copy Path"
+			],
+			[
+				"pat",
+				"File: Copy Path"
+			],
+			[
+				"pref",
+				"Preference Helper: Open *.sublime-settings"
+			],
+			[
+				"user",
+				"Preference Helper: Switch User/Default.sublime-settings"
+			],
+			[
+				"prett",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"json",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"read",
+				"ReadmePlease"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"readme",
+				"ReadmePlease"
+			],
+			[
+				"tab",
+				"MarkdownTableFormatter: format table"
+			],
+			[
+				"markd col",
+				"MarkdownEditing: Change color scheme..."
+			],
+			[
+				"fold 2",
+				"MarkdownEditing: Fold Level 2 Sections"
+			],
+			[
+				"unf",
+				"Code Folding: Unfold All"
+			],
+			[
+				"markdowne",
+				"MarkdownEditing: Switch List Bullet Type"
+			],
+			[
+				"bull",
+				"MarkdownEditing: Switch List Bullet Type"
+			],
+			[
+				"readme ",
+				"ReadmePlease"
+			],
+			[
+				"jsm",
+				"Snippet: JavasSript Method w 1 arg"
+			],
+			[
+				"ren",
+				"File: Rename"
+			],
+			[
+				"sane",
+				"BetterSnippetManager: Edit Snippets"
+			],
+			[
+				"snip",
+				"BetterSnippetManager: Edit Snippets"
+			],
+			[
+				"rege",
+				"SaneSnippets: Regenerate SaneSnippets"
+			],
+			[
+				"edit sn",
+				"BetterSnippetManager: Edit Snippets"
+			],
+			[
+				"saneSnip",
+				"BetterSnippetManager: Edit Snippets"
+			],
+			[
+				"sane n",
+				"SaneSnippets: New SaneSnippet..."
+			],
+			[
+				"new snip",
+				"BetterSnippetManager: Create New Snippet"
+			],
+			[
+				"sane new",
+				"SaneSnippets: New SaneSnippet..."
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"xml",
+				"Set Syntax: HTML"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"freem",
+				"Set Syntax: FreeMarker"
+			],
+			[
+				"syn javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"lint to",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"file na",
+				"File: Rename"
+			],
+			[
+				"move",
+				"File: Move"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"cop",
+				"File: Copy Path"
+			],
+			[
+				"path",
+				"File: Copy Path"
+			],
+			[
+				"uniq",
+				"Permute Lines: Unique"
+			],
+			[
+				"filter",
+				"Filter Lines: Include lines with String"
+			],
+			[
+				"diff",
+				"FileDiffs: Menu"
+			],
+			[
+				"shell",
+				"ShellCommand"
+			],
+			[
+				"new",
+				"File: New File Relative to Current View"
+			],
+			[
+				"new fi",
+				"File: New File Relative to Current View"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"inden",
+				"Indent XML"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Linter",
+				"SublimeLinter: Enable Debug Mode"
+			],
+			[
+				"prefer h",
+				"Preference Helper: Open *.sublime-settings"
+			],
+			[
+				"toggle",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"linter",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"colo",
+				"UI: Select Color Scheme"
+			],
+			[
+				"preferhelp",
+				"Preference Helper: Switch User/Default.sublime-settings"
+			],
+			[
+				"help",
+				"Preference Helper: Open *.sublime-settings"
+			],
+			[
+				"prefer",
+				"Preferences: Settings"
+			],
+			[
+				"packa",
+				"Package Control: List Unmanaged Packages"
+			],
+			[
+				"readm",
+				"ReadmePlease"
+			],
+			[
+				"dup",
+				"File: Duplicate"
+			],
+			[
+				"resour",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"reso",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"packages",
+				"Packages UI"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"markdowned ",
+				"MarkdownEditing: Change color scheme..."
+			],
+			[
+				"markdownEd",
+				"MarkdownEditing: Markdown Lint"
+			],
+			[
+				"prev",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"table",
+				"MarkdownTableFormatter: format table"
+			],
+			[
+				"snippet: ",
+				"SaneSnippets: Regenerate SaneSnippets"
+			],
+			[
+				"SaneSnippet",
+				"Snippet: SaneSnippet"
+			],
+			[
+				"better",
+				"BetterSnippetManager: Create New Snippet"
+			],
+			[
+				"resourcev",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"syntax spec",
+				"Preferences: Settings – Syntax Specific"
+			],
+			[
+				"pref pac",
+				"Preferences: Browse Packages"
+			],
+			[
+				"packager",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"edit",
+				"Color Scheme Editor: Edit current color scheme"
+			],
+			[
+				"rena",
+				"File: Rename"
+			],
+			[
+				"color ed",
+				"Color Scheme Editor: Edit current color scheme"
+			],
+			[
+				"copy p",
+				"File: Copy Path"
+			],
+			[
+				"resource",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"syn spe",
+				"Preferences: Settings – Syntax Specific"
+			],
+			[
+				"resor",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"Shell",
+				"ShellCommand"
+			],
+			[
+				"shel",
+				"ShellCommand"
+			],
+			[
+				"syn ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"toggle lin",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"log",
+				"Set Syntax: Log4jView"
+			],
+			[
+				"del",
+				"File: Delete"
+			],
+			[
+				"ant",
+				"Set Syntax: Ant"
+			],
+			[
+				"ope",
+				"File Navigator: Open"
+			],
+			[
+				"syn bash",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"syn",
+				"Set Syntax: NAnt Build File"
+			],
+			[
+				"viewer",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"extrac",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"package",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"r",
+				"File: Rename"
+			],
+			[
+				"open",
+				"File Navigator: Open"
+			],
+			[
+				"Pref",
+				"Preference Helper: Open *.sublime-settings"
+			],
+			[
+				"Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pa list",
+				"Package Control: List Unmanaged Packages"
+			],
+			[
+				"apple",
+				"Set Syntax: AppleScript"
+			],
+			[
+				"mark tab",
+				"MarkdownTableFormatter: format table"
+			],
+			[
+				"Sesame: ",
+				"Sesame: Open"
+			],
+			[
+				"sesa",
+				"Sesame: Open"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sesame",
+				"Sesame: Add"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings"
+			],
+			[
+				"",
+				"BracketHighlighter: Jump to Left Bracket"
+			],
+			[
+				"cheat",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"rename",
+				"File: Rename"
+			],
+			[
+				"pref ma",
+				"Preferences: MarkdownEditing Settings – User"
+			],
+			[
+				"pack in",
+				"Package Control: Install Package"
+			],
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markdo",
+				"Markdown HTML Preview"
+			],
+			[
+				"mark",
+				"Set Syntax: MultiMarkdown"
+			],
+			[
+				"Theme",
+				"UI: Select Theme"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"file re",
+				"File: Rename"
+			],
+			[
+				"previ",
+				"Markdown Preview: Preview in Browser"
+			]
+		],
+		"width": 484.0
+	},
+	"console":
+	{
+		"height": 329.0,
+		"history":
+		[
+			"view.settings().get('color_scheme')",
+			"sublime.view_setting('color_scheme')",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"java_add_import()",
+			"java_add_import",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(false)",
+			"sublime.log_commands(True)",
+			"cls",
+			"clear",
+			"console.clear",
+			"sublime.*",
+			"sublime.members",
+			"sublime",
+			"sublime.",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(true)",
+			"sublime.log_commands True",
+			"sublime.log_commands(False);",
+			"sublime.log_commands(false);",
+			"sublime.log_commands false",
+			"sublime.log_events(false)",
+			"sublime.log_commands(True)",
+			"info"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/source",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/source/java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/source/java/com",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/source/java/com/tsgrp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/source/java/com/tsgrp/webscripts",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/controllers",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/controllers/com",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/controllers/com/ucp",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/controllers/com/ucp/usermanagement"
+	],
+	"file_history":
+	[
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/source/java/com/tsgrp/webscripts/GetUserQuizResultWebscript.java",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/controllers/com/ucp/usermanagement/APIController.groovy",
+		"/Users/tpierzina/Dropbox/dotfiles/sublime/projects/UCP | 2017-JAN.sublime-project",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/alfresco/templates/webscripts/com/tsgrp/ucpvideothumbnails.get.html.ftl",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/alfresco/templates/webscripts/com/tsgrp/ucpvideos.get.html.ftl",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/services/com/ucp/audit/AuditService.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/alfresco/templates/webscripts/com/tsgrp/ucpvideothumbnailresults.get.js",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/domain/com/ucp/learneradministration/CampaignUser.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/controllers/com/ucp/audit/AuditEventController.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan/grails-app/domain/com/ucp/audit/AuditEvent.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/AdobeConnectUtils/src/com/tsgrp/AdobeConnectUserUtil.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/liferay-plugins-sdk-6.0.5/portlets/ucp-campaign-inbox-portlet/docroot/js/main.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/liferay-plugins-sdk-6.0.5/portlets/ucp-campaign-inbox-portlet/docroot/view.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/AdobeConnectUtils/src/com/tsgrp/AdobeConnectUtil.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/alfresco/src/java/com/tsgrp/webscripts/GetUserQuizResultWebscript.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/adobe-connect-utils/src/java/com/tsgrp/adobeconnect/ACUserManager.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/adobe-connect-utils/src/java/com/tsgrp/adobeconnect/ACSession.java",
+		"/Users/tpierzina/svn/tsg-alfresco-scripts/bash/up.sh",
+		"/Users/tpierzina/Dropbox/Private/.urls.txt",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/shared-ucp-utils/src/java/com/tsgrp/util/GeneralUtils.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/test/ucp-webscript-utils.get.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/ucpvideothumbnails.get.html.ftl",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/recentupdates.get.js",
+		"/Users/tpierzina/svn/tsg-alfresco-scripts/webscripts/ucp/ucp-test-myinfinitec.sh",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/js/campaign.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/css/ucpCampaign.css",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-inbox-portlet/docroot/js/main.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-inbox-portlet/docroot/WEB-INF/liferay-portlet.xml",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/WEB-INF/jsp/addCampaignForm.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-inbox-portlet/docroot/view.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-inbox-portlet/docroot/WEB-INF/portlet.xml",
+		"/Users/tpierzina/Dropbox/dotfiles/sublime/projects/UCP | OLC-2017.sublime-project",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets.BAK/ucp-campaign-inbox-portlet.BAK.20180202/docroot/WEB-INF/src/com/ucp/portlet/CampaignInboxPortlet.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-inbox-portlet/docroot/WEB-INF/src/com/ucp/portlet/CampaignInboxPortlet.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/ext/ucp-ext/docroot/WEB-INF/ext-impl/classes/log4j.properties",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/Pretty JSON.sublime-settings",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/web-app/WEB-INF/classes/log4j.properties",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Pretty JSON/Pretty JSON.sublime-settings",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/ucpvideos.get.html.ftl",
+		"/Users/tpierzina/Dropbox/notes/muh home network.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/SublimeManpage/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/RecentActiveFiles/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Pretty JSON/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Indent XML/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Local History/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Grepmark/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/JavaImports/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/File Navigator/Readme.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/ExtendedTabSwitcher/README.md",
+		"/Users/tpierzina/Dropbox/notes/blc team assignments 2018.md",
+		"/Users/tpierzina/Dropbox/notes/blc | 2018-01-31 meeting w pastor cathy.md",
+		"/Users/tpierzina/Dropbox/notes/family gmail filters.md",
+		"/Users/tpierzina/Dropbox/notes/blc i.t. notes.md",
+		"/Users/tpierzina/Dropbox/notes/grails locally.md",
+		"/Users/tpierzina/work/sandbox/grails/curl_sandbox.sh",
+		"/Users/tpierzina/Dropbox/notes/blc | 2018-02 | it notes.md",
+		"/tmp/subl stdin skDW0I.txt",
+		"/tmp/subl stdin GjCbml.txt",
+		"/tmp/subl stdin 1PyWKX.txt",
+		"/tmp/subl stdin 6XBqS7.txt",
+		"/Users/tpierzina/Dropbox/dotfiles/sublime/projects/NOTES.sublime-project",
+		"/Users/tpierzina/Dropbox/notes/mbs | cheat sheet.md",
+		"/Users/tpierzina/Dropbox/notes/2017-07-11 liberty mutual p0 discovery on-site.md",
+		"/Users/tpierzina/Dropbox/notes/muh mac notes.md",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/ucpvideothumbnailresults.get.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/js/learningpath.js",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/Environment Variable ECHO.sane-snippet",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/snippets/java/throw-new-runtime-exception.sane-snippet",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/grails-app/jobs/com/ucp/usermanagement/JobHelper.groovy",
+		"/Users/tpierzina/work/sandbox/grails/Sandbox/grails-app/domain/sandbox/Thing.groovy",
+		"/Users/tpierzina/Dropbox/dotfiles/sublime/projects/Sandbox.sublime-project",
+		"/Users/tpierzina/Dropbox/dotfiles/sublime/projects/UCP | TRUNK.sublime-project",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/css/style.css",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/grails-app/controllers/com/ucp/usermanagement/APIController.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/themes/ucp-theme/docroot/_diffs/templates/header.vm",
+		"/Users/tpierzina/work/sandbox/grails/Sandbox/grails-app/conf/Config.groovy",
+		"/Users/tpierzina/work/sandbox/grails/Sandbox/grails-app/controllers/sandbox/TestController.groovy",
+		"/Users/tpierzina/work/sandbox/grails/Sandbox/grails-app/domain/sandbox/Campaign.groovy",
+		"/Users/tpierzina/work/sandbox/grails/Sandbox/grails-app/controllers/sandbox/CampaignController.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/lib/ucp-webscript-utils.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot_CORRUPT/WEB-INF/jsp/learningPathForm.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot_CORRUPT/WEB-INF/jsp/addCampaignForm.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/WEB-INF/jsp/learningPathForm.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot.BAK.20180204/WEB-INF/jsp/learningPathForm.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot.BAK.20180204/WEB-INF/jsp/addCampaignForm.jsp",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/grails-app/controllers/com/ucp/learneradministration/LearningPathController.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/grails-app/conf/Config.groovy",
+		"/Users/tpierzina/work/sandbox/grails/Sandbox/grails-app/conf/BuildConfig.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/grails-app/conf/BuildConfig.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/grails-app/controllers/com/ucp/learneradministration/CampaignController.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/server/HOME/infinitec.sh",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/ucpvideothumbnails.get.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/shared/src/log4j.properties",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/ext/development-config.groovy",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/igrails.sh",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/usermanagement/build_ubuntu.sh",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/themes/ucp-theme/docroot/js/ucp-webscript-utils.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/themes/ucp-theme/cp_js.sh",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/js/learningpathjs/learningpath.js",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/atdecisionmakinglinks.get.js",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/server/HOME/_bash_aliases",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/server/HOME/_functions",
+		"/Users/tpierzina/Dropbox/dotfiles/dot_functions.sh",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/themes/ucp-theme/docroot/js/mk_links.sh",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/lib/ucp-js-libs.ftl",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/themes/ucp-theme/docroot/_diffs/templates/init_custom.vm",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/themes/ucp-theme/docroot/templates/init_custom.vm",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/WEB-INF/liferay-portlet.xml",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/adobe-connect-utils/src/java/com/tsgrp/adobeconnect/BreezeService.java",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/server/HOME/infinitec__jmx_removed.sh",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-olc-2017/server/HOME/infinitec__removed.sh",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/build-common-plugin.xml",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/adobe-connect-utils/build.xml",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/alfresco/src/java/com/tsgrp/model/DistrictOwnerConstraint.java",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/adobe-connect-utils/src/com.tsgrp.adobeconnect.properties",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/portlets/ucp-campaign-portlet/docroot/WEB-INF/src/com/tsgrp/campaign/CampaignPortlet.java",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/ShellCommand/ShellCommand.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/ShellCommand.sublime-settings",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017/liferay/build-common.xml",
+		"/Users/tpierzina/Dropbox/dotfiles/sublime/projects/UCP | OLC-2017",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Vintage/README.TXT",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/ShellCommand/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Default/Default.sublime-commands",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Theme - Nil/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Tinacious Design colour scheme/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/backrefs/readme.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/mdpopups/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/ReadmePlease/README.md"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 136.0,
+		"where_history":
+		[
+			"*.java, *.groovy",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"doAsUserId",
+			"today",
+			"6\\.hours",
+			"360",
+			"today",
+			"360",
+			"today",
+			"auditPLay",
+			"auditPlay",
+			"selectedCampaign",
+			"viewModel.campaigns.push",
+			"You have no active Campaigns",
+			"Choose the Learning Campaign",
+			"\\[\"quizTimestamp\"\\]",
+			"\\[\"quizTimestamp\"]",
+			"\\[\"timestamp\"]",
+			"quizRep\\[",
+			"parseQuizReport",
+			"\\.put",
+			"quizTimestamp",
+			"\\.put",
+			"checkQuizScoids",
+			"\"(....)?scoid\"",
+			"^[^/]*\"sco-?id\"|\"quizscoid\"",
+			"^[^/]*\"[^z]sco-?id\"|quizscoid",
+			"^[^/]*\"max-score\"|maxScore",
+			"^[/]*\"max-score\"|maxScore",
+			"\"max-score\"|maxScore",
+			"\"max-score\"",
+			"maxScore",
+			"ucp-olc-2017",
+			"trunk",
+			"['\"]scoId['\"]",
+			"\\bscoId\\b",
+			"quizScoId",
+			"sco.?id",
+			"sco./id"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 53.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 112.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 128.0
+	},
+	"pinned_build_system": "Packages/Java/JavaC.sublime-build",
+	"project": "UCP | 2017-JAN.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"getuser",
+				"1.1 | alfresco | src/java/com/tsgrp/webscripts/GetUserQuizResultWebscript.java"
+			],
+			[
+				"audite",
+				"- 5.2 usermanagement/grails-app/services/com/ucp/audit/AuditService.groovy"
+			],
+			[
+				"ucpvideos",
+				"1.2 | alfresco | webscripts/ucpvideos.get.html.ftl"
+			],
+			[
+				"ucpvideothumbnails",
+				"1.2 | alfresco | webscripts/ucpvideothumbnails.get.html.ftl"
+			],
+			[
+				"ucpvideothum",
+				"1.2 | alfresco | webscripts/ucpvideothumbnails.get.html.ftl"
+			],
+			[
+				"ucpvideoth",
+				"1.2 | alfresco | webscripts/ucpvideothumbnailresults.get.js"
+			],
+			[
+				"campaignuser",
+				"- 5.2 usermanagement/grails-app/domain/com/ucp/learneradministration/CampaignUser.groovy"
+			],
+			[
+				"audit",
+				"- 5.2 usermanagement/grails-app/domain/com/ucp/audit/AuditEvent.groovy"
+			],
+			[
+				"apicon",
+				"- 5.2 usermanagement/grails-app/controllers/com/ucp/usermanagement/APIController.groovy"
+			],
+			[
+				"acu",
+				"3.2 | adobe-connect-utils/src/com/tsgrp/AdobeConnectUtil.java"
+			],
+			[
+				"guqr",
+				"1.0 ucp-alf-life | alfresco/src/java/com/tsgrp/webscripts/GetUserQuizResultWebscript.java"
+			],
+			[
+				"up.",
+				"9.2 ~ bash scripts/up.sh"
+			],
+			[
+				"gener",
+				"3.1 ucp-alf-life | shared-ucp-utils/src/java/com/tsgrp/util/GeneralUtils.java"
+			],
+			[
+				"breezecon",
+				"3.2 ucp-alf-life | adobe-connect-utils/src/java/com/tsgrp/adobeconnect/BreezeConstants.java"
+			],
+			[
+				"breeze",
+				"3.2 ucp-alf-life | adobe-connect-utils/src/java/com/tsgrp/adobeconnect/BreezeService.java"
+			],
+			[
+				"generalutils",
+				"3.1 ucp-alf-life | shared-ucp-utils/src/java/com/tsgrp/util/GeneralUtils.java"
+			],
+			[
+				"test/ucp",
+				"- 1.1 webscripts/test/ucp-webscript-utils.get.js"
+			],
+			[
+				"recent",
+				"- 1.1 webscripts/recentupdates.get.js"
+			],
+			[
+				"ucp-web",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"ucpca",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/css/ucpCampaign.css"
+			],
+			[
+				"campaign.css",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/css/ucpCampaign.css"
+			],
+			[
+				"acf",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/WEB-INF/jsp/addCampaignForm.jsp"
+			],
+			[
+				"camp",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/js/campaign.js"
+			],
+			[
+				"campaign",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/js/campaign.js"
+			],
+			[
+				"campinboxport",
+				" - 2.1 portlets/ucp-campaign-inbox-portlet/docroot/WEB-INF/src/com/ucp/portlet/CampaignInboxPortlet.java"
+			],
+			[
+				"classes/log4j.prop",
+				" - 2.2 ucp-ext/docroot/WEB-INF/ext-impl/classes/log4j.properties"
+			],
+			[
+				"classes/log4j",
+				"- 5.2 usermanagement/web-app/WEB-INF/classes/log4j.properties"
+			],
+			[
+				"campaigninb",
+				"2.0 ucp-alf-life | liferay/portlets.BAK/ucp-campaign-inbox-portlet.BAK.20180202/docroot/WEB-INF/src/com/ucp/portlet/CampaignInboxPortlet.java"
+			],
+			[
+				"campaignin",
+				" - 2.1 portlets/ucp-campaign-inbox-portlet/docroot/WEB-INF/src/com/ucp/portlet/CampaignInboxPortlet.java"
+			],
+			[
+				"campa",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/js/campaign.js"
+			],
+			[
+				"view",
+				" - 2.1 portlets/ucp-campaign-inbox-portlet/docroot/view.jsp"
+			],
+			[
+				"addcam",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/WEB-INF/jsp/addCampaignForm.jsp"
+			],
+			[
+				"home",
+				"muh home network.md"
+			],
+			[
+				"gmail",
+				"family gmail filters.md"
+			],
+			[
+				"blc",
+				"blc | 2018-01-31 meeting w pastor cathy.md"
+			],
+			[
+				"grails",
+				"grails locally.md"
+			],
+			[
+				"learning",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/js/learningpath.js"
+			],
+			[
+				"ucpvideothumbnailre",
+				"- 1.1 webscripts/ucpvideothumbnailresults.get.js"
+			],
+			[
+				"addcf",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/WEB-INF/jsp/addCampaignForm.jsp"
+			],
+			[
+				"ucp-we",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"job",
+				"- 5.2 usermanagement/grails-app/jobs/com/ucp/usermanagement/JobHelper.groovy"
+			],
+			[
+				"camcon",
+				"- 5.2 usermanagement/grails-app/controllers/com/ucp/learneradministration/CampaignController.groovy"
+			],
+			[
+				"thing",
+				"2.0 ~ grails/Sandbox/grails-app/domain/sandbox/Thing.groovy"
+			],
+			[
+				"campaign.",
+				" - 2.2 ucp-campaign-portlet/js/learningpathjs/campaign.js"
+			],
+			[
+				"campaign.js",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/js/campaign.js"
+			],
+			[
+				"header",
+				" - 2.3 ucp-theme/docroot/_diffs/templates/header.vm"
+			],
+			[
+				"lear",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/WEB-INF/jsp/learningPathForm.jsp"
+			],
+			[
+				"learningpathcon",
+				"- 5.2 usermanagement/grails-app/controllers/com/ucp/learneradministration/LearningPathController.groovy"
+			],
+			[
+				"campaigncon",
+				"9.9 ~ grails/Sandbox/grails-app/controllers/sandbox/CampaignController.groovy"
+			],
+			[
+				"campaign.groo",
+				"9.9 ~ grails/Sandbox/grails-app/domain/sandbox/Campaign.groovy"
+			],
+			[
+				"cong",
+				"- 5.2 usermanagement/grails-app/conf/Config.groovy"
+			],
+			[
+				"config",
+				"9.9 ~ grails/Sandbox/grails-app/conf/Config.groovy"
+			],
+			[
+				"config.gr",
+				"9.9 ~ grails/Sandbox/grails-app/conf/Config.groovy"
+			],
+			[
+				"buildcon",
+				"9.9 ~ grails/Sandbox/grails-app/conf/BuildConfig.groovy"
+			],
+			[
+				"infini",
+				"- 5.1 server | HOME/infinitec.sh"
+			],
+			[
+				"bconof",
+				"9.9 ~ grails/Sandbox/grails-app/conf/BuildConfig.groovy"
+			],
+			[
+				"ucpvideos.get.",
+				"- 1.1 webscripts/ucpvideothumbnails.get.js"
+			],
+			[
+				"campcon",
+				"- 5.2 usermanagement/grails-app/controllers/com/ucp/learneradministration/CampaignController.groovy"
+			],
+			[
+				"log4.properties",
+				"2.0 ucp-alf-life | liferay/shared/src/log4j.properties"
+			],
+			[
+				"infinitec",
+				"- 5.1 server | HOME/infinitec.sh"
+			],
+			[
+				"igr",
+				"- 5.2 usermanagement/igrails.sh"
+			],
+			[
+				"build_",
+				"- 5.2 usermanagement/build_ubuntu.sh"
+			],
+			[
+				"deve",
+				"- 5.2 usermanagement/ext/development-config.groovy"
+			],
+			[
+				"apic",
+				"- 5.2 usermanagement/grails-app/controllers/com/ucp/usermanagement/APIController.groovy"
+			],
+			[
+				"learningpathf",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/WEB-INF/jsp/learningPathForm.jsp"
+			],
+			[
+				"ucpvideo",
+				"- 1.1 webscripts/ucpvideos.get.html.ftl"
+			],
+			[
+				"ucp-websc",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"header.vm",
+				" - 2.3 ucp-theme/docroot/_diffs/templates/header.vm"
+			],
+			[
+				"mk_links",
+				" - 2.3 ucp-theme/docroot/js/mk_links.sh"
+			],
+			[
+				"ucp-webs",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"ucp-",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"dot_fun",
+				"9.3 ~ dotfiles/dot_functions.sh"
+			],
+			[
+				"_fun",
+				"- 5.1 server | HOME/_functions"
+			],
+			[
+				"_bash_al",
+				"- 5.1 server | HOME/_bash_aliases"
+			],
+			[
+				"ucp-campaign-inbox-portlet.jsp",
+				" - 2.1 portlets/ucp-campaign-inbox-portlet/docroot/view.jsp"
+			],
+			[
+				"learn",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/js/learningpathjs/learningpath.js"
+			],
+			[
+				"sharedlo",
+				"2.0 ucp-alf-life | liferay/shared/src/log4j.properties"
+			],
+			[
+				"sharedlog",
+				"2.0 ucp-alf-life | liferay/shared/src/log4j.properties"
+			],
+			[
+				"com.tsgr",
+				"3.2 ucp-alf-life | adobe-connect-utils/src/com.tsgrp.adobeconnect.properties"
+			],
+			[
+				"adobe-connectbuild",
+				"3.2 ucp-alf-life | adobe-connect-utils/build.xml"
+			],
+			[
+				"ucpdistri",
+				"1.0 ucp-alf-life | alfresco/src/java/com/tsgrp/model/DistrictOwnerConstraint.java"
+			],
+			[
+				"campaignpo",
+				" - 2.1 portlets/ucp-campaign-portlet/docroot/WEB-INF/src/com/tsgrp/campaign/CampaignPortlet.java"
+			],
+			[
+				"build-common",
+				"2.0 ucp-alf-life | liferay/build-common-plugin.xml"
+			],
+			[
+				"build-comm",
+				"2.0 ucp-alf-life | liferay/build-common.xml"
+			],
+			[
+				"macnot",
+				"muh mac notes.mmd"
+			],
+			[
+				"muhbash",
+				"muh linux-bash notes.md"
+			],
+			[
+				"com.tsg",
+				"3.2 ucp-alf-life | adobe-connect-utils/src/com.tsgrp.adobeconnect.properties"
+			],
+			[
+				"alfrescobild.xml",
+				"1.0 ucp-alf-life | alfresco/build.xml"
+			],
+			[
+				"log4",
+				"2.0 ucp-alf-life | liferay/shared/src/log4j.properties"
+			],
+			[
+				"000",
+				"- 5.1 server | HOME/links/apache/000-myinfinitec.conf"
+			],
+			[
+				"ucpproxy",
+				" - 2.1 portlets/ucp-proxy/docroot/WEB-INF/src/com/ucp/servlet/UCPProxyServlet.java"
+			],
+			[
+				"ucp-proxyweb",
+				" - 2.1 portlets/ucp-proxy/docroot/WEB-INF/web.xml"
+			],
+			[
+				"web.xml",
+				" - 2.2 ucp-hook/docroot/WEB-INF/web.xml"
+			],
+			[
+				"log4j",
+				"2.0 ucp-alf-life | liferay/shared/src/log4j.properties"
+			],
+			[
+				"000-",
+				"- 5.1 server | HOME/links/apache/000-myinfinitec.conf"
+			],
+			[
+				"build-common.xml",
+				"2.0 ucp-alf-life | liferay/build-common.xml"
+			],
+			[
+				"build-common.",
+				"2.0 ucp-alf-life | liferay/build-common.xml"
+			],
+			[
+				"pup.sh",
+				"2.0 ucp-alf-life | liferay/portlets/pup.sh"
+			],
+			[
+				"build-common-pl",
+				"2.0 ucp-alf-life | liferay/build-common-plugin.xml"
+			],
+			[
+				"shared/log",
+				"2.0 ucp-alf-life | liferay/shared/src/log4j.properties"
+			],
+			[
+				"build.xml",
+				"2.0 ucp-alf-life | liferay/portlets/ucp-agencycontent-portlet/build.xml"
+			],
+			[
+				"_bas_",
+				"- 5.1 server | HOME/_bash_aliases"
+			],
+			[
+				"dot_alias_",
+				"9.3 ~ dotfiles/dot_alias_ucp.sh"
+			],
+			[
+				"breezeser",
+				"3.2 ucp-alf-life | adobe-connect-utils/src/java/com/tsgrp/adobeconnect/BreezeService.java"
+			],
+			[
+				"links/log4",
+				"- 5.1 server | HOME/links/alfresco/webapps/alfresco__log4j.properties"
+			],
+			[
+				"getucp",
+				"1.0 ucp-alf-life | alfresco/src/java/com/tsgrp/webscripts/GetUCPVideoWebscript.java"
+			],
+			[
+				"log4j.properties",
+				"1.0 ucp-alf-life | alfresco/src/log4j.properties"
+			],
+			[
+				"ucpvid.html",
+				"- 1.1 webscripts/ucpvideothumbnails.get.html.ftl"
+			],
+			[
+				"tom.",
+				"9.2 ~ bash scripts/tom.sh"
+			],
+			[
+				"pup",
+				"2.0 ucp-alf-life | liferay/portlets/pup.sh"
+			],
+			[
+				"engagesq",
+				"3.3 ucp-alf-life | engage-sql-utils/src/java/com/ucp/sql/engage/EngageSqlDatabase.java"
+			],
+			[
+				"muhfa",
+				"muh family.md"
+			],
+			[
+				"phones",
+				"muh family phones.md"
+			],
+			[
+				"ucp",
+				"UCP Notes.md"
+			],
+			[
+				"macno",
+				"muh mac notes.mmd"
+			],
+			[
+				"family",
+				"family gmail filters.md"
+			],
+			[
+				"muhts",
+				"muh tsg notes.md"
+			],
+			[
+				"mbs",
+				"mbs | cheat sheet.md"
+			],
+			[
+				"itu",
+				"itunes sed commands.md"
+			],
+			[
+				"muhso",
+				"muh software licenses.md"
+			],
+			[
+				"software",
+				"Software Info.md"
+			],
+			[
+				"linux",
+				"muh linux-bash notes.md"
+			],
+			[
+				"vertex",
+				"2017-11-09 | vertex | call w daryn.md"
+			],
+			[
+				"vert",
+				"~/Dropbox/notes/vertex notes.mmd"
+			],
+			[
+				"muhfam",
+				"muh family.md"
+			],
+			[
+				"muhcard",
+				"muh cards.md"
+			],
+			[
+				"fres",
+				"2017-10-30 | fresenius on-site.md"
+			],
+			[
+				"tsgnotes",
+				"muh tsg notes.md"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Dropbox/dotfiles/sublime/projects/dotfiles.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 368.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"software info - 2010 and ea",
+				"# software info - 2010 and earlier"
+			],
+			[
+				"Campai",
+				"CampaignReportJob"
+			]
+		],
+		"width": 892.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 263.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

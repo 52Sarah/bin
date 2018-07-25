@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "log.error(\"ERROR quietly caught in METHOD, url= \" + url{cursor}, {err: err});",
+    "dontautoexpand" : true,
+    "uid" : "26B3848C-C749-4CB8-B150-FA39773EFD28",
+    "name" : "log.error ajax url",
+    "keyword" : ""
+  }
+}

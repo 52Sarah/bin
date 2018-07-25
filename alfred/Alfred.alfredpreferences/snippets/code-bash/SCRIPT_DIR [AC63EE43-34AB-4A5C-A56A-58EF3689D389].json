@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "SCRIPT_DIR=\"$(cd \"$(dirname \"$0\")\" || exit 1; pwd)\"\n",
+    "dontautoexpand" : true,
+    "uid" : "AC63EE43-34AB-4A5C-A56A-58EF3689D389",
+    "name" : "SCRIPT_DIR",
+    "keyword" : ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "{datetime:short}",
+    "dontautoexpand" : true,
+    "uid" : "28A8F44A-D453-486C-B828-91E2A0AE4F6C",
+    "name" : "dt | m\/d\/yy, hh:mm AM",
+    "keyword" : ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "private static final Logger logger = Logger.getLogger(${cursor}.class);",
+    "dontautoexpand" : true,
+    "uid" : "B8ECEE0C-17D2-4737-B3E3-50D730B8E810",
+    "name" : "log4j_logger_declaration",
+    "keyword" : ""
+  }
+}

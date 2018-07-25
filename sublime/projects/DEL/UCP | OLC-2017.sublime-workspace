@@ -1,0 +1,1799 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ema",
+				"emailAddress"
+			],
+			[
+				"scr",
+				"screenName"
+			],
+			[
+				"SQ",
+				"SQUIRREL_SQL_HOME"
+			],
+			[
+				"ALF",
+				"ALFRESCO_WAR_EXT"
+			],
+			[
+				"ALFRE",
+				"ALFRESCO_WAR"
+			],
+			[
+				"ALFR",
+				"ALFRESCO_HOME"
+			],
+			[
+				"MBS_OC",
+				"MBS_OC_MODULE"
+			],
+			[
+				"br",
+				"browser_args"
+			],
+			[
+				"brow",
+				"browser_args"
+			],
+			[
+				"Interfa",
+				"InterfaceName"
+			],
+			[
+				"vecho_a",
+				"vecho_and_eval"
+			],
+			[
+				"admin",
+				"adminEmail"
+			],
+			[
+				"exist",
+				"existUserEmail"
+			],
+			[
+				"campaignUser",
+				"campaignUserInstance"
+			],
+			[
+				"Camp",
+				"CampaignUserController"
+			],
+			[
+				"cha",
+				"changeCount"
+			],
+			[
+				"Admin",
+				"AdminCampaignReportJob"
+			],
+			[
+				"report",
+				"reportBuffer"
+			],
+			[
+				"after",
+				"afterPropertiesSet"
+			],
+			[
+				"Email",
+				"EmailUtil"
+			],
+			[
+				"Grails",
+				"GrailsApplication"
+			],
+			[
+				"decho_",
+				"decho_and_eval"
+			],
+			[
+				"scoid",
+				"scoidReportLabel"
+			],
+			[
+				"java",
+				"java_class_path"
+			],
+			[
+				"vech",
+				"vecho_and_eval"
+			],
+			[
+				"ucp_",
+				"ucp_env"
+			],
+			[
+				"userQ",
+				"userQuizResultLabel"
+			],
+			[
+				"scoidR",
+				"scoidReportCount"
+			],
+			[
+				"num",
+				"numberOfDaysBack"
+			],
+			[
+				"gra",
+				"grails_opts"
+			],
+			[
+				"lifer",
+				"liferayUser"
+			],
+			[
+				"quizSc",
+				"quizScoidLabel"
+			],
+			[
+				"UCP_AL",
+				"UCP_ALF_LIFE"
+			],
+			[
+				"distr",
+				"districtContentOwner"
+			],
+			[
+				"extra",
+				"extra_params"
+			],
+			[
+				"content",
+				"contentType"
+			],
+			[
+				"remote",
+				"remote_dir"
+			],
+			[
+				"thresh",
+				"thresholdIndex"
+			],
+			[
+				"memb",
+				"memberAgencies"
+			],
+			[
+				"resultsF",
+				"resultsForScoidTotalCount"
+			],
+			[
+				"res",
+				"resultsForScoid"
+			],
+			[
+				"quizS",
+				"quizScoId"
+			],
+			[
+				"resou",
+				"resourceSearch"
+			],
+			[
+				"liferayPathA",
+				"liferayPathAfter"
+			],
+			[
+				"current",
+				"currentPage"
+			],
+			[
+				"glo",
+				"globalResource"
+			],
+			[
+				"liferayPat",
+				"liferayPathSubstring"
+			],
+			[
+				"was_",
+				"was_string_true"
+			],
+			[
+				"free",
+				"freeKeys"
+			],
+			[
+				"get",
+				"get_base_cmd"
+			],
+			[
+				"SH_",
+				"SH_QUIET"
+			],
+			[
+				"extr",
+				"extra_opts"
+			],
+			[
+				"campaign",
+				"campaign_name_20"
+			],
+			[
+				"da",
+				"data_model"
+			],
+			[
+				"PE",
+				"UCP_PEM_FILES"
+			],
+			[
+				"date",
+				"date_format"
+			],
+			[
+				"ext_",
+				"ext_includes"
+			],
+			[
+				"en",
+				"engage-sql-utils"
+			],
+			[
+				"dir",
+				"dir_trimmed"
+			],
+			[
+				"env",
+				"env_type"
+			],
+			[
+				"ca",
+				"campaign_id"
+			],
+			[
+				"learning",
+				"learning_path_id"
+			],
+			[
+				"le",
+				"learning_path_id"
+			],
+			[
+				"CMD_",
+				"CMD_VERB_BANG"
+			],
+			[
+				"CMD_VERB_B",
+				"CMD_VERB_BANG"
+			],
+			[
+				"CMD_VER",
+				"CMD_VERB_PREFIX"
+			],
+			[
+				"decho",
+				"decho_vars"
+			],
+			[
+				"TAIL__",
+				"TAIL__LOG_LINES"
+			],
+			[
+				"lear",
+				"learning_path_id"
+			],
+			[
+				"li",
+				"liferay_user_id"
+			],
+			[
+				"videoB",
+				"videoButtonWrapper"
+			],
+			[
+				"wr",
+				"writeHtml"
+			],
+			[
+				"wri",
+				"writeConsole"
+			],
+			[
+				"var_a",
+				"var_array_keys_value"
+			],
+			[
+				"lpad",
+				"lpad_len"
+			],
+			[
+				"seq",
+				"seq_compare"
+			],
+			[
+				"var_arr",
+				"var_array_keys"
+			],
+			[
+				"var",
+				"var_array_keys"
+			],
+			[
+				"padd",
+				"padded_var"
+			],
+			[
+				"curl",
+				"curl_sw"
+			],
+			[
+				"max",
+				"max-time"
+			],
+			[
+				"curl_",
+				"curl_url"
+			],
+			[
+				"APA",
+				"APACHE_LINES"
+			],
+			[
+				"echo",
+				"echo_vars"
+			],
+			[
+				"Audit",
+				"AuditUpdateJob"
+			],
+			[
+				"video",
+				"videoProperties"
+			],
+			[
+				"vide",
+				"videoInfo"
+			],
+			[
+				"lucene",
+				"luceneSearch"
+			],
+			[
+				"ERR",
+				"ERRORS_LOG_LINES"
+			],
+			[
+				"ela",
+				"elapsed_minutes"
+			],
+			[
+				"elaps",
+				"elapsed_seconds"
+			],
+			[
+				"ERROR",
+				"ERRORS_LINES"
+			],
+			[
+				"SC",
+				"SCRIPT_NAME"
+			],
+			[
+				"exec_",
+				"exec_errors"
+			],
+			[
+				"tsg",
+				"tsgrp-ucp-engage-sql"
+			],
+			[
+				"tar",
+				"target_file"
+			],
+			[
+				"CATA",
+				"CATALINA_OPTS"
+			],
+			[
+				"real",
+				"real_file"
+			],
+			[
+				"Enga",
+				"EngageSqlDatabase"
+			],
+			[
+				"agency",
+				"agencyList"
+			],
+			[
+				"quie",
+				"quietlyCloseConnection"
+			],
+			[
+				"eng",
+				"engagePasswd"
+			],
+			[
+				"sign",
+				"signedUrl"
+			],
+			[
+				"band",
+				"bandwidthSelected"
+			],
+			[
+				"de",
+				"debug"
+			],
+			[
+				"type",
+				"typeQNameLength"
+			],
+			[
+				"resut",
+				"resultsArr"
+			],
+			[
+				"remo",
+				"removeBlanks"
+			],
+			[
+				"rela",
+				"relatedResearchQuery"
+			],
+			[
+				"thre",
+				"thresholdLevel"
+			],
+			[
+				"ty",
+				"typeInfo"
+			],
+			[
+				"norm",
+				"normalizeRootScope"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"exc",
+				"exceptionValues"
+			],
+			[
+				"ex",
+				"exceptionValues"
+			],
+			[
+				"sc",
+				"scriptPath"
+			],
+			[
+				"error",
+				"errorMsg"
+			],
+			[
+				"logger",
+				"loggerFunctions"
+			],
+			[
+				"thres",
+				"thresholdIndex"
+			],
+			[
+				"cons",
+				"consoleOb"
+			],
+			[
+				"logg",
+				"loggerOb"
+			],
+			[
+				"websc",
+				"webscriptId"
+			],
+			[
+				"alf",
+				"alfresco"
+			],
+			[
+				"sed",
+				"sed_cmd"
+			],
+			[
+				"switch",
+				"switchThumbToMain"
+			],
+			[
+				"princi",
+				"principalId"
+			],
+			[
+				"prin",
+				"principalId"
+			],
+			[
+				"first",
+				"firstName"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 368.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"unf",
+				"Code Folding: Unfold All"
+			],
+			[
+				"prev",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"apple",
+				"Set Syntax: AppleScript"
+			],
+			[
+				"ren",
+				"File: Rename"
+			],
+			[
+				"mark tab",
+				"MarkdownTableFormatter: format table"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Sesame: ",
+				"Sesame: Open"
+			],
+			[
+				"sesa",
+				"Sesame: Open"
+			],
+			[
+				"read",
+				"ReadmePlease"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sesame",
+				"Sesame: Add"
+			],
+			[
+				"rena",
+				"File: Rename"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"list",
+				"MarkdownEditing: Switch List Bullet Type"
+			],
+			[
+				"bull",
+				"MarkdownEditing: Switch List Bullet Type"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings"
+			],
+			[
+				"",
+				"BracketHighlighter: Jump to Left Bracket"
+			],
+			[
+				"cheat",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"rename",
+				"File: Rename"
+			],
+			[
+				"pref",
+				"Preferences: MarkdownEditing Settings – User"
+			],
+			[
+				"pref ma",
+				"Preferences: MarkdownEditing Settings – User"
+			],
+			[
+				"markdowne",
+				"MarkdownEditing: Change color scheme..."
+			],
+			[
+				"pack in",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"markdo",
+				"Markdown HTML Preview"
+			],
+			[
+				"mark",
+				"Set Syntax: MultiMarkdown"
+			],
+			[
+				"Theme",
+				"UI: Select Theme"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"file re",
+				"File: Rename"
+			],
+			[
+				"previ",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"view",
+				"View In Browser"
+			],
+			[
+				"Browser In",
+				"Browser Integration: Settings (Default)"
+			],
+			[
+				"browser",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markdown",
+				"Markdown Preview: Export HTML in Sublime Text"
+			],
+			[
+				"save",
+				"Markdown Preview: Save to HTML"
+			],
+			[
+				":e",
+				":e - Open file"
+			],
+			[
+				"open",
+				":e - Open file"
+			],
+			[
+				"Markdown",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"build",
+				"Build: New Build System"
+			],
+			[
+				"file del",
+				"File: Delete"
+			],
+			[
+				"file",
+				":e - Open file"
+			],
+			[
+				"dele",
+				"File: Delete"
+			],
+			[
+				"select theme",
+				"UI: Select Theme"
+			],
+			[
+				"selec",
+				"UI: Select Color Scheme"
+			],
+			[
+				"theme",
+				"Edit Preference: tmTheme|colorscheme"
+			],
+			[
+				"list ",
+				"Edit Preference: List Settings"
+			],
+			[
+				"ind",
+				"IndentX: Indent"
+			],
+			[
+				"indent",
+				"IndentX: Indent"
+			],
+			[
+				"edit pref",
+				"Edit Preference: Theme"
+			],
+			[
+				"pre",
+				"Edit Preference: List Plugins Commands"
+			],
+			[
+				"preferences",
+				"Preferences: Settings"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"help",
+				"Preference Helper: Open *.sublime-settings"
+			],
+			[
+				"ed",
+				"Color Scheme Editor: Edit current color scheme"
+			],
+			[
+				"select ",
+				"UI: Select Color Scheme"
+			],
+			[
+				"select",
+				"UI: Select Color Scheme"
+			],
+			[
+				"edit",
+				"Color Scheme Editor: Edit current color scheme"
+			],
+			[
+				"select colo",
+				"UI: Select Color Scheme"
+			],
+			[
+				"select col",
+				"UI: Select Color Scheme"
+			],
+			[
+				"color sc",
+				"ColorSchemeSelector: Select Color Scheme"
+			],
+			[
+				"scheme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"ui",
+				"UI: Save Skin"
+			],
+			[
+				"da",
+				"DA UI: Theme Settings"
+			],
+			[
+				"select s",
+				"UI: Select Skin"
+			],
+			[
+				"skins",
+				"Preferences: Skins Settings"
+			],
+			[
+				"sel",
+				"UI: Select Theme"
+			],
+			[
+				"trim",
+				"Trimmer: Trim trailing whitespace."
+			],
+			[
+				"trim tra",
+				"Trimmer: Trim trailing whitespace."
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inde",
+				"IndentX: Indent"
+			],
+			[
+				"white",
+				"Trimmer: Trim leading AND trailing whitespace."
+			],
+			[
+				"javatar",
+				"Javatar: Browse Commands..."
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"mat",
+				"Material Theme: Configuration"
+			],
+			[
+				"format",
+				"IndentX: Indent & format JSON"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"inden",
+				"IndentX: Indent"
+			],
+			[
+				"js",
+				"IndentX: Indent & format JSON"
+			],
+			[
+				"json",
+				"IndentX: Indent & format JSON"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"pack ",
+				"Package Control: Install Package"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"brack",
+				"BracketHighlighter: Jump to Right Bracket"
+			],
+			[
+				"discover",
+				"Package Control: Discover Packages"
+			],
+			[
+				"side",
+				"Side Bar: Refresh"
+			],
+			[
+				"prv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"resource",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"Snippet: ",
+				"Snippet: elif …"
+			],
+			[
+				"snippets",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"linter",
+				"Preferences: SublimeLinter Key Bindings – Default"
+			],
+			[
+				"toggle",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"finder",
+				"Finder: Open here"
+			],
+			[
+				"JSON",
+				"Preferences: Pretty JSON Settings - Default"
+			],
+			[
+				"packages",
+				"Preferences: Browse Packages"
+			],
+			[
+				"log",
+				"Set Syntax: Logfile"
+			],
+			[
+				"File",
+				"FileDiffs: Menu"
+			],
+			[
+				"togg",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"find",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			]
+		],
+		"width": 516.0
+	},
+	"console":
+	{
+		"height": 107.0,
+		"history":
+		[
+			"cls",
+			"clear",
+			"console.clear",
+			"sublime.*",
+			"sublime.members",
+			"sublime",
+			"sublime.",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(true)",
+			"sublime.log_commands True",
+			"sublime.log_commands(False);",
+			"sublime.log_commands(false);",
+			"sublime.log_commands false",
+			"sublime.log_events(false)",
+			"sublime.log_commands(True)",
+			"info"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/tpierzina/Dropbox/notes/muh family phones.md",
+		"/Users/tpierzina/Dropbox/notes/muh family.md",
+		"/Users/tpierzina/Dropbox/notes/mbs | 2018-01-15 calls.mmd",
+		"/Users/tpierzina/Dropbox/notes/vertex notes.mmd",
+		"/Users/tpierzina/Dropbox/notes/mbs | cheat sheet.md",
+		"/Users/tpierzina/Dropbox/notes/family gmail filters.md",
+		"/Users/tpierzina/Dropbox/notes/muh mac notes.mmd",
+		"/Users/tpierzina/Dropbox/notes/UCP Notes.md",
+		"/Users/tpierzina/Dropbox/dotfiles/sublime/projects/notes.sublime-project",
+		"/Users/tpierzina/Dropbox/notes/muh linux-bash notes.md",
+		"/Users/tpierzina/Dropbox/notes/2017-09-07 ASGMobius meeting notes.md",
+		"/Users/tpierzina/Dropbox/notes/muh tsg notes.md",
+		"/Users/tpierzina/Dropbox/notes/itunes sed commands.md",
+		"/Users/tpierzina/Dropbox/notes/muh software licenses.md",
+		"/Users/tpierzina/Dropbox/notes/Muh Points.md",
+		"/Users/tpierzina/Dropbox/notes/software info - 2010 and earlier.mmd",
+		"/Users/tpierzina/Dropbox/notes/# mbs 2018-01-16 call notes",
+		"/Users/tpierzina/Dropbox/notes/ucp | 2018-01-05 | prod liferay user issue.mmd",
+		"/Users/tpierzina/Dropbox/notes/2017-11-09 | vertex | call w daryn.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/EasySettings/README.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Sesame/Preferences.sublime-settings",
+		"/Users/tpierzina/Dropbox/notes/muh cards.md",
+		"/Users/tpierzina/Dropbox/notes/2017-10-30 | fresenius on-site.md",
+		"/Users/tpierzina/Dropbox/notes/ucp | 2018-01-10 call.mmd",
+		"/Users/tpierzina/Dropbox/notes/tsg | 2018-01-04 quarterly meeting.mmd",
+		"/Users/tpierzina/Dropbox/notes/muh running.md",
+		"/Users/tpierzina/Dropbox/notes/tsg gmail filters.md",
+		"/Users/tpierzina/Dropbox/notes/mbs | 2017-11-12 calls.md",
+		"/Users/tpierzina/Dropbox/notes/2017-05-25 ucp daily notes.md",
+		"/Users/tpierzina/Dropbox/notes/ucp mysql notes.md",
+		"/Users/tpierzina/Dropbox/dotfiles/dot_profile.sh",
+		"/Users/tpierzina/svn/mbs/opencontent/projects/clients/mbs/supporting/HOME/links/postgresql.conf",
+		"/Users/tpierzina/svn/mbs/opencontent/projects/clients/mbs/supporting/HOME/links/pg_hba.conf",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/MultiMarkdown.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/Markdown.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/MarkdownEditing/MultiMarkdown.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/MarkdownEditing/README.md",
+		"/Users/tpierzina/Dropbox/notes/mbs | 2017-11-02 call.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Markdown Preview/MarkdownPreview.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/MarkdownPreview.sublime-settings",
+		"/Users/tpierzina/svn/mbs/opencontent/projects/clients/mbs/supporting/HOME/dot_bash_alias.sh",
+		"/Users/tpierzina/Dropbox/dotfiles/dot_functions.sh",
+		"/Users/tpierzina/svn/mbs/opencontent/projects/clients/mbs/supporting/HOME/dot_bash_profile.sh",
+		"/Users/tpierzina/svn/mbs/opencontent/projects/clients/mbs/supporting/HOME/dot_bashrc.sh",
+		"/Users/tpierzina/svn/mbs/opencontent/projects/clients/mbs/supporting/HOME/dot_profile.sh",
+		"/Applications/SQuirreLSQL.app/Contents/MacOS/squirrel-sql.sh",
+		"/Users/tpierzina/Dropbox/dotfiles/dot_alias.sh",
+		"/Users/tpierzina/Dropbox/dotfiles/dot_alias_ucp.sh",
+		"/Users/tpierzina/svn/mbs/opencontent/projects/clients/mbs/supporting/HOME/dot_alias.sh",
+		"/Users/tpierzina/Dropbox/dotfiles/dot_bash_profile.sh",
+		"/Users/tpierzina/Downloads/Dynamsoft_TSG_License.txt",
+		"/Users/tpierzina/Dropbox/dotfiles/alfred/Alfred.alfredpreferences/workflows/user.workflow.32B95390-A0F4-464B-8D39-9A3BCDDA8205/workflow/workflow.py",
+		"/Users/tpierzina/Dropbox/dotfiles/alfred/Alfred.alfredpreferences/workflows/user.workflow.08732111-8349-4206-8F2A-E9A7D2308B55/alfred.py",
+		"/Users/tpierzina/Dropbox/dotfiles/alfred/Alfred.alfredpreferences/workflows/user.workflow.08732111-8349-4206-8F2A-E9A7D2308B55/packal/net.isometry.alfred.man.pub",
+		"/Users/tpierzina/Dropbox/dotfiles/alfred/Alfred.alfredpreferences/workflows/user.workflow.08732111-8349-4206-8F2A-E9A7D2308B55/alfredman.py",
+		"/Users/tpierzina/Dropbox/dotfiles/alfred/Alfred.alfredpreferences/workflows/user.workflow.08732111-8349-4206-8F2A-E9A7D2308B55/alfredman.pyc",
+		"/Users/tpierzina/Dropbox/install/alfred/addtoplaylist.alfredworkflow",
+		"/Users/tpierzina/Documents/sublime/notes.sublime-project",
+		"/Users/tpierzina/Dropbox/notes/mbs | 2017-11-16 | sow review.md",
+		"/Users/tpierzina/Dropbox/notes/garmin notes and appsfields.md",
+		"/Users/tpierzina/Dropbox/notes/ucp | 11:10:2017 | learning path troubleshooting.md",
+		"/Users/tpierzina/Dropbox/notes/nyphil | 2017-11-13 | wrap-up call.md",
+		"/Users/tpierzina/Dropbox/notes/Google Voice and Family Phone Notes.md",
+		"/Users/tpierzina/svn/alfresco-scripts/webscripts/ucp-test-myinfinitec.sh",
+		"/Users/tpierzina/work/ucp-work/vid_id_name.txt",
+		"/Users/tpierzina/Dropbox/notes/apps wishlist (Todd Pierzina's conflicted copy).md",
+		"/Users/tpierzina/Dropbox/notes/beyond compare notes.md",
+		"/Users/tpierzina/Dropbox/notes/muh home network.md",
+		"/Users/tpierzina/Dropbox/notes/muh family email accounts.md",
+		"/Users/tpierzina/Dropbox/notes/apps wishlist.md",
+		"/Users/tpierzina/Dropbox/notes/muh trains.md",
+		"/Users/tpierzina/Dropbox/notes/cloning an AWS instance.md",
+		"/Users/tpierzina/Dropbox/notes/ucp | 2017-11-01 | privatre content.md",
+		"/Users/tpierzina/Dropbox/notes/ucp | 2017-08-28 | the rebranchening.md",
+		"/Users/tpierzina/Dropbox/notes/muh mac notes.md",
+		"/Users/tpierzina/Dropbox/notes/muh linux-bash notes.html",
+		"/Users/tpierzina/Dropbox/notes/Software Info.md",
+		"/Users/tpierzina/svn/alfresco-scripts/webscripts/ucp-scratch.json",
+		"/Users/tpierzina/svn/alfresco-scripts/webscripts/ucp-find.sh",
+		"/Users/tpierzina/Dropbox/notes/2017-10-October tsg recruiting.md",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/svn_globalignores.txt",
+		"/Users/tpierzina/svn/ucp/ucp-myinfinitec/trunk/svn_globalignores.txt",
+		"/Users/tpierzina/Dropbox/notes/nyphil | 2017-10-27 call.md",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/themes/ucp-theme/docroot/_diffs/css/custom.css.r9104.20170807",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/themes/ucp-theme/docroot/_diffs/css/custom.css.r9088.20170731",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/themes/ucp-theme/docroot/_diffs/css/custom.css.r8944.20170613",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/themes/ucp-theme/docroot/_diffs/css/custom.css.r8924.20170607",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/themes/ucp-theme/docroot/_diffs/css/custom.css.r8940.20170612",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/themes/ucp-theme/docroot/_diffs/css/custom.css.r7107.20140312",
+		"/Users/tpierzina/tmp/MarkdownPreview.py",
+		"/Users/tpierzina/Dropbox/notes/mbs | 2017-10-25 ocr:call notes.md",
+		"/Applications/Google Chrome Canary.app/Contents/Info.plist",
+		"/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary.sh",
+		"/Users/tpierzina/tmp/md_preview/287.html",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/View In Browser/View In Browser.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/BrowserIntegration/BrowserIntegration.sublime-settings",
+		"/Users/tpierzina/Dropbox/notes/MPS Linux Notes.md",
+		"/Users/tpierzina/Dropbox/notes/ucp | 2017-10-24 link user to campaign.md",
+		"/Users/tpierzina/Dropbox/notes/Linux Notes.md",
+		"/Users/tpierzina/Dropbox/notes/ucp | 2017-10-25 | daily notes.md",
+		"/Users/tpierzina/Dropbox/notes/ThemeTest.md",
+		"/Users/tpierzina/Dropbox/notes/notebook/3.tsg.ucp/cloning an AWS instance.md",
+		"/Users/tpierzina/Dropbox/notes/notebook/1.personal/family gmail filters.md",
+		"/Users/tpierzina/Dropbox/notes/2017-10-20 tsg recruiting.md",
+		"/Users/tpierzina/Dropbox/notes/mps | 2017-10-10 on-site.md",
+		"/Users/tpierzina/Dropbox/notes/ucp | 2017-09-11 PROD ISSUE audit report.md",
+		"/Users/tpierzina/svn/fedex-blob-claims/code/projects/clients/fedex-claims-migrations/config_claims_letters/app-ctx.xml",
+		"/Users/tpierzina/svn/fedex-blob-claims/code/projects/clients/fedex-claims-migrations/config_claims_letters/config-details.xml",
+		"/Users/tpierzina/svn/fedex-blob-claims/code/projects/clients/fedex-claims-migrations/om_letters.sh",
+		"/Users/tpierzina/svn/fedex-blob-claims/code/projects/clients/fedex-claims-migrations/config_claims_letters/core-include-ctx.xml",
+		"/Users/tpierzina/Library/Containers/com.zennaware.cornerstone3/Data/Library/Caches/Cornerstone/Store/http%3A%2F%2Ftpierzina%40svn.tsgrp.com%2Frepos%2FOpenMigrate/0000012755/branches/clients/fedex-blob-claims/code/projects/clients/fedex-claims-migrations/config_claims_letters/ctx-placeholders.properties",
+		"/Users/tpierzina/Dropbox/notes/# 10:20:17 tsg recruiting.md",
+		"/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/alfresco/alfresco-extension/templates/webscripts/com/tsgrp/ucpvideothumbnails.get.js",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/MarkdownEditor-Light-Original (SL).tmTheme",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/MarkdownEditing/MarkdownEditor-Light.tmTheme",
+		"/Users/tpierzina/Dropbox/notes/notebook/2.tsg.2016/muh tsg notes.md",
+		"/Users/tpierzina/Dropbox/notes/notebook/3.tsg.wag/muh linuxbash notes.md",
+		"/Users/tpierzina/Dropbox/notes/Hello World.md",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/XML.sublime-settings",
+		"/Users/tpierzina/svn/oc__page-rotation/modules/tsg/3.wizard/src/com/tsgrp/opencontent/wizard/itext/OpenContentITextPipeline.java",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/MarkdownEditing/Markdown.sublime-settings",
+		"/Users/tpierzina/Library/Mobile Documents/com~apple~CloudDocs/sabdbox.sublime-project",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User/HTML.sublime-settings",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Installed Packages/Theme - Afterglow.sublime-package/Afterglow-blue.sublime-theme",
+		"/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 136.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 52.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 106.0
+	},
+	"output.find_results":
+	{
+		"height": 112.0
+	},
+	"output.mediawiker_panel":
+	{
+		"height": 88.0
+	},
+	"output.preferences_editor_help":
+	{
+		"height": 98.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 98.0
+	},
+	"pinned_build_system": "Packages/Java/JavaC.sublime-build",
+	"project": "ucp-olc-2017.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"muhfa",
+				"muh family.md"
+			],
+			[
+				"phones",
+				"muh family phones.md"
+			],
+			[
+				"ucp",
+				"UCP Notes.md"
+			],
+			[
+				"macno",
+				"muh mac notes.mmd"
+			],
+			[
+				"family",
+				"family gmail filters.md"
+			],
+			[
+				"muhts",
+				"muh tsg notes.md"
+			],
+			[
+				"mbs",
+				"mbs | cheat sheet.md"
+			],
+			[
+				"itu",
+				"itunes sed commands.md"
+			],
+			[
+				"muhso",
+				"muh software licenses.md"
+			],
+			[
+				"software",
+				"Software Info.md"
+			],
+			[
+				"linux",
+				"muh linux-bash notes.md"
+			],
+			[
+				"gmail",
+				"family gmail filters.md"
+			],
+			[
+				"vertex",
+				"2017-11-09 | vertex | call w daryn.md"
+			],
+			[
+				"vert",
+				"~/Dropbox/notes/vertex notes.mmd"
+			],
+			[
+				"muhfam",
+				"muh family.md"
+			],
+			[
+				"muhcard",
+				"muh cards.md"
+			],
+			[
+				"fres",
+				"2017-10-30 | fresenius on-site.md"
+			],
+			[
+				"tsgnotes",
+				"muh tsg notes.md"
+			],
+			[
+				"runn",
+				"muh running.md"
+			],
+			[
+				"tsggm",
+				"tsg gmail filters.md"
+			],
+			[
+				"lic",
+				"muh software licenses.md"
+			],
+			[
+				"mubash",
+				"muh linux-bash notes.md"
+			],
+			[
+				"muhsoft",
+				"muh software licenses.md"
+			],
+			[
+				"mbsc",
+				"mbs | cheat sheet.md"
+			],
+			[
+				"muhbash",
+				"muh linux-bash notes.md"
+			],
+			[
+				"tsg",
+				"muh tsg notes.md"
+			],
+			[
+				"bash",
+				"muh linux-bash notes.md"
+			],
+			[
+				"famil",
+				"family gmail filters.md"
+			],
+			[
+				"app",
+				"apps wishlist (Todd Pierzina's conflicted copy).md"
+			],
+			[
+				"dary",
+				"2017-11-09 | vertex | call w daryn.md"
+			],
+			[
+				"trains",
+				"muh trains.md"
+			],
+			[
+				"frese",
+				"2017-10-30 | fresenius on-site.md"
+			],
+			[
+				"muh",
+				"muh family email accounts.md"
+			],
+			[
+				"munet",
+				"muh home network.md"
+			],
+			[
+				"bey",
+				"beyond compare notes.md"
+			],
+			[
+				"muhmac",
+				"muh mac notes.md"
+			],
+			[
+				"branch",
+				"ucp | 2017-08-28 | the rebranchening.md"
+			],
+			[
+				"muhli",
+				"muh linux-bash notes.md"
+			],
+			[
+				"clone",
+				"cloning an AWS instance.md"
+			],
+			[
+				"soft",
+				"Software Info.md"
+			],
+			[
+				"softwa",
+				"Software Info.md"
+			],
+			[
+				"tsgfilter",
+				"tsg gmail filters.md"
+			],
+			[
+				"beyon",
+				"beyond compare notes.md"
+			],
+			[
+				"recrui",
+				"2017-10-20 tsg recruiting.md"
+			],
+			[
+				"lin",
+				"muh linux-bash notes.md"
+			],
+			[
+				"mpson",
+				"mps | 2017-10-10 on-site.md"
+			],
+			[
+				"tsgrecr",
+				"2017-10-20 tsg recruiting.md"
+			],
+			[
+				"muhtr",
+				"muh trains.md"
+			],
+			[
+				"bui",
+				"alfresco/build.properties"
+			],
+			[
+				"themetest",
+				"alfresco/src/java/com/tsgrp/util/ThemeTest.java"
+			],
+			[
+				"eu.gr",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/domain/com/ucp/util/EmailUtil.groovy"
+			],
+			[
+				"campaignusercon",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/controllers/com/ucp/learneradministration/CampaignUserController.groovy"
+			],
+			[
+				"campaignuserco",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/controllers/com/ucp/learneradministration/CampaignUserController.groovy"
+			],
+			[
+				"cu",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/domain/com/ucp/learneradministration/CampaignUser.groovy"
+			],
+			[
+				"campaign.gr",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/domain/com/ucp/learneradministration/Campaign.groovy"
+			],
+			[
+				"campaign.js",
+				"2.0 ucp-alf-life | liferay/portlets/_ucp-campaign-portlet/js/learningpathjs/campaign.js"
+			],
+			[
+				"buildg",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/conf/BuildConfig.groovy"
+			],
+			[
+				"campaign",
+				"2.0 ucp-alf-life | liferay/portlets/_ucp-campaign-portlet/js/learningpathjs/campaign.js"
+			],
+			[
+				"resources.",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/conf/spring/resources.groovy"
+			],
+			[
+				"config",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/conf/Config.groovy"
+			],
+			[
+				"help",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/jobs/ucpmanagementportal/HelpJob.groovy"
+			],
+			[
+				"c",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/conf/Config.groovy"
+			],
+			[
+				"helpjob",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/jobs/ucpmanagementportal/HelpJob.groovy"
+			],
+			[
+				"config.g",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/conf/Config.groovy"
+			],
+			[
+				"infini",
+				"5.0 ucp-myinfinitec/HOME/infinitec.sh"
+			],
+			[
+				"messages",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/i18n/messages.properties"
+			],
+			[
+				"campaigncon",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/controllers/com/ucp/learneradministration/CampaignController.groovy"
+			],
+			[
+				"ucp-campaign-port",
+				"2.0 ucp-alf-life | liferay/portlets/_ucp-campaign-portlet/build.xml"
+			],
+			[
+				"ucp-proxy-por",
+				"2.0 ucp-alf-life | liferay/portlets/_ucp-proxy-portlet/WEB-INF/liferay-portlet.xml"
+			],
+			[
+				"igr",
+				"5.0 ucp-myinfinitec/usermanagement/igrails.sh"
+			],
+			[
+				"igrails",
+				"5.0 ucp-myinfinitec/usermanagement/igrails.sh"
+			],
+			[
+				"buildcon",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/conf/BuildConfig.groovy"
+			],
+			[
+				"dot_f",
+				"9.3 ~ dotfiles/dot_functions.sh"
+			],
+			[
+				"ucpvideothumbnails",
+				"- 1.1 webscripts/ucpvideothumbnails.get.js"
+			],
+			[
+				"",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/jobs/ucpmanagementportal/AuditUpdateJob.groovy"
+			],
+			[
+				"log4j",
+				"1.0 ucp-alf-life | alfresco/src/log4j.properties"
+			],
+			[
+				"campaignco",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/controllers/com/ucp/learneradministration/CampaignController.groovy"
+			],
+			[
+				"audit",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/jobs/ucpmanagementportal/AuditUpdateJob.groovy"
+			],
+			[
+				"mana",
+				"5.0 ucp-myinfinitec/HOME/scripts/manage_setenv.sh"
+			],
+			[
+				"dot_fun",
+				"9.3 ~ dotfiles/dot_functions.sh"
+			],
+			[
+				"log",
+				"1.0 ucp-alf-life | alfresco/src/log4j.properties"
+			],
+			[
+				"build_u",
+				"5.0 ucp-myinfinitec/usermanagement/build_ubuntu.sh"
+			],
+			[
+				"igrail",
+				"5.0 ucp-myinfinitec/usermanagement/igrails.sh"
+			],
+			[
+				"stag",
+				"5.0 ucp-myinfinitec/usermanagement/ext/staging-config.groovy"
+			],
+			[
+				"infi",
+				"5.0 ucp-myinfinitec/HOME/infinitec.sh"
+			],
+			[
+				"manage",
+				"5.0 ucp-myinfinitec/HOME/scripts/manage_setenv.sh"
+			],
+			[
+				"tomca",
+				"5.0 ucp-myinfinitec/HOME/scripts/tomcat_mem.sh"
+			],
+			[
+				"apic",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/controllers/com/ucp/usermanagement/APIController.groovy"
+			],
+			[
+				"config.groo",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/conf/Config.groovy"
+			],
+			[
+				"reminder",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/jobs/ucpmanagementportal/EmailReminderJob.groovy"
+			],
+			[
+				"acq",
+				"3.1 ucp-alf-life | adobe-connect-utils/src/java/com/tsgrp/adobeconnect/ACQuery.java"
+			],
+			[
+				"adobec",
+				"3.1 ucp-alf-life | adobe-connect-utils/src/java/com/tsgrp/adobeconnect/AdobeConnectUtil.java"
+			],
+			[
+				"get_ucp",
+				"5.0 ucp-myinfinitec/HOME/scripts/get_ucp_env.sh"
+			],
+			[
+				"setenv",
+				"5.0 ucp-myinfinitec/HOME/scripts/manage_setenv.sh"
+			],
+			[
+				"auditu",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/jobs/ucpmanagementportal/AuditUpdateJob.groovy"
+			],
+			[
+				"up",
+				"9.2 ~ bash scripts/up.sh"
+			],
+			[
+				"other",
+				"- 1.1 webscripts/otherlinks.get.js"
+			],
+			[
+				"resourcedo",
+				"- 1.1 webscripts/resourceDownloads.get.js"
+			],
+			[
+				"ucp-websc",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"resaourced",
+				"7.0 work - ucp/from-PROD/alf_PROD/tomcat/shared/classes/alfresco/extension/templates/webscripts/com/tsgrp/resourceDownloads.get.js"
+			],
+			[
+				"ucpvideo",
+				"- 1.1 webscripts/ucpvideothumbnails.get.js"
+			],
+			[
+				"userquizres",
+				"1.0 ucp-alf-life | alfresco/src/java/com/tsgrp/webscripts/GetUserQuizResultWebscript.java"
+			],
+			[
+				"userquizcert",
+				"- 1.1 webscripts/userquizcertificates.get.js"
+			],
+			[
+				"ucpslider",
+				"- 1.1 webscripts/ucpsliderimages.get.js"
+			],
+			[
+				"ucp-test",
+				"9.1 ~ webscripts/ucp-test-myinfinitec.sh"
+			],
+			[
+				"test",
+				"- 1.1 webscripts/test.get.js"
+			],
+			[
+				"getmobileapps",
+				"1.0 ucp-alf-life | alfresco/src/java/com/tsgrp/webscripts/GetMobileAppSummaryWebscript.java"
+			],
+			[
+				"up.",
+				"9.2 ~ bash scripts/up.sh"
+			],
+			[
+				"ucp-web",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"_bash",
+				"5.0 ucp-myinfinitec/HOME/_bash_aliases"
+			],
+			[
+				"in",
+				"5.0 ucp-myinfinitec/HOME/infinitec.sh"
+			],
+			[
+				"_alias",
+				"5.0 ucp-myinfinitec/HOME/_bash_aliases"
+			],
+			[
+				"auditup",
+				"5.0 ucp-myinfinitec/usermanagement/grails-app/jobs/ucpmanagementportal/AuditUpdateJob.groovy"
+			],
+			[
+				"up.sh",
+				"9.2 ~ bash scripts/up.sh"
+			],
+			[
+				"gett",
+				"- 1.1 webscripts/lib/getLoginTicket.js.ftl"
+			],
+			[
+				"find.post",
+				"9.1 ~ webscripts/find.post.json.js"
+			],
+			[
+				"ucp-sc",
+				"~/svn/alfresco-scripts/webscripts/ucp-scratch.json"
+			],
+			[
+				"links",
+				"- 1.1 webscripts/links.get.js"
+			],
+			[
+				"otherl",
+				"- 1.1 webscripts/otherlinks.get.js"
+			],
+			[
+				"otherlinks",
+				"- 1.1 webscripts/otherlinks.get.js"
+			],
+			[
+				"test.get.",
+				"- 1.1 webscripts/test.get.text.ftl"
+			],
+			[
+				"ucp-vid",
+				"9.1 ~ webscripts/ucp-videos.json"
+			],
+			[
+				"ucpmodel.x",
+				"1.0 ucp-alf-life | alfresco/alfresco-extension/model/ucpModel.xml"
+			],
+			[
+				"ucpmodel",
+				"1.0 ucp-alf-life | alfresco/alfresco-extension/UCPmodel-context.xml"
+			],
+			[
+				"ucp-util",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			],
+			[
+				"ucpvideos",
+				"- 1.1 webscripts/ucpvideos.get.html.ftl"
+			],
+			[
+				"find.",
+				"9.1 ~ webscripts/find.post.json.js"
+			],
+			[
+				"ucp-ut",
+				"- 1.1 webscripts/lib/ucp-webscript-utils.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Dropbox/dotfiles/sublime/projects/dotfiles.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 87.0,
+		"last_filter": "software info - 2010 and ea",
+		"selected_items":
+		[
+			[
+				"software info - 2010 and ea",
+				"# software info - 2010 and earlier"
+			],
+			[
+				"Campai",
+				"CampaignReportJob"
+			]
+		],
+		"width": 852.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 263.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

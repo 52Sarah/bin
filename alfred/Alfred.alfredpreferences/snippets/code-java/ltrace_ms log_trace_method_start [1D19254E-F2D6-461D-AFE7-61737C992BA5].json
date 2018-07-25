@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "logger.trace(\"START ${cursor}\");",
+    "dontautoexpand" : true,
+    "uid" : "1D19254E-F2D6-461D-AFE7-61737C992BA5",
+    "name" : "ltrace_ms log_trace_method_start",
+    "keyword" : ""
+  }
+}

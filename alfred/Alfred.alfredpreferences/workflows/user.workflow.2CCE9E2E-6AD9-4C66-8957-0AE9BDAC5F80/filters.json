@@ -1,0 +1,76 @@
+{
+    "Change case - lowercase": "tr '[:upper:]' '[:lower:]'",
+    "Change case - uppercase": "tr '[:lower:]' '[:upper:]'",
+    "Change case - capitalize": "ruby -ne 'print $_.split(%Q{ }).map(&:capitalize).join(%Q{ })'",
+    "Change case - sentence case": "(read line; echo -n \"$(echo ${line:0:1} | tr [[:lower:]] [[:upper:]])${line:1}\")",
+    "Change case - title case": "perl scripts/titlecase.pl",
+
+    "Change variable case - camelCase to css-id-case":
+        //"sed -e 'p'",
+        //"sed -E -e 's/([^[:upper:]])([[:upper:]])([^[:upper:]])/\\1-\\2\\3/g'",
+        "sed -E -e \'s/([^[:upper:]])([[:upper:]])([^[:upper:]])/\\1-\\2\\3/g' | tr '[[:upper:]]' '[[:lower:]]\'",
+
+    "Lines - sort numeric": "sort -n",
+    "Lines - sort unique": "sort -u",
+    "Lines - //-ize": "awk '/^[^\\/]/{print \"// \" $0}; /^\\/\\/ /{sub(/\\/\\/ /, \"\"); print};'",
+    "Lines - numberize": "perl scripts/bulletlist.pl -n",
+    "Lines - bulletize": "perl scripts/bulletlist.pl",
+    "Lines - clear bullets": "sed -E -e 's/^[[:space:]]*.[[:space:]]+(.*)$/\\1/'",
+    //"Lines - clear bullets": "perl scripts/bulletlist.pl -c",
+    "Lines - remove blanks": "perl -ne 'print unless /^$/'",
+    "Lines - remove duplicate lines": "perl -ne 'print unless $a{$_}++'",
+    "Lines - top 10 unique lines": "sort | uniq -c | sort -rn | head -10",
+    "Lines - doublespace": "sed G",
+    "Lines - sum numbers": "ruby scripts/sum.rb",
+    "Lines - lorem ipsum": "/usr/local/bin/lorem --words 100 --cols 999999",
+    "Lines - commafy (trim and join lines with comma delim)":
+        "sed -E -n -e 's/^[[:space:]]*(.+)[[:space:]]*$/\\1/p' | while read ln; do [[ -n \"$not1st\" ]] && printf ', ' || not1st=1; printf \"$ln\"; done; printf '\n'",
+    "Lines - unwrap": "tr '\\n' ' '",
+    "Lines - trim and unwrap":
+        "sed -E -n -e '1 s/^([[:space:]]*.+)[[:space:]]*$/\\1/p; 2,$ s/^[[:space:]]*(.+)[[:space:]]*$/\\1/p' | tr -d '\\n'",
+    //"Lines - format doc lines***": "ruby scripts/format-doc-line.rb",
+
+    "String - reverse": "ruby -ne 'print $_.reverse'",
+    "String - remove spaces": "ruby -ne 'print $_.gsub(\" \", \"\")'",
+    //"String - wrap in \"double quotes\"": "function _wrap() {1>&2 echo \"\\\"..$*..\\\"\";}; _wrap",
+    "String - wrap in \"double quotes\"": "echo -n \"\\\"\\$(cat)\\\"\"",
+    "String - trim spaces": "ruby -ne 'print $_.strip'",
+    "String - trim leading spaces": "ruby -ne 'print $_.lstrip'",
+    "String - trim trailing spaces": "ruby -ne 'print $_.rstrip'",
+    "String - format US phone number": "ruby scripts/format-us-phone.rb",
+    // "String - format enums***": "ruby scripts/format-enums.rb",
+
+    // First remove double quotes starting a line but closing on it; then all instances of two double quotes.
+    "Google Sheets - fix copied double quotes": "sed -E -e 's/^\"([^\"]*)$/\\1/; s/([^\"])\"\"([^\"])/\\1\"\\2/g'",
+
+    "JSON - format": "python -c \"import json,sys; print json.dumps(json.load(sys.stdin),indent=4,separators=(',',': '))\"",
+
+
+    "Base64 - decode": "openssl base64 -d",
+    "Base64 - encode": "openssl base64 -e",
+
+    "AES-256 - decrypt with passphrase 'X'": "openssl enc -d -base64 -aes256 -k X",
+    "AES-256 - encrypt with passphrase 'X'": "openssl enc -e -base64 -aes256 -k X",
+
+    "HTML - encode": "php -r \"echo htmlentities(file_get_contents('php://stdin'), ENT_COMPAT | ENT_HTML401, 'UTF-8');\"",
+    "HTML - decode": "php -r \"echo html_entity_decode(file_get_contents('php://stdin'), ENT_COMPAT | ENT_HTML401, 'UTF-8');\"",
+
+    "IPv4 addresses - sort": "sort -n -t. -k1,1 -k2,2 -k3,3 -k4,4",
+
+    "Markdown - convert search links to normal links": "ruby scripts/searchlink.rb",
+    "Markdown - convert to HTML": "php scripts/domd.php",
+
+    "Templated - expand numbering template": "ruby scripts/templated.rb",
+
+    "URL - encode": "perl -pe's/([^-_.~A-Za-z0-9])/sprintf(\"%%%02X\", ord($1))/seg'",
+    "URL - shorten": "xargs /Users/ctwise/bin/tinyurl -n",
+
+    "x509 - fingerprint": "openssl x509 -noout -fingerprint",
+    "x509 - hash": "openssl x509 -noout -hash",
+    "x509 - certificate information": "openssl x509 -text",
+
+    "Test - cat": "cat",
+    "Test - echo -n 'Hello, world'": "echo -n 'Hello, world'"
+}
+
+

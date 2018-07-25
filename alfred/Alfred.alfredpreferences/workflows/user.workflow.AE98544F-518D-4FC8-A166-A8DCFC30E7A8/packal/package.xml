@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>iTunes Rating</name>
+  <version>1.0</version>
+  <bundle>com.artform.itunes-rating</bundle>
+  <updated>1452156563</updated>
+  <file>itunes_rating.alfredworkflow</file>
+</workflow>

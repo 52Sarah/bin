@@ -1,0 +1,7 @@
+---
+description: SQL SELECT wrap DATE around field
+tabTrigger:
+scope:
+---
+DATE(${1:$TM_CURRENT_WORD}) "$1"$0
+

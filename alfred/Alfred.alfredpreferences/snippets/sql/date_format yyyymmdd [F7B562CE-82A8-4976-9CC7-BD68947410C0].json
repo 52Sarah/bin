@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "DATE_FORMAT({cursor}, '%Y-%m-%d')",
+    "dontautoexpand" : true,
+    "uid" : "F7B562CE-82A8-4976-9CC7-BD68947410C0",
+    "name" : "date_format yyyymmdd",
+    "keyword" : ""
+  }
+}

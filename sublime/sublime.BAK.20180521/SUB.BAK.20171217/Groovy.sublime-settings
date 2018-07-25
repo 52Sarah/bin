@@ -1,0 +1,5 @@
+// These settings override both User and Default settings for the Groovy syntax
+{
+  // Set to true to insert spaces when tab is pressed
+  "translate_tabs_to_spaces": true
+}

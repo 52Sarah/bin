@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "sublime.log_commands(True)",
+    "dontautoexpand" : true,
+    "uid" : "5738F0CA-B26D-4B43-8856-39699348744C",
+    "name" : "console: log commands: TRUE",
+    "keyword" : ""
+  }
+}

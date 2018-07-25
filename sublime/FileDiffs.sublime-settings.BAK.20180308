@@ -1,0 +1,8 @@
+{
+    "cmd": ["/usr/local/bin/bcomp",  "$file1", "$file2"]
+
+    , "trim_trailing_white_space_before_diff": true
+    , "expand_full_file_name_in_tab": false
+    , "apply_tempfile_changes_after_diff_tool": true
+    , "limit": 1000
+}

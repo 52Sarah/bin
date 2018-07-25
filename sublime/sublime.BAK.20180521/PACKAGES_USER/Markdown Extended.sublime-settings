@@ -1,0 +1,6 @@
+// These settings override both User and Default settings for the Markdown Extended syntax
+{
+        "color_scheme": "Packages/User/SublimeLinter/MarkdownDark (SL).tmTheme",
+        //"color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme"
+
+}

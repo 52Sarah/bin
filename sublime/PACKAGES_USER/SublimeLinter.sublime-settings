@@ -1,0 +1,103 @@
+{
+    "debug": false,
+
+    // Demote the visibility of a class off errors while you're editing.
+    // The errors will re-appear after `time_to_idle` and immediately on save.
+    // - ws_regions: erroneous regions that contain whitespace
+    // - warnings: errors of the "warning" type
+    // - all: demote all the things
+    // - none: disable this feature
+    "highlights.demote_while_editing": "all",
+
+    // Apply a color (via scope) to the demoted errors.
+    // E.g. "" will hide the errors, "comment" is usually a subtle color.
+    "highlights.demote_scope": "keyword.other",
+
+    // How long to wait before showing the demoted errors again.
+    "highlights.time_to_idle": 2.0,
+
+    // Display counters in the status bar.
+    // The {}'s will be replaced by warnings and errors respectively.
+    // Example alternative: (w:{}, e:{})
+    "statusbar.counters_template": "(w:{}|e:{})",
+
+    "linters": {
+        "csslint": {
+            "@disable": true,
+            "args": [],
+            "errors": "",
+            "excludes": [],
+            "ignore": "",
+            "warnings": ""
+        },
+        "javac": {
+            "@disable": true,
+            "args": [],
+            "excludes": [],
+            "lint": ""
+        },
+        "jshint": {
+            "@disable": false,
+            "args": [],
+            "excludes": []
+        },
+        "json": {
+            "@disable": false,
+            "args": [],
+            "excludes": [],
+            "strict": false
+        },
+        "shellcheck": {
+            "@disable": false,
+            "args": "",
+            "exclude": "1090,2009,2155",
+            "excludes": []
+        }
+    },
+    "styles": [
+        {
+            "scope": "region.orangish markup.warning.sublime_linter",
+            "types": ["warning"]
+        },
+        {
+            "scope": "region.redish markup.error.sublime_linter",
+            "types": ["error"]
+        },
+        {
+            "priority": 1,
+            "icon": "dot",
+            "mark_style": "outline"
+        },
+        // {
+        //     "mark_style": "squiggly_underline",
+        //     "priority": 1,
+        //     "scope": "region.pinkish markup.changed.sublime_linter markup.warning.sublime_linter",
+        //     "icon": "dot",
+        //     "types": [
+        //         "warning"
+        //     ]
+        // },
+        // {
+        //     "mark_style": "squiggly_underline",
+        //     "priority": 1,
+        //     "scope": "region.redish markup.deleted.sublime_linter markup.error.sublime_linter",
+        //     "icon": "dot",
+        //     "types": [
+        //         "error"
+        //     ]
+        // }
+    ],
+    "syntax_map": {
+        "html 5": "html",
+        "javascript (gruntfile)": "javascript",
+        "json (bower)": "json",
+        "json (npm)": "json",
+        "json (settings)": "json",
+        "json (sublime)": "json",
+        "magicpython": "python",
+        "php": "html",
+        "pythonimproved": "python",
+        "xml (config)": "xml",
+        "xml (svg)": "xml",
+    }
+}

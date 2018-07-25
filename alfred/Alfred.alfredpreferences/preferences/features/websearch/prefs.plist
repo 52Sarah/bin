@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>customSites</key>
+	<dict>
+		<key>0DFEAAA1-D3A0-480C-8B1B-5F977BAB9BAE</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>allm-albums</string>
+			<key>text</key>
+			<string>Search allmusic.com for album '{query}'</string>
+			<key>url</key>
+			<string>https://www.allmusic.com/search/albums/{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>2F32A65F-E853-4083-9152-65F74B6F7CEB</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>allmusic</string>
+			<key>spaces</key>
+			<string>+</string>
+			<key>text</key>
+			<string>Search allmusic.com for '{query}'</string>
+			<key>url</key>
+			<string>https://www.allmusic.com/search/all/{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>443DEB8D-D171-4CBF-830C-D9E27B2A6A26</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>so</string>
+			<key>spaces</key>
+			<string>+</string>
+			<key>text</key>
+			<string>Stack Overflow</string>
+			<key>url</key>
+			<string>https://stackoverflow.com/search?q={query}</string>
+			<key>utf8</key>
+			<false/>
+		</dict>
+		<key>78542DF5-4EED-463F-9BC6-ADFCAEBDA43F</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>km</string>
+			<key>spaces</key>
+			<string>+</string>
+			<key>text</key>
+			<string>Search Keyboard Maestro Wiki for '{query}'</string>
+			<key>url</key>
+			<string>https://wiki.keyboardmaestro.com/Home_Page?do=search&amp;id={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>B507CC44-8E6D-4C6B-9860-D469E69A25A5</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>allm-songs</string>
+			<key>spaces</key>
+			<string>+</string>
+			<key>text</key>
+			<string>Search allmusic.com for song '{query}'</string>
+			<key>url</key>
+			<string>https://www.allmusic.com/search/songs/{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>B6073480-CFEC-4CE5-AB85-05BB081E4612</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>allm-artists</string>
+			<key>spaces</key>
+			<string>+</string>
+			<key>text</key>
+			<string>Search allmusic.com for artist '{query}'</string>
+			<key>url</key>
+			<string>https://www.allmusic.com/search/artists/{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

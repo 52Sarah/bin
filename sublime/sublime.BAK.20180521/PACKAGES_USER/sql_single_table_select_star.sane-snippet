@@ -1,0 +1,6 @@
+---
+description: Single table SELECT *
+tabTrigger:
+scope:
+---
+SELECT * FROM $1 WHERE ${2:id} = $3;

@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "        catch (e) {\n            log.error(\"ERROR caught in METHOD\", e);\n            throw e;\n        }\n",
+    "dontautoexpand" : true,
+    "uid" : "DCB3BEA7-E741-46FF-AD37-100D1A7F2591",
+    "name" : "catch",
+    "keyword" : ""
+  }
+}

@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+		try {
+${SELECTION/([^\n]*)/\t$0/g}
+		}
+		catch(e) {
+			log.error("ERROR caught in $1: " + e);
+			throw e;
+		}
+		finally {
+			$2
+		}
+]]></content>
+<!--
+${SELECTION/\s*\t([^\n]*)/\t$0/g}
+log.error("ERROR caught" + (arguments.callee && "in " + arguments.callee.name  || "") + ": " + e);
+-->
+  <description></description>
+  <tabTrigger>try</tabTrigger>
+  <scope >meta.block.js</scope >
+</snippet>

@@ -1,0 +1,3 @@
+<snippet><description>throw new runtime exception</description><tabTrigger>tnrte</tabTrigger><scope>source.java</scope><content><![CDATA[
+throw new RuntimeException("ERROR in METHOD: " + e.getMessage());
+]]></content></snippet>

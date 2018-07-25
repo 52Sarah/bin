@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "logger.debug(String.format(\"${cursor} %s\", VAR));",
+    "dontautoexpand" : true,
+    "uid" : "CFBAD1D0-0AD7-4509-83F7-26091F671E71",
+    "name" : "lfdebug log_debug_format",
+    "keyword" : ""
+  }
+}

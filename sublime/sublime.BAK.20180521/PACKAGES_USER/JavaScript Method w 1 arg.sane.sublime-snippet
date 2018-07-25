@@ -1,0 +1,12 @@
+<snippet><description>JavasSript Method w 1 arg</description><tabTrigger>jsm1</tabTrigger><scope>source.js</scope><content><![CDATA[
+function $1($2) {
+	try {
+		log.trace("START $1, $2=" + $2);
+
+		$0
+	}
+	catch(e) {
+		throw log.error("ERROR caught in $1", {err:e});
+	}
+}
+]]></content></snippet>

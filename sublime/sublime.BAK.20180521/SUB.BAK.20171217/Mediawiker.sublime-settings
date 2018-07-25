@@ -1,0 +1,35 @@
+{
+	"mediawiker_mark_as_minor": true,
+	"mediawiker_password_input_hide": true,
+	"mediawiker_site":
+	{
+		"wiki.tsgrp.com":
+		{
+			"authorization_type": "login",
+			"cookies_browser": "chrome",
+			"domain": "",
+			"host": "wiki.tsgrp.com",
+			"http_auth_login": "",
+			"http_auth_password": "",
+			"https": false,
+			"is_ssl_cert_verify": false,
+			"is_wikia": false,
+			"oauth_access_secret": "",
+			"oauth_access_token": "",
+			"oauth_consumer_secret": "",
+			"oauth_consumer_token": "",
+			"pagepath": "/",
+			"password": "",
+			"path": "/",
+			"preview_custom_head":
+			[
+			],
+			"proxy_host": "",
+			"retry_timeout": 30,
+			"show_red_links": false,
+			"use_http_auth": false,
+			"username": ""
+		}
+	},
+	"mediawiker_site_active": "wiki.tsgrp.com"
+}

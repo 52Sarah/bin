@@ -1,0 +1,100 @@
+[
+    // control-d: find under expand; command-k, command-d: skip
+      { "keys": ["ctrl+d"], "command": "find_under_expand" }
+
+    // command-d: delete line
+    , { "keys": ["super+d"], "command": "run_macro_file",
+        "args": {"file": "Packages/Default/Delete Line.sublime-macro" } }
+    , { "keys": ["ctrl+shift+k"], "unbind": "unbind" }
+
+    // command-k, command-i: auto-indent
+    , { "keys": ["super+k", "super+i"], "command": "reindent", "args": {"single_line": true} }
+
+    // command-k, command-4: echo env var
+    , { "keys": ["super+k", "super+4"], "command": "insert_snippet", "args": {"name": "Packages/User/echo_env_var.sublime-snippet"},"context":[{ "key": "selector", "operator": "equal", "operand": "source.shell" }] }
+
+    // control-p: select from open files
+    // from: https://stackoverflow.com/questions/38561302/is-there-a-shortcut-for-sublime-text-to-find-an-open-file-eclipse-ctrl-e
+    , { "keys": ["super+shift+e"], "command": "show_buffers" }
+
+
+
+    // Eclipse-like bindings
+
+    , { "keys": ["super+alt+up"], "command": "duplicate_line" }  //plus super_shift+d
+    , { "keys": ["alt+up"], "command": "swap_line_up" }  //plus super+ctrl+up
+    , { "keys": ["alt+down"], "command": "swap_line_down" }  //plus super+ctrl+down
+    , { "keys": ["f3"], "command": "goto_definition" }  //plus super+alt+down
+    , { "keys": ["super+f"], "command": "show_panel", "args": {"panel": "replace", "reverse": false} }
+    , { "keys": ["super+ctrl+f"], "command": "toggle_distraction_free" }  // plus super+ctrl+shift+f
+    , { "keys": ["super+alt+f"], "command": "show_panel", "args": {"panel": "find_in_files"} }  // plus super+shift+f
+
+    // command-shift-backspace: delete to end of line
+    // (command-backspace: delete to beginning of line)
+    , { "keys": ["super+shift+backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete to Hard EOL.sublime-macro"} }
+
+    // command-option-l: toggle line numbers
+    , { "keys": ["super+alt+l"], "command": "toggle_setting",
+        "args": {"setting": "line_numbers" } }
+
+    // command-control-m: toggle side bar
+    , { "keys": ["super+ctrl+m"], "command": "toggle_side_bar" }
+
+    // command-option-u: toggle gutter
+    , { "keys": ["super+alt+u"], "command": "toggle_setting",
+        "args": {"setting": "gutter" } }
+
+    // command-option-y: toggle word wrap
+    , { "keys": ["super+alt+y"], "command": "toggle_setting",
+        "args": {"setting": "word_wrap" } }
+
+    // ctrl-period: hippie completion
+    , { "keys": ["ctrl+."], "command": "auto_complete" } //plus ctrl+space
+
+
+    // BracketHighlighter keys
+
+    // Go to left bracket
+    , {
+        "keys": ["ctrl+super+alt+left"],
+        "command": "bh_key",
+        "args": {
+            "no_outside_adj": null,
+            "no_block_mode": null,
+            "lines" : true,
+            "plugin": {
+                "type": ["__all__"],
+                "command": "bh_modules.bracketselect",
+                "args": {"select": "left"}
+            }
+        }
+    }
+    // Go to right bracket
+    , {
+        "keys": ["ctrl+super+alt+right"],
+        "command": "bh_key",
+        "args": {
+            "no_outside_adj": null,
+            "no_block_mode": null,
+            "lines" : true,
+            "plugin": {
+                "type": ["__all__"],
+                "command": "bh_modules.bracketselect",
+                "args": {"select": "right"}
+            }
+        }
+    }
+    // Convert single quote string to double quoted string and vice versa
+    // Will handle escaping or unescaping quotes within the string
+    , {
+        "keys": ["ctrl+super+alt+'"],
+        "command": "bh_key",
+        "args": {
+            "lines" : true,
+            "plugin": {
+                "type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"],
+                "command": "bh_modules.swapquotes"
+            }
+        }
+    }
+]

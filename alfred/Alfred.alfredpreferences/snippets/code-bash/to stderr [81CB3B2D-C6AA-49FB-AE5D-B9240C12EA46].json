@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : ">&2 ",
+    "dontautoexpand" : true,
+    "uid" : "81CB3B2D-C6AA-49FB-AE5D-B9240C12EA46",
+    "name" : "to stderr",
+    "keyword" : ""
+  }
+}

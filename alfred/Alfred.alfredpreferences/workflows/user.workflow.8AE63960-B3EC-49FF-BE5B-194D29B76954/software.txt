@@ -1,0 +1,14 @@
+Software:
+
+    System Software Overview:
+
+      System Version: macOS 10.13.2 (17C88)
+      Kernel Version: Darwin 17.3.0
+      Boot Volume: C_Drive
+      Boot Mode: Normal
+      Computer Name: SHEFFIELD
+      User Name: Todd Pierzina (tpierzina)
+      Secure Virtual Memory: Enabled
+      System Integrity Protection: Enabled
+      Time since boot: 4 days 3:00
+

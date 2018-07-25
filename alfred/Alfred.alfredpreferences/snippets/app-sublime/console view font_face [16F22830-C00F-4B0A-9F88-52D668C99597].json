@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "view.settings().get('font_face')",
+    "dontautoexpand" : true,
+    "uid" : "16F22830-C00F-4B0A-9F88-52D668C99597",
+    "name" : "console: view font_face",
+    "keyword" : ""
+  }
+}

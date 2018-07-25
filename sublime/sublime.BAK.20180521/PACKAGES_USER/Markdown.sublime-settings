@@ -1,0 +1,19 @@
+{
+	"caret_style": "smooth",
+	"color_scheme": "Packages/User/SublimeLinter/MarkdownEditor-ArcDark (SL).tmTheme",
+	"draw_centered": false,
+	"extensions":
+	[
+		"mdown",
+		"txt",
+		"md",
+		"mmd"
+	],
+	"highlight_line": true,
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"mde.keymap_disable.fold_section": true,
+	"mde.keymap_disable.show_fold_all_sections": true,
+	"mde.list_indent_auto_switch_bullet": false,
+	"wrap_width": 120
+}

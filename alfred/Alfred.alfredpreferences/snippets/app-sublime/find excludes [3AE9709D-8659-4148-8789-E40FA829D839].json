@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "-jquery*.js, -*BAK*\/**, -*.BAK*",
+    "dontautoexpand" : true,
+    "uid" : "3AE9709D-8659-4148-8789-E40FA829D839",
+    "name" : "find: excludes",
+    "keyword" : ""
+  }
+}

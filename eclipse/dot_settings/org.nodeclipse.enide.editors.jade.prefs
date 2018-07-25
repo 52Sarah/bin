@@ -1,0 +1,8 @@
+color_comment=199,221,12
+color_doc=204,223,50
+color_keyword=237,228,128
+color_normal=241,241,241
+color_number=237,228,128
+color_string=189,220,220
+eclipse.preferences.version=1
+overriddenByCSS=,color_normal,color_string,color_number,color_comment,color_doc,color_keyword,

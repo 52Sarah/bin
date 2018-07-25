@@ -1,0 +1,6 @@
+---
+tabTrigger: tnrte
+scope: source.java
+description: throw new runtime exception
+---
+throw new RuntimeException("ERROR in METHOD: " + e.getMessage());

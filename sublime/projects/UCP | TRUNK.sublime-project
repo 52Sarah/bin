@@ -1,0 +1,209 @@
+{
+	"SublimeLinter":
+	{
+		"linters":
+		{
+			"javac":
+			{
+				"args":
+				[
+					"-encoding",
+					"UTF8",
+					"-cp",
+					"~/svn/ucp/ucp-alfresco-liferay/trunk/alfresco/**/*.jar",
+					"-sourcepath",
+					"~/Xsvn/ucp/ucp-alfresco-liferay/trunk/alfresco/src/java/com/tsgrp/webscripts"
+				],
+				"lint": "all"
+			}
+		}
+	},
+	"settings":
+	{
+		// blues, white
+		//"color_scheme": "Packages/User/SublimeLinter/Iceberg (SL).tmTheme",
+		// red, green, blue, gold
+		"color_scheme": "Packages/chester-atom/Chester-Atom.tmTheme",
+	},
+	"folders":
+	[
+
+		/* ALFRESCO */
+		{
+			"folder_exclude_patterns":
+			[
+				"alfresco-extension/templates/webscripts/com/tsgrp"
+			],
+			"file_exclude_patterns":
+			[
+				"*.BAK*"
+			],
+			"name": "1.0 ucp-alf-life | alfresco",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/alfresco"
+		},
+
+		// ALFRESCO | WEBSCRIPTS
+		{
+			"file_exclude_patterns":
+			[
+				"*.BAK*"
+			],
+			"name": "- 1.1 webscripts",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/alfresco/alfresco-extension/templates/webscripts/com/tsgrp"
+		},
+
+
+		// LIFERAY
+		{
+			"folder_exclude_patterns":
+			[
+				"clients",
+				"layouttpl",
+				"misc",
+				"hooks/ucp-hook",
+				"portlets/ucp-campaign-portlet",
+				"themes/ucp-theme",
+				"Device Detection Temp"
+			],
+			"file_exclude_patterns":
+			[
+				"*.BAK*"
+			],
+			"name": "2.0 ucp-alf-life | liferay",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay"
+		},
+
+		// LIFERAY | HOOKS | UCP-HOOK
+		{
+			"folder_exclude_patterns":
+			[
+				"WEB-INF/classes"
+			],
+			"file_exclude_patterns":
+			[
+				"*.BAK*"
+			],
+			"name": " - 2.1 ucp-hook",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/hooks/ucp-hook"
+		},
+
+		// LIFERAY | PORTLETS | UCP-CAMPAIGN
+		{
+			"folder_exclude_patterns":
+			[
+				".settings"
+			],
+			"file_exclude_patterns":
+			[
+				"*.BAK*"
+			],
+			"name": " - 2.2 ucp-campaign-portlet",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/portlets/ucp-campaign-portlet",
+		},
+
+		// LIFERAY | THEMES | UCP-THEME
+		{
+			"file_exclude_patterns":
+			[
+				"*.BAK*"
+			],
+			"name": " - 2.3 ucp-theme",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay/themes/ucp-theme"
+		},
+
+
+		// SHARED-UCP-UTILS
+		{
+			"name": "3.1 ucp-alf-life | shared-ucp-utils",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/shared-ucp-utils"
+		},
+
+		// ADOBE-CONNECT-UTILS
+		{
+			"name": "3.2 ucp-alf-life | adobe-connect-utils",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/adobe-connect-utils"
+		},
+
+		// ENGAGE-SQL-UTILS
+		{
+			"name": "3.3 ucp-alf-life | engage-sql-utils",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/engage-sql-utils"
+		},
+
+		// LIFERAY-UTILS
+		{
+			"name": "3.4 ucp-alf-life | liferay-utils",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/liferay-utils"
+		},
+
+		// USER-MGMT-UTILS
+		{
+			"name": "3.5 ucp-alf-life | user-mgmt-utils",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/trunk/user-management-utils"
+		},
+
+		// UCP-MYINFINITEC
+		{
+			"folder_exclude_patterns":
+			[
+				"usermanagement",
+				"HOME"
+			],
+			"name": "5.0 ucp-myinfinitec",
+			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/trunk"
+		},
+
+		// UCP-MYINFINITEC | SERVER | HOME
+		{
+			"name": "- 5.1 server | HOME",
+			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/trunk/server/HOME"
+		},
+
+		// UCP-MYINFINITEC | USERMANAGEMENT
+		{
+			"name": "- 5.2 usermanagement",
+			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/trunk/usermanagement"
+		},
+		{
+			"folder_exclude_patterns":
+			[
+				"ucp-svn",
+				"ucp-work",
+				"webscripts"
+			],
+			"name": "6.0 drive - ucp",
+			"path": "/Users/tpierzina/Drive/clients/ucp"
+		},
+		// {
+		// 	"folder_exclude_patterns":
+		// 	[
+		// 		"svn-OLD",
+		// 		"20160712_vs_20170905",
+		// 		"from-PROD"
+		// 	],
+		// 	"name": "7.0 work - ucp",
+		// 	"path": "/Users/tpierzina/work/ucp-work"
+		// },
+		{
+			"name": "9.1 ~ webscripts",
+			"path": "/Users/tpierzina/Drive/alfresco/alfresco-scripts/webscripts"
+		},
+		{
+			"name": "9.2 ~ bash scripts",
+			"path": "/Users/tpierzina/Drive/alfresco/alfresco-scripts/bash"
+		},
+		{
+			"name": "9.3 ~ dotfiles",
+			"path": "/Users/tpierzina/Dropbox/dotfiles",
+			"folder_exclude_patterns": [
+				"alfred",
+				"eclipse",
+				"sublime"
+			]
+		},
+		{
+			"name": "9.4 ~ bin",
+			"path": "/Users/tpierzina/Dropbox/bin"
+		}
+	]
+}

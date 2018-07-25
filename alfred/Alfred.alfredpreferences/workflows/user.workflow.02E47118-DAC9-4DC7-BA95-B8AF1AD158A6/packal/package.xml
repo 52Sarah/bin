@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Swift Window Switcher</name>
+  <version>0.2.7</version>
+  <bundle>ru.mandrigin.alfred.sww</bundle>
+  <updated>1503434597</updated>
+  <file>swift_window_switcher_v0.2.7.alfredworkflow</file>
+</workflow>

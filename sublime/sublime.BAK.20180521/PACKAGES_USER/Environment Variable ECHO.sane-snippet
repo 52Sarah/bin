@@ -1,0 +1,6 @@
+---
+description: Environment Variable ECHO
+tabTrigger:  evecho
+scope:       source.shell
+---
+echo ${1:$SELECTION}="\$$1"

@@ -1,0 +1,8 @@
+{
+    "use_entire_file_if_no_selection": false,
+    "indent": 2,
+    "sort_keys": false,
+    "keep_arrays_single_line": false,
+    "pretty_on_save": false,
+    "validate_on_save": true
+}

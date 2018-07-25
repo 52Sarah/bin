@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "view.settings().get('color_scheme')",
+    "dontautoexpand" : true,
+    "uid" : "D506F4BE-DA59-4104-AA93-EC23A21DC6C4",
+    "name" : "console: view color_scheme",
+    "keyword" : ""
+  }
+}

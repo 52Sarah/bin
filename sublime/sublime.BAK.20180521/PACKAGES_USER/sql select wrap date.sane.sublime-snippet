@@ -1,0 +1,3 @@
+<snippet><description>SQL SELECT wrap DATE around field</description><tabTrigger /><scope /><content><![CDATA[
+DATE(${1:$TM_CURRENT_WORD}) "$1"$0
+]]></content></snippet>

@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "{datetime:medium}",
+    "dontautoexpand" : true,
+    "uid" : "5DA8F35C-4B7C-47C6-8236-47D897E41184",
+    "name" : "dt.m | Mmm d, yyyy at  hh:mm:ss AM",
+    "keyword" : ""
+  }
+}

@@ -1,0 +1,61 @@
+{
+    "settings":
+    {
+        "follow_symlinks": true,
+        // "color_scheme": "Packages/User/SublimeLinter/CarbonightBlue (SL).tmTheme", // gray, white, blues
+        //"color_scheme": "Packages/Dayle Rees Color Schemes/legacy/Contrast/Carbonight.tmTheme",
+        // dark; brown, white, light blue, off-shite, white
+        "color_scheme": "Packages/User/SublimeLinter/Goldfish (SL).tmTheme",
+        // "color_scheme": "Packages/User/SublimeLinter/HalfLife (SL).tmTheme",  // gray, white, yellow, orange
+        // "color_scheme": "Packages/User/SublimeLinter/otakon (SL).tmTheme",
+        // "color_scheme": "Packages/Flatwhite/FlatWhite.sublime-color-scheme",  // light
+    },
+	"folders":
+	[
+		{
+            "name": "dotfiles",
+            "path": "/Users/tpierzina/Dropbox/dotfiles",
+			"folder_exclude_patterns":
+			[
+				"sublime"
+			],
+		},
+        {
+            "name": "dotfiles | sublime",
+            "path": "/Users/tpierzina/Dropbox/dotfiles/sublime",
+            "folder_exclude_patterns":
+            [
+                "*.BAK*",
+                "PACKAGES_USER",
+                "sublime_libdir/Packages",
+                "user_libdir",
+            ],
+            "file_exclude_patterns":
+            [
+                "*.BAK*",
+                "*.*cache"
+            ],
+        },
+		{
+			"name": "dropbox | bin",
+			"path": "/Users/tpierzina/Dropbox/bin"
+		},
+		{
+            "name": "sublime | packages",
+            "path": "/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages",
+			"folder_exclude_patterns":
+			[
+				"Default",
+				"User"
+			],
+		},
+		{
+			"name": "sublime | packages | default",
+			"path": "/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Default"
+		},
+        {
+            "name": "sublime | packages | user",
+            "path": "/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User"
+        },
+	],
+}

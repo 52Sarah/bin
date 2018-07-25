@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "logger.trace(String.format(\"{cursor} %s\", var));\n",
+    "dontautoexpand" : true,
+    "uid" : "B0F452F6-3F81-4491-BEAD-B13CCB154517",
+    "name" : "lftrace log_trace_format",
+    "keyword" : ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "log.trace(\"{cursor}\");",
+    "dontautoexpand" : true,
+    "uid" : "C5106E09-F992-4F94-A2A0-FC0B7D78131B",
+    "name" : "log.trace",
+    "keyword" : ""
+  }
+}

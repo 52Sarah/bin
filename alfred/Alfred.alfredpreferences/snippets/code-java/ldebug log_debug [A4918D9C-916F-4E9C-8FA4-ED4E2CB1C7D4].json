@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "logger.debug(\"${cursor}\");\n",
+    "dontautoexpand" : true,
+    "uid" : "A4918D9C-916F-4E9C-8FA4-ED4E2CB1C7D4",
+    "name" : "ldebug log_debug",
+    "keyword" : ""
+  }
+}

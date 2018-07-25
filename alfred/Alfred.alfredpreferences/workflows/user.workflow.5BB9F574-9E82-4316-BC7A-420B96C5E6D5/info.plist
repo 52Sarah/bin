@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.isometry.alfred.man</string>
+	<key>category</key>
+	<string>dev</string>
+	<key>connections</key>
+	<dict>
+		<key>63849D71-ED09-48B7-91F4-A095B5C6197F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3960E216-DE18-459D-BBCB-6F5A21C4931C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BCEF6138-477F-414D-8001-4DE7A1215F6B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3960E216-DE18-459D-BBCB-6F5A21C4931C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Robin Breathe</string>
+	<key>description</key>
+	<string>Open man page using x-man-page: protocol or html</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>.man | man</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>.man</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching whatis database…</string>
+				<key>script</key>
+				<string>from alfredman import complete
+print complete("{query}")</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>.man</string>
+				<key>title</key>
+				<string>Open HTML man page</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>63849D71-ED09-48B7-91F4-A095B5C6197F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>query="{query}"
+
+cache="com.runningwithcrayons.Alfred-3/Workflow Data/net.isometry.alfred.man"
+
+name=${query#*/}
+sect=${query%/*}
+file=$(cd ~/Library/Caches/"$cache"; pwd)/$name\($sect\).html
+page=$(man -w -s $sect $name)
+
+if [ "$page" -nt "$file" ]; then
+	groff -Thtml -mandoc -c "$page" &gt; "$file"
+fi
+
+open "$file"
+</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3960E216-DE18-459D-BBCB-6F5A21C4931C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>man</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching whatis database…</string>
+				<key>script</key>
+				<string>from alfredman import complete
+print complete("{query}")</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>man</string>
+				<key>title</key>
+				<string>Open HTML man page</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BCEF6138-477F-414D-8001-4DE7A1215F6B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Open a man(1) page with name and section filtering.
+
+The 'man' keyword will open in your default x-man-page: protocol handler (probably Terminal.app).
+
+The 'hman' keyword will open in Safari (change to your preferred browser by tweaking the BROWSER variable at the top of hman Run Script).
+
+Usage:
+man open(1)  # open a specific page
+man open     # search all sections for pages matching 'open*'
+man *open    # search all sections for pages matching '*open*'
+man 2 open   # search section 2 for pages with 'open' in the name</string>
+	<key>uidata</key>
+	<dict>
+		<key>3960E216-DE18-459D-BBCB-6F5A21C4931C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>63849D71-ED09-48B7-91F4-A095B5C6197F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+		<key>BCEF6138-477F-414D-8001-4DE7A1215F6B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>220</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/isometry/alfredworkflows/tree/master/net.isometry.alfred.man</string>
+</dict>
+</plist>

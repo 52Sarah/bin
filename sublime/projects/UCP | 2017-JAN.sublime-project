@@ -1,0 +1,58 @@
+{
+
+	"settings":
+	{
+		"color_scheme": "Packages/User/SublimeLinter/mud (SL).tmTheme"
+	},
+	"folders":
+	[
+		/* ALFRESCO */
+		{
+			"name": "1.0 | alfresco",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/alfresco",
+			"folder_exclude_patterns": [
+				"templates/webscripts/com/tsgrp"
+			]
+		},
+		{
+			"name": "1.1 | alfresco | src",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/source"
+		},
+		{
+			"name": "1.2 | alfresco | webscripts",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/alfresco/templates/webscripts/com/tsgrp"
+		},
+
+
+		// LIFERAY
+		{
+		  "name": "2.0 | liferay",
+		  "path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/liferay-plugins-sdk-6.0.5"
+		},
+
+
+
+		// ADOBE-CONNECT-UTILS
+		{
+			"name": "3.2 | adobe-connect-utils",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/AdobeConnectUtils"
+		},
+
+
+		// USER-MGMT-UTILS
+		{
+			"name": "3.5 ucp-alf-life | user-mgmt-utils",
+			"path": "/Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-2017-jan/UserManagementUtils"
+		},
+
+		// UCP-MYINFINITEC | USERMANAGEMENT
+		{
+			"name": "- 5.2 usermanagement",
+			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/ucp-2017-jan",
+			"folder_exclude_patterns": [
+				"web-app/js/tinyMCE"
+			]
+		}
+
+	]
+}

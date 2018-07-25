@@ -1,0 +1,47 @@
+{
+	"folders":
+	[
+		{
+			"name": "- 5.1 server | HOME",
+			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/2017-10-local-grails/server/HOME"
+		},
+		{
+			"name": "- 5.2 usermanagement",
+			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/2017-10-local-grails/usermanagement"
+		},
+		{
+			"folder_exclude_patterns":
+			[
+				"ucp-svn",
+				"ucp-work",
+				"webscripts"
+			],
+			"name": "6.0 drive - ucp",
+			"path": "/Users/tpierzina/Drive/clients/ucp"
+		},
+		{
+			"name": "9.1 ~ webscripts",
+			"path": "/Users/tpierzina/svn/tsg-alfresco-scripts/webscripts"
+		},
+		{
+			"name": "9.2 ~ bash scripts",
+			"path": "/Users/tpierzina/svn/tsg-alfresco-scripts/bash"
+		},
+		{
+			"folder_exclude_patterns":
+			[
+				"eclipse",
+				"sublime/SUB"
+			],
+			"name": "9.3 ~ dotfiles",
+			"path": "/Users/tpierzina/Dropbox/dotfiles"
+		},
+		{
+			"name": "9.4 ~ bin",
+			"path": "/Users/tpierzina/Dropbox/bin"
+		}
+	],
+	"settings":
+	{
+	}
+}

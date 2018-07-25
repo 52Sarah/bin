@@ -1,0 +1,48 @@
+[
+
+    { 
+        "caption": "Open-Include: open file based on selection",
+        "command": "open_include",
+        "args": {}
+    }
+    , { 
+        "caption": "Open-Include: open file from environment based on selection",
+        "command": "open_file_from_env",
+        "args": {}
+    }
+    , {
+        "caption": "ShellCommand: output to panel",
+        "command": "shell_command",
+        "args": {
+            "prompt": "$",
+            "panel": true
+        }
+    }
+    , { 
+        "caption": "ShellCommand: output to current buffer",
+        "command": "shell_command",
+        "args": {
+            "prompt": "$",
+            "target": "point"
+        }
+    }
+    , {
+        "caption": "Shell Command: selection as argv",
+        "command": "shell_command",
+        "args": {
+            "prompt": "$",
+            "title": "stdout",
+            "region": "arg"
+        }
+        
+    }
+    , { 
+        "caption": "Shell Command: selection as stdin",
+        "command": "shell_command",
+        "args": {
+            "prompt": "$",
+            "title": "stdout",
+            "region": "stdin"
+        }
+    }
+]

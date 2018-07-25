@@ -1,0 +1,14 @@
+{
+  "posix": {
+    "darwin": {
+      "firefox": "open -a \"/Applications/Firefox.app\"",
+      "safari": "open -a \"/Applications/Safari.app\"",
+      "chrome": "open -a \"/Applications/Google Chrome.app\"",
+      "chrome64": "open -a \"/Applications/Google Chrome.app\"",
+      "canary": "open -a \"/Applications/Google Chrome Canary.app\"",
+      "yandex": "open -a \"/Applications/Yandex.app\""
+    }
+  },
+
+  "browser": "canary"
+}

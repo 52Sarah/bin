@@ -1,0 +1,6 @@
+---
+description: Two table SELECT *
+tabTrigger:
+scope:
+---
+SELECT $1.*, $4.* FROM $2 $1 INNER JOIN $3 $4 ON $1.$5 = $4.${6:id} WHERE $1 = $7;

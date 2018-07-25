@@ -1,0 +1,3 @@
+<snippet><description>Environment Variable ECHO</description><tabTrigger>evecho</tabTrigger><scope>source.shell</scope><content><![CDATA[
+echo ${1:$SELECTION}="\$$1"
+]]></content></snippet>
