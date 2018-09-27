@@ -157,24 +157,33 @@
 		{
 			"name": "- 5.1 server | HOME",
 			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/trunk/server/HOME"
-		},
+		}
 
 		// UCP-MYINFINITEC | USERMANAGEMENT
-		{
+		, {
 			"name": "- 5.2 usermanagement",
 			"path": "/Users/tpierzina/svn/ucp/ucp-myinfinitec/trunk/usermanagement"
-		},
-		{
-			"folder_exclude_patterns":
-			[
-				"ucp-svn",
-				"ucp-work",
-				"webscripts"
-			],
+		}
+		, {
 			"name": "6.0 drive - ucp",
-			"path": "/Users/tpierzina/Drive/clients/ucp"
-		},
-		// {
+			"path": "/Users/tpierzina/Drive/clients/ucp",
+			"folder_exclude_patterns": [
+				"docs",
+				"install",
+				"pm-*"
+			],
+			"file_exclude_patterns": [
+				"*.doc", "*.docx",
+				"*.gsheet",
+				"*.gslides",
+				"install",
+				"*.pdf",
+				"pm-*",
+				"*.xls", "*.xlsx",
+				"*.zip"
+			]
+		}
+		// , {
 		// 	"folder_exclude_patterns":
 		// 	[
 		// 		"svn-OLD",
@@ -183,8 +192,8 @@
 		// 	],
 		// 	"name": "7.0 work - ucp",
 		// 	"path": "/Users/tpierzina/work/ucp-work"
-		// },
-		{
+		// }
+		, {
 			"name": "9.1 ~ webscripts",
 			"path": "/Users/tpierzina/Drive/alfresco/alfresco-scripts/webscripts"
 		},

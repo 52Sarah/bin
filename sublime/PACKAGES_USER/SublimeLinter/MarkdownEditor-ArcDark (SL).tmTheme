@@ -590,7 +590,7 @@
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#777</string>
+                <string>#999</string><!-- dk gray -->
             </dict>
         </dict>
         <dict>

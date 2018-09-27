@@ -1,1 +1,0 @@
-/Users/tpierzina/Dropbox/dotfiles/alfred/Alfred.alfredpreferences/workflows/user.workflow.5BB9F574-9E82-4316-BC7A-420B96C5E6D5/alfred.py

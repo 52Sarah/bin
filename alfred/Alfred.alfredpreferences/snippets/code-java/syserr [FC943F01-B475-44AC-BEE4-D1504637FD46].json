@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "System.err.println({cursor});\n",
+    "dontautoexpand" : true,
+    "uid" : "FC943F01-B475-44AC-BEE4-D1504637FD46",
+    "name" : "syserr",
+    "keyword" : ""
+  }
+}

@@ -2,19 +2,9 @@ Console.console_tab_width=4
 Console.highWaterMark=8008000
 Console.lowWaterMark=8000000
 eclipse.preferences.version=1
-org.eclipse.debug.ui.Color=225,30,70
-org.eclipse.debug.ui.MemoryHistoryKnownColor=235,235,235
-org.eclipse.debug.ui.MemoryHistoryUnknownColor=170,175,185
-org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND=150,80,115
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
-org.eclipse.debug.ui.changedDebugElement=255,128,128
-org.eclipse.debug.ui.consoleBackground=8,8,8
-org.eclipse.debug.ui.errorColor=204,223,50
-org.eclipse.debug.ui.inColor=241,241,241
-org.eclipse.debug.ui.outColor=241,241,241
 org.eclipse.debug.ui.save_dirty_editors_before_launch=always
 org.eclipse.debug.ui.switch_perspective_on_suspend=always
-overriddenByCSS=,org.eclipse.debug.ui.Color,org.eclipse.debug.ui.MemoryHistoryKnownColor,org.eclipse.debug.ui.MemoryHistoryUnknownColor,org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND,org.eclipse.debug.ui.changedDebugElement,org.eclipse.debug.ui.consoleBackground,org.eclipse.debug.ui.errorColor,org.eclipse.debug.ui.inColor,org.eclipse.debug.ui.outColor,
 pref_state_memento.org.eclipse.debug.ui.DebugVieworg.eclipse.debug.ui.DebugView=<?xml version\="1.0" encoding\="UTF-8"?>\n<DebugViewMemento org.eclipse.debug.ui.BREADCRUMB_DROPDOWN_AUTO_EXPAND\="false"/>
 preferredDetailPanes=DefaultDetailPane\:DefaultDetailPane|
 preferredTargets=default\:default|default,org.eclipse.wst.jsdt.chromium.debug.ui.toggleTargetId\:default|

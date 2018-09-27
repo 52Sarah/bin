@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "# shellcheck disable=SC2178  # array used as string",
+    "uid" : "C391F1E6-0F11-45BE-B735-9C57DB483759",
+    "name" : "shellcheck SC2178 | array used as string",
+    "keyword" : "SC2178"
+  }
+}

@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck disable=SC1091,SC2010,SC2012,SC2155,SC2156
 #   SC1091 - not following (file)
 #   SC2010 - don't use ls | grep, rather use glob or for
@@ -10,8 +9,10 @@
 
 shopt -s extglob
 
+
 # Try and use gnu ls if possible, flexibler date formatting.
 type gls >& /dev/null && function ls() { gls "$@"; }
+
 
 # error, info, verbose and debug levels; uses SH_ vars which can be set pre-execution or via -q, -v and -d
 echo_with_optional_nl() {
@@ -50,7 +51,7 @@ wecho_and_eval() {
 alias wecho='wecho_and_eval'
 
 is_macos()  { [[ "$(uname -s)" == "Darwin" ]]; }
-is_cygwin() { [[ "$(uname -s | tr [[:upper:]] [[:lower:]])" =~ ^cygwin.* ]]; }
+is_cygwin() { [[ "$(uname -s | tr '[:upper:]' '[:lower:]')" =~ ^cygwin.* ]]; }
 is_ubuntu() { grep -s "ID=.?ubuntu.?" /etc/os-release >& /dev/null; }
 is_centos() { grep -E -s "ID=.?centos.?" /etc/os-release >& /dev/null; }
 is_amazon() { grep -E -s "ID=.?amzn.?" /etc/os-release >& /dev/null; }
@@ -66,34 +67,35 @@ function_defined() { [[ "$(typeof_command "$1")" = "function" ]]; }
 executable_exists() { [[ "$(typeof_command "$1")" = "file" ]]; }
 
 
-# Perform the prefixed command only on the newest file in the given folder (or PWD).
+# Perform the prefixed command only on the newest file(s) in the given folder (or PWD).
 llnew() {
-    [[ "${1:0:2}" = "-n" ]] && local lines=$2 && shift 2
-    ls -ohtr "$@" | tail -n "${lines:-10}"
+    local lines="10"
+    [[ "$1" =~ "^-n" ]] && local lines="$2" && shift 2
+    ls -ohtr "$@" | tail -n "$lines"
 }
 catnew() {
     local d="${1:-$PWD}"
     local f="$d/$(ls -1tr "$d" | tail -n 1)"
-    echo "cat $f ..."
+    iecho "cat $f ..."
     cat "$f"
 }
 cdnew() {
     local d="${1:-$PWD}"
     local f="$d/$(ls -1trF "$d" | grep -E '/$' | tail -n 1)"
-    echo "cd $f ..."
+    iecho "cd $f ..."
     cd "$f" || return 1
 }
 headnew() {
-    local d="${1:-$PWD}"
-    local lines="${2:-10}"
+    local d="${1:-$PWD}"; shift
+    local lines="${1:-10}"; shift
     local f="$d/$(ls -1tr "$d" | tail -n 1)"
-    echo "head $f ..."
+    iecho "head $f ..."
     head -n "$lines" "$f"
 }
 opennew() {
     local d="${1:-$PWD}"
     local f="$d/$(ls -1tr "$d" | tail -n 1)"
-    echo "open $f ..."
+    iecho "open $f ..."
     # shellcheck disable=SC2015  # && and ||
     is_macos && open "$f" || vi "$f"
 }
@@ -102,12 +104,12 @@ opennew() {
 cdln() {
     local link="$1"
     local target="$(readlink "$link")"
-    # shellcheck disable=SC2015  # && and ||
     if [[ -d "$target" ]]; then
-        cd "$target" || return 1
+        cd "$target"
     else
-        cd "$(dirname "$target")" || return 1
+        cd "$(dirname "$target")"
     fi
+    return #status of cd
 }
 
 # If any listed file is a symlink, operate on its target
@@ -115,7 +117,7 @@ cpln() {
     local opts=()
     while [[ -n "$1" ]]; do
         local opt="$1"
-        [[ -L "$opt" ]] && opt="$(readlink "$opt")" && echo "cpln: $1 -> $opt"
+        [[ -L "$opt" ]] && opt="$(readlink "$opt")" && iecho "cpln: $1 -> $opt"
         opts+=("$opt")
         shift
     done
@@ -125,14 +127,25 @@ cpln() {
 
 # Show directory of the given link's target, either the file's parent or the directory itself.
 lsln() {
+    [[ -z "$1" ]] && eecho "usage: lsln symlink [...]" && return 1
     local sw=()
-    while [[ "${1:0:1}" = "-" ]]; do sw+=("$1") && shift; done
+    while [[ "$1" =~ ^- ]]; do
+        sw+=("$1"); shift
+    done
+    local i
     for link in "$@"; do
+        vecho "lsln: link[$((i++))]=$link"
+        [[ ! -L "$link" ]] && vecho "lsln: $link: not a symlink, skipping" && continue
         local target="$(readlink "$link")"
-        [[ ! -d "$target" ]] && target="$(dirname "$target")"
-        local c="ls ${sw[*]} $target"
-        [[ -z "$SH_QUIET" ]] && echo $'\n'"\$ $c"
-        eval "$c"
+        local target_file
+        if [[ ! -d "$target" ]]; then
+            target_file="$target"
+            target="$(dirname "$target")"
+        fi
+        iecho
+        [[ "$target_file" ]] && iecho "$(tilde_compress "$target_file") => .. => $(tilde_compress "$target")"
+        local c="ls ${sw[*]} $(tilde_compress "$target")"
+        iecho_and_eval "$c"
     done
 }
 llln() { lsln -ohtr "$@"; }
@@ -190,8 +203,8 @@ touchdir() {
     ((!count)) && return 1
     vecho "INFO: touchdir: updated $count directories"
 }
+# shellcheck disable=SC2206,SC2086  # quote to avoid split
 touchdir_R() {
-    # shellcheck disable=SC2206  # quote to avoid split
     local dirs=($@); [[ ${#dirs[@]} == 0 ]] && dirs=("$PWD")
     for dir in "${dirs[@]}"; do
         # local subdirs="$(find "$dir" -depth ! -type f)"
@@ -199,6 +212,7 @@ touchdir_R() {
         # for subdir in $subdirs; do
         local subdirs="$(find "$dir" -depth ! -type f -print)"
         # vecho "touchdir_R: for $dir, found subdirs: [$subdirs]"
+
         while read -r subdir; do
             # vecho "touchdir_R: calling touchdir for subdir='$subdir'"
             touchdir "$subdir"
@@ -257,8 +271,7 @@ rm0() {
     local maxdepth="-maxdepth 1"
     [[ "$1" =~ -[rR] ]] && maxdepth= && shift
 
-    local dirs="${@:-.}"
-    for d in $dirs; do
+    for d in "${@:-.}"; do
         [[ ! -d "$d" ]] && eecho "rm0: missing or non-folder: $d" && return 1
         iecho_and_eval "find $d $maxdepth -size 0  -print -delete"
     done
@@ -303,9 +316,12 @@ zip_find() {
     [[ "${archive_type:0:1}" = "." ]] && archive_type="${archive_type:1}"
 
     # shellcheck disable=0
-    find . -name "*.$archive_type" -exec sh -c "unzip -l '{}' | grep -i -e '$filename_expr' -e 'Archive:'" \; \
-    | grep -B 1 "$filename_expr" \
-    | sort
+    find . \
+        -name "*.$archive_type"-exec sh -c "unzip -l '{}' | grep -i -e '$filename_expr' -e 'Archive:'" \; \
+    | \
+    grep -B 1 "$filename_expr" \
+    | \
+    sort
 }
 jar_find() {
     zip_find "$1" "jar"
@@ -342,11 +358,14 @@ xmv() {
     done
 }
 
+# Recursively report cksum values and sizes in tab-delimited form:
+#   path TAB size TAB cksum
 cksum_R() {
-    local root="${1:-$PWD}" && shift
-    for f in $(find "$root" -type f | sort); do
-        local trimmed_f="$(sed -E -e "s_^$PWD/__;" <<< "$f")"
-        cksum "$trimmed_f" | awk -v PWD="$PWD" -e '{printf "%12d %12'\''d %s\n", $1, $2, $3}'
+    for d in ${@:-$PWD}; do
+        decho_vars d
+        for f in $(find "$d" -type f | sort); do
+            cksum "$f" | awk '{printf "%s\t%d\t%d\n", $3, $2, $1}'
+        done
     done
 }
 
@@ -354,7 +373,7 @@ cksum_R() {
 # Recursively list size in kb, modification date, and name, sorted by date ascending.
 # Usage: $0 [root [pattern]]
 lltr_R() {
-    local root="${1:-.}"; shift
+    local root="${1:-$PWD}"; shift
     local patt="$1"; shift
 
     local find_cmd=("find")
@@ -365,37 +384,63 @@ lltr_R() {
     [[ -n "$patt" ]] && find_cmd+=("-name '$patt'")
     find_cmd+=("! -regex '.*/(bin|BUILD|DIST|.*\\.BAK).*'")
     if is_macos; then
-        find_cmd+=("-exec stat -t '%F %T' -f '%Sm %z"$'\t'"%N' {} \\;")
+        find_cmd+=("-exec stat -t '%F %T' -f '%Sm %8z"$'\t'"%N' {} \\;")
     else
         find_cmd+=("-printf '%TY-%Tm-%Td %TH:%TM\\t%p\\n'")
     fi
     decho_vars root patt find_cmd
 
-    vecho "${find_cmd[*]}"
-    eval "${find_cmd[*]}" \
-    | awk -v FS=$'\t' -v HOME="$HOME" -v PWD="$PWD"  '{gsub(PWD,".",$2); gsub("^" HOME,"~",$2); printf "%s  %s\n", $1, $2};' \
-    | sort --stable
+    vecho_and_eval "${find_cmd[*]}" \
+    | \
+    awk \
+        -v FS=$'\t' \
+        -v HOME="$HOME" \
+        -v PWD="$PWD"  \
+        '{gsub(PWD,".",$2); gsub("^" HOME,"~",$2); printf "%s  %s\n", $1, $2};' \
+    | \
+    sort --stable
 }
 
 # Display counts of files, directories and links in each directory, computed recursively.
-# Default is every directory in PWD.
+# Default is every directory in PWD, all files.
+# Options:
+#   -q, --quiet     disable most output (inherits and locally overrides SH_QUIET)
+#   -v, --verbose   enable verbose output (inherits and locally overrides SH_VERBOSE)
+#   -i, --include   glob of filenames to include (passed to 'find -name')
+#   -e, --exclude   glob of filenames to exclude (passed to '! find -name')
 countf() {
-    local directories="$*"
-    # shellcheck disable=SC2125  # unquoted brace expansion
-    [[ -z "$directories" ]] && directories="$(echo {.??,}*)"
+    local SH_QUIET="$SH_QUIET"
+    local SH_VERBOSE="$SH_VERBOSE"
 
-    for dir in $directories; do
-        [[ "$dir" =~ ^-?-q(uiet)?$ ]] && SH_QUIET=1 && unset SH_VERBOSE && continue
-        [[ "$dir" =~ ^-?-v(erbose)?$ ]] && SH_VERBOSE=1 && unset SH_QUIET && continue
+    # Detect any leading options; read and consume
+    local opt_includes opt_excludes
+    while [[ -n "$1" ]]; do
+        local opt="$1"
+        vecho "countf: opt: $opt"
+        [[ "$opt" =~ ^-?-q(uiet)?$ ]] && SH_QUIET=1 && unset SH_VERBOSE && shift && continue
+        [[ "$opt" =~ ^-?-v(erbose)?$ ]] && SH_VERBOSE=1 && unset SH_QUIET && shift && continue
+        [[ "$opt" =~ ^-?-i(nclude)?$ ]] && opt_includes="$opt_includes -name '$2'" && shift 2 && continue
+        [[ "$opt" =~ ^-?-e(xclude)?$ ]] && opt_excludes="$opt_excludes ! -name '$2'" && shift 2 && continue
+        break
+    done
+
+    local directories=( "$@" )
+    # shellcheck disable=SC2207  # quote command output into array
+    [[ ${#directories} == 0 ]] && IFS=$'\n' directories=( $(ls -1Ad {.??,}*) )  # all files, including hidden files, except '..'
+    vecho "countf: directories: ${#directories}"
+
+    for dir in "${directories[@]}"; do
         [[ ! -d "$dir" ]] && vecho "countf: ${dir}: not a directory" && continue
+        [[ -L "$dir" ]] && vecho "countf: ${dir}: symlink to directory not followed" && continue
 
-        local files="$(find "$dir" -type f | wc -l)"
-        local directories="$(find "$dir" -type d | wc -l)"
-        local links="$(find "$dir" -type l | wc -l)"
+        for find_type in f d l; do
+            local c="find '$dir' -mindepth 1 -type $find_type $opt_includes $opt_excludes"
+            local ${find_type}_count="$(eval "$c" | wc -l)"
+        done
 
-        #printf '%5d files  %4d directories  %3d links  %12s  %s  %s\n' \
+        # shellcheck disable=SC2154  # var referenced but not assigned
         printf '%5d %4d/ %3d@  %12s  %s  %s\n' \
-            "$files" "$directories" "$links" \
+            "$f_count" "$d_count" "$l_count" \
             "$(local bytes="$(du -s "$dir" | cut -f1)"; commafy "$bytes")" \
             "$(file_info 'mdate mtime' "$dir")" \
             "$dir"
@@ -530,13 +575,13 @@ echo_vars() {
         local var_array="$(eval "echo \$\\{${var}[@]\\}")"
         local var_array_length="$(eval "echo \$\\{#${var}[@]\\}")"
         local var_array_length_value="$(eval "echo $var_array_length")"
-        decho "var: $var, _typeof: $var_typeof, _array: $var_array, _length: $var_array_length, _value: $var_array_length_value"
+        ## decho "var: $var, _typeof: $var_typeof, _array: $var_array, _length: $var_array_length, _value: $var_array_length_value"
 
         local var_array_value="$(eval "echo $var_array")"
         [[ -n "$ECHO_VARS_SUB_HOME" ]] && var_array_value="${var_array_value/$HOME/\~}"
         local var_array_keys="$(eval "echo \$\\{!${var}[@]\\}")"
         local var_array_keys_value="$(eval "echo $var_array_keys")"
-        decho "var: $var, _array_value: $var_array_value, _array_keys: $var_array_keys, _value: $var_array_keys_value"
+        ## decho "var: $var, _array_value: $var_array_value, _array_keys: $var_array_keys, _value: $var_array_keys_value"
 
         # empty array or hash
         if [[ $var_array_length_value -eq 0 && -z "$ECHO_VARS_NOBLANKS" ]]; then
@@ -551,7 +596,7 @@ echo_vars() {
 
         # scalar
         if [[ "$var_array_keys_value" = "0" ]]; then
-            decho "scalar: var = $var, var_array_keys_value = '$var_array_keys_value'"
+            ## decho "scalar: var = $var, var_array_keys_value = '$var_array_keys_value'"
             if [[ -n "$var_array_value" || -z "$ECHO_VARS_NOBLANKS" ]]; then
                 # note if this is an existing filename
                 if [[ -n "$ECHO_VARS_FILES" && -e "$var_array_value" ]]; then
@@ -579,7 +624,7 @@ echo_vars() {
         [[ "${var_array_keys_value:0:2}" = "0 " ]] && echo "[" || echo "{"
         for k in $(eval echo "$var_array_keys"); do
             local val_cmd="printf '%s' \"\${${var}[$k]}\""
-            decho "echo_vars: val_cmd: '$val_cmd'"
+            ## decho "echo_vars: val_cmd: '$val_cmd'"
 
             local val="$(eval "$val_cmd")"
             [[ -n "$SH_DEBUG" ]] && printf "echo_vars: k: '%s', val: '%s'\\n" "$k" "$val"
@@ -714,7 +759,7 @@ EOF
         esac
     done
     [[ ${#patterns} -eq 0 ]] && eecho "xgrep: missing pattern" && eecho "$USAGE" && return 1
-    decho_vars --prefix "  " --quote patt root_dir no_logs ext_excl ext_incl SH_VERBOSE SH_QUIET
+    ## decho_vars --prefix "  " --quote patt root_dir no_logs ext_excl ext_incl SH_VERBOSE SH_QUIET
 
     [[ -z "$all_files" ]] && ext_excl+=(".log\\*" ".out\\*" ".csv\\*")
     [[ -z "$all_folders" ]] && dir_excl+=("\\*/.\\*" "\\*.BAK\\*" "\\*.cache" )
@@ -938,9 +983,8 @@ file_opened() {
     [[ ! -e $file ]] && echo "ERROR: file_opened: file not found: '$file'" && exit 1
     local dir=$(dirname "$file")
     local bname=$(basename "$file")
-    decho "file=$file, dir=$dir, bname=$bname"
     nopen=$(sudo lsof +d "$dir" | grep -c "$bname")
-    decho "nopen=$nopen"
+    decho_vars file dir bname nopen
     [[ -n "$nopen" && $nopen -gt 0 ]] && return 0 || return 1
 }
 
@@ -981,7 +1025,7 @@ file_info() {
     [[ -z "$1" ]] && eecho "file_info: $usage" && return 1
     # shellcheck disable=2206  # quote to avoid split
     local -a fields=( $1 ) && shift
-    decho_vars all_fields fields
+    ## decho_vars all_fields fields
 
     local files=( "$@" )
     if [[ ${#files[*]} = 0 ]]; then
@@ -1025,42 +1069,9 @@ file_info() {
                 ;;
                 *)  eecho "file_info: invalid option '$f'; must specify 1+ of $all_fields"; return 1 ;;
             esac
-            decho_vars out
+            ## decho_vars out
         done
         echo "${out[@]}"
-        # else
-        #   local awk_p=
-        #   local awk_a=
-        #   for f in  ${fields[*]}  ; do
-            #     awk_p="$awk_p %s"
-            #     case $f in
-            #       user*)     out+=("$(stat --format='%U' "$file" || return 1)")  ;;
-            #       size*)     out+=("$(stat --format='%s' "$file" || return 1)")  ;;
-            #       bdate*|birthdate*)    out+=("$(date -r "$(stat --format='%W' "$file" || return 1)" +'%Y-%m-%d' || return 1)")  ;;
-            #       btime*|birthtime*)    out+=("$(date -r "$(stat --format='%W' "$file" || return 1)" +'%Y-%m-%d' || return 1)")  ;;
-            #       cdate*)    out+=("$(date -r "$st_ctime" +'%Y-%m-%d' || return 1)")  ;;
-            #       ctime*)    out+=("$(date -r "$st_ctime" +'%H:%M:%S' || return 1)")  ;;
-            #       mdate*)    out+=("$(date -r "$st_mtime" +'%Y-%m-%d' || return 1)")  ;;
-            #       mtime*)    out+=("$(date -r "$st_mtime" +'%H:%M:%S' || return 1)")  ;;
-            #       adate*)    out+=("$(date -r "$st_atime" +'%Y-%m-%d' || return 1)")  ;;
-            #       atime*)    out+=("$(date -r "$st_atime" +'%H:%M:%S' || return 1)")  ;;
-            #       name*)     out+=("$file")  ;;
-            #       basename*) out+=("$(basename "$file" || return 1)")  ;;
-            #       *)  eecho "file_info: invalid option '$f'; must specify 1+ of $all_fields"; return 1 ;;
-            #       # user*)     awk_a="$awk_a, \$3"  ;;
-            #       # size*)     awk_a="$awk_a, \$4"  ;;
-            #       # mdate*)    awk_a="$awk_a, \$5"  ;;
-            #       # mtime*)    awk_a="$awk_a, \$6"  ;;
-            #       # name*)     awk_a="$awk_a, \$7"  ;;
-            #       # basename*) awk_a="$awk_a, bname"  ;;
-            #       *)  eecho "file_info: invalid option $f; must specify 1+ of $all_fields"; return 1
-            #     esac
-            #     decho_vars awk_p awk_a
-            #   done
-            #   # ls -oh --time-style=+"%Y-%m-%d %H:%M:%S" $file | awk "{fc=split(\$7,fn,/\//); bname=fn[fc];  printf \"${awk_p:1}\", ${awk_a:2}}"
-            #   ls -oh --time-style=long-iso "'$file'" | awk "{fc=split(\$7,fn,/\//); bname=fn[fc];  printf \"${awk_p:1}\", ${awk_a:2}}"
-            # fi
-
     done
 }
 
@@ -1238,19 +1249,6 @@ links_to_sh() {
 }
 
 
-# Optional version prefix can be used to limit to, e.g., 5.* or 3.4.*
-find_alfresco_home() {
-    local version_prefix="${1:-[[:digit:]]\\.[[:digit:]]}"; shift
-    [[ -d "$ALFRESCO_HOME" ]] && cd "$ALFRESCO_HOME" && return 0
-    local root="${ALFRESCO_ROOT:-/opt/alfresco}"
-    [[ ! -d "$root" ]] && eecho "find_alfresco_home: cannot determine ALFRESCO_ROOT" && return 1
-    local c="command find -E -s '$root' -maxdepth 1 -regex '.+/alfresco(-enterprise)?(-sdk)?-${version_prefix}.*' -print -quit"
-    local home="$(eval "$c")"
-    [[ -z "$home" ]] && evecho "find_alfresco_home: cannot determine ALFRESCO_HOME" && return 1
-    echo "$home"
-}
-
-
 # svn info returns, e.g., Working Copy Root Path: /Users/tpierzina/svn/ucp/ucp-alfresco-liferay/ucp-olc-2017
 branch_name() {
     local dir="${1:-.}"
@@ -1291,7 +1289,7 @@ cssgrep() {
 # Backup all MacOS keyboard shortcuts by creating a shell script to restore them and saving to Dropbox.
 # From https://superuser.com/questions/670584/how-can-i-migrate-all-keyboard-shortcuts-from-one-mac-to-another
 save_hotkeys() {
-    DESTFILE="$HOME/Dropbox/backup/install-hotkeys-$(date +'%Y%m%d').sh"
+    DESTFILE="$HOME/Drive/backup/install-hotkeys-$(date +'%Y%m%d').sh"
     echo '#!/usr/bin/env bash' > "$DESTFILE"
 
     defaults find NSUserKeyEquivalents | \
@@ -1304,4 +1302,30 @@ save_hotkeys() {
     chmod a+x "$DESTFILE"
 
     echo "Wrote $(grep -E -c '=.+;$' "$DESTFILE") key mappings to: $DESTFILE"
+}
+
+
+# # TODO: not working, 9/26/18
+# du_sorted() {
+#     local files="$*"
+#     [[ -z "$files" ]] && files="$(ls -1)"
+#     vecho "du_sorted: files: $files"
+#     local IFS=$'\t'; du -s "$files" | sort -n | while read sz nm; do
+#         echo "sz: [$sz], nm: [$nm]"
+#     done
+# }
+
+# video's dimensions, returned as "height=H \n width=W"
+which ffprobe >& /dev/null && vdim() {
+    local USAGE="usage: vdim video_file"
+    local v_file="$1"; shift
+    [[ -z "$v_file" ]] && eecho "$USAGE" && return 1
+    [[ ! -e "$v_file" ]] && eecho "vdim: $v_file: no such file" && return 1
+    ffprobe \
+        -hide_banner \
+        -v error \
+        -select_streams v:0 \
+        -show_entries stream=width,height "$v_file" \
+    | \
+        grep -E "^height=|^width="
 }

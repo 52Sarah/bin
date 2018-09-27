@@ -1,0 +1,9 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "System.out.println({cursor});\n",
+    "dontautoexpand" : true,
+    "uid" : "5FA6E3A8-0C24-4547-A064-A775644413AA",
+    "name" : "sysout",
+    "keyword" : ""
+  }
+}

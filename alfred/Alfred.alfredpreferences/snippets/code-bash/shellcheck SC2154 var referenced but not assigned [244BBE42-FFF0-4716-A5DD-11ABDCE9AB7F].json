@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "# shellcheck disable=SC2154  # var referenced but not assigned",
+    "uid" : "244BBE42-FFF0-4716-A5DD-11ABDCE9AB7F",
+    "name" : "shellcheck SC2154 | var referenced but not assigned",
+    "keyword" : "SC2154"
+  }
+}

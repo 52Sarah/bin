@@ -14,7 +14,7 @@
 	[
 		{
             "name": "dotfiles",
-            "path": "/Users/tpierzina/Dropbox/dotfiles",
+            "path": "/Users/toddpierzina/Dropbox/dotfiles",
 			"folder_exclude_patterns":
 			[
 				"sublime"
@@ -22,7 +22,7 @@
 		},
         {
             "name": "dotfiles | sublime",
-            "path": "/Users/tpierzina/Dropbox/dotfiles/sublime",
+            "path": "/Users/toddpierzina/Dropbox/dotfiles/sublime",
             "folder_exclude_patterns":
             [
                 "*.BAK*",
@@ -38,11 +38,11 @@
         },
 		{
 			"name": "dropbox | bin",
-			"path": "/Users/tpierzina/Dropbox/bin"
+			"path": "/Users/toddpierzina/Dropbox/bin"
 		},
 		{
             "name": "sublime | packages",
-            "path": "/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages",
+            "path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages",
 			"folder_exclude_patterns":
 			[
 				"Default",
@@ -51,11 +51,11 @@
 		},
 		{
 			"name": "sublime | packages | default",
-			"path": "/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/Default"
+			"path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages/Default"
 		},
         {
             "name": "sublime | packages | user",
-            "path": "/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages/User"
+            "path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages/User"
         },
 	],
 }

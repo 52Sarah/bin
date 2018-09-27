@@ -5,7 +5,6 @@
 	"extensions":
 	[
 		"mdown",
-		"txt",
 		"md",
 		"mmd"
 	],
@@ -15,5 +14,6 @@
 	"mde.keymap_disable.fold_section": true,
 	"mde.keymap_disable.show_fold_all_sections": true,
 	"mde.list_indent_auto_switch_bullet": false,
+	"tab_size": 2,
 	"wrap_width": 120
 }

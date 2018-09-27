@@ -19,6 +19,7 @@
 
 set -o vi
 export EDITOR=vim
+export CLICOLOR=true
 
 
 # WHen closing a session, add to history instead of overwriting
@@ -28,6 +29,7 @@ shopt -s cdspell
 
 # Store multi-line commands as one line in history
 shopt -s cmdhist
+
 
 # Ignore repeated lines and lines starting with ' '
 export HISTCONTROL='ignoreboth'
@@ -40,8 +42,6 @@ export HISTFILESIZE=${HISTSIZE}
 export HISTTIMEFORMAT=' %F %T  '
 
 
-export CLICOLOR=true
-
 # If last command was in error, display !$ instead of $.
 # history -a flushes the session history to the history file
 export PROMPT_COMMAND='(($?)) && _prompt_symbol="!\$" || _prompt_symbol="\$"; history -a'
@@ -52,7 +52,7 @@ export PROMPT_COMMAND='(($?)) && _prompt_symbol="!\$" || _prompt_symbol="\$"; hi
 export PS1='\h:\u \w $_prompt_symbol '
 
 
-if [ "$(hostname -s)" = "SHEFFIELD" ]; then
+if [[ "$(hostname -s)" = "TP_I-080-MBPRO" ]]; then
 
   PROMPT_COMMAND='[[ $? = 0 ]] && _prompt_symbol="\$" || _prompt_symbol="!\$"; history -a'
   # SHEFFIELD: ~ $ ls
