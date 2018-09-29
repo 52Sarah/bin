@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "Test Title Text {datetime:short}",
-    "dontautoexpand" : true,
-    "uid" : "BFF9406D-E832-4D0F-B39F-F52E00482D9F",
-    "name" : "test-title-datetime",
-    "keyword" : ""
-  }
-}
