@@ -1,8 +1,9 @@
-.DS_Store
+**/.DS_Store
 
-# No reason to write local temporary backups to git.
 **/*.BAK*
 
-# No reason to write convenience symbolic links to git.
+# convenience links
+alfred/alfred_libdir
+office/User Content
 sublime/sublime_libdir
 sublime/user_libdir
