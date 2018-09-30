@@ -189,8 +189,8 @@ touchdir() {
     local count=0
     for dir in "$@"; do
         # vecho "touchdir: dir='$dir'"
-        [[ "$dir" =~ ^-?-q(uiet)?$ ]] && SH_QUIET=1 && unset SH_VERBOSE && continue
-        [[ "$dir" =~ ^-?-v(erbose)?$ ]] && SH_VERBOSE=1 && unset SH_QUIET && continue
+        [[ "$dir" =~ ^-?-q(uiet)?$ ]] && local SH_QUIET=1 && local SH_VERBOSE= && continue
+        [[ "$dir" =~ ^-?-v(erbose)?$ ]] && local SH_VERBOSE=1 && local SH_QUIET= && continue
         [[ ! -e "$dir" ]] && eecho "touchdir: ${dir}: no such directory" && return 1
         [[ ! -d "$dir" ]] && vecho "touchdir: ${dir}: not a directory" && continue
 
@@ -808,7 +808,7 @@ mv_and_ln() {
     [[ ! -e "$orig_file" ]] && eecho "mv_and_ln: no such file or directory: $orig_file" && return 1
     [[ -L "$orig_file" ]] && eecho "mv_and_ln: orig_file cannot be a link: $orig_file" && return 1
 
-    # if target is a directory, append the name of orig file to it since the ln command will expect the full path
+    # If target is a directory, append the name of orig file to it since the ln command will expect the full path
     # (rather than implicitly creating a child file inside it).
     local target_file="$1"; shift
     [[ -z "$target_file" ]] && eecho "$USAGE" && return 1
@@ -817,10 +817,10 @@ mv_and_ln() {
     fi
     [[ "$opt_force" = '-n' && -e "$target_file" ]] && eecho "mv_and_ln: target_file already exists: $target_file" && return 1
 
-    echo "mv $opt_force -v \"$orig_file\" \"$target_file\""
-    echo "ln -s -v \"$target_file\" \"$orig_file\""
-    mv $opt_force -v "$orig_file" "$target_file" || return 1
-    ln -s -v "$target_file" "$orig_file" || return 1
+    decho "mv $opt_force -v \"$orig_file\" \"$target_file\""
+    decho "ln -s -v \"$target_file\" \"$orig_file\""
+    iecho -n "mv: " && mv $opt_force -v "$orig_file" "$target_file" || return 1
+    iecho -n "ln: " && ln -s -v "$target_file" "$orig_file" || return 1
 
     vecho_and_eval "ls -ohF  \"$target_file\" \"$orig_file\""
 }
@@ -982,8 +982,8 @@ commafy() {
 }
 
 # Expand '~' to $HOME, or compress $HOME to ~
-tilde_expand()   { echo "${1//\~/$HOME}"; }
-tilde_compress() { echo "${1//$HOME/\~}"; }
+tilde_expand()   { echo "${1//~/$HOME}"; }
+tilde_compress() { echo "${1//$HOME/~}"; }
 
 file_opened() {
     local file=$1
@@ -1151,11 +1151,11 @@ bak() {
     [[ -z "$1" ]] && eecho "usage: bak [-m] file [...]" && return 1
 
     for f in "$@"; do
-        [[ ! -e "$f" ]] && eecho "bak: $f: No such file or directory" && return 1
-        [[ "$f" =~ .+\.BAK.[[:digit:]]{8} ]] && eecho "bak: $f: Ignoring .BAK.* file" && return 1
-        [[ -d "$f" ]] && touchdir_R "$f"
+        [[ ! -e "$f" ]] && eecho "bak: $f: NNo such file or directory" && return 1
+        [[ "$f" =~ .+\.BAK.[[:digit:]]{8} ]] && eecho "bak: $f: ignoring BAK file" && return 0
+        [[ -d "$f" ]] && SH_VERBOSE= touchdir_R "$f"
         local tstamp=$(file_info 'mdate' "$f")
-        [[ -z "$tstamp" ]] && eecho "bak: $f: Cannot determine mdate" && return 1
+        [[ -z "$tstamp" ]] && eecho "bak: $f: Ccannot determine mdate" && return 1
         tstamp="${tstamp//-/}"  #yyymmdd
         vecho_and_eval "$verb \"$f\" \"${f}.BAK.${tstamp}\""
     done

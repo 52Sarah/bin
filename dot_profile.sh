@@ -54,17 +54,14 @@ export PROMPT_COMMAND='(($?)) && _prompt_symbol="!\$" || _prompt_symbol="\$"; hi
 # \h = hostname
 # \w = working dir
 # myinf-prod: ubuntu: ~ $
-export PS1='\h:\u \w $_prompt_symbol '
+## export PS1='\h:\u \w $_prompt_symbol '
+export PS1='\w $_prompt_symbol '
+
+# Exclude from tab completion
+export FIGNORE='DS_Store:'
 
 
 if [[ "$(hostname -s)" = "TPI-080-MBPRO" ]]; then
-
-  PROMPT_COMMAND='[[ $? = 0 ]] && _prompt_symbol="\$" || _prompt_symbol="!\$"; history -a'
-  # SHEFFIELD: ~ $ ls
-  #export PS1='\h: \w $_prompt_symbol '
-  # ~ $ ls
-  export PS1='\w $_prompt_symbol '
-
 
   # MySQL
   export PATH="/usr/local/Cellar/mysql@5.7/5.7.23/bin:$PATH"
@@ -103,20 +100,9 @@ if [[ "$(hostname -s)" = "TPI-080-MBPRO" ]]; then
   # Inkscape
   export PATH="$PATH:/Applications/Inkscape.app/Contents/Resources/bin"
   
-
-  # export GROOVY_HOME="/opt/groovy"
-  # export PATH="$PATH:$GROOVY_HOME/bin"
-
-  # export GRAILS_HOME="/opt/grails"
-  # export PATH="$PATH:$GRAILS_HOME/bin"
-
-  # export GRADLE_HOME=/opt/gradle-1.9
-  # export PATH="$PATH:$GRADLE_HOME/bin"
-
-  # Exclude from tab completion
-  export FIGNORE='DS_Store:'
-
 fi
+
+[[ -d "/opt/bin" ]] && export PATH="$PATH:/opt/bin"
 
 
 [[ -e "$HOME/.alias" ]] && __echo "[.profile] sourcing .alias" && . "$HOME/.alias"

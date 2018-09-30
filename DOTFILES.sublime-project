@@ -1,61 +1,36 @@
 {
-    "settings":
-    {
-        "follow_symlinks": true,
-        // "color_scheme": "Packages/User/SublimeLinter/CarbonightBlue (SL).tmTheme", // gray, white, blues
-        // "color_scheme": "Packages/Dayle Rees Color Schemes/legacy/Contrast/Carbonight.tmTheme",
-        // dark; brown, white, light blue, off-shite, white
-        // "color_scheme": "Packages/User/SublimeLinter/Goldfish (SL).tmTheme",
-        // "color_scheme": "Packages/User/SublimeLinter/HalfLife (SL).tmTheme",  // gray, white, yellow, orange
-        // "color_scheme": "Packages/User/SublimeLinter/otakon (SL).tmTheme",
-        // "color_scheme": "Packages/Flatwhite/FlatWhite.sublime-color-scheme",  // light
-    },
 	"folders":
 	[
 		{
-            "name": "dotfiles",
-            "path": "/Users/toddpierzina/Drive/dotfiles",
-			"folder_exclude_patterns":
-			[
-				"sublime"
-			],
-		},
-        {
-            "name": "dotfiles | sublime",
-            "path": "/Users/toddpierzina/Drive/dotfiles/sublime",
-            "folder_exclude_patterns":
-            [
-                "*.BAK*",
-                "PACKAGES_USER",
-                "sublime_libdir/Packages",
-                "user_libdir",
-            ],
-            "file_exclude_patterns":
-            [
-                "*.BAK*",
-                "*.*cache"
-            ],
-        },
-		{
-			"name": "dropbox | bin",
+			"name": "bin",
 			"path": "/Users/toddpierzina/Drive/bin"
 		},
 		{
-            "name": "sublime | packages",
-            "path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages",
-			"folder_exclude_patterns":
-			[
-				"Default",
-				"User"
-			],
+			"name": "dotfiles",
+			"path": "."
 		},
 		{
-			"name": "sublime | packages | default",
-			"path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages/Default"
+			"name": "prefs",
+			"path": "/Users/toddpierzina/Drive/prefs/sublime"
 		},
-        {
-            "name": "sublime | packages | user",
-            "path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages/User"
-        },
+		{
+			"name": "[sublime | packages]",
+			"path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages"
+		},
 	],
+	"settings":
+	{
+		"follow_symlinks": true,
+
+	    // folder_exclude_patterns and file_exclude_patterns control which files
+	    // are listed in folders on the side bar. These can also be set on a per-
+	    // project basis.
+	    "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS"],
+	    "file_exclude_patterns": ["*.pyc", "*.pyo", "*.exe", "*.dll", "*.obj","*.o", "*.a", "*.lib", "*.so", "*.dylib", "*.ncb", "*.sdf", "*.suo", "*.pdb", "*.idb", ".DS_Store", "*.class", "*.psd", "*.db", "*.sublime-workspace"],
+	    
+	    // These files will still show up in the side bar, but won't be included in
+	    // Goto Anything or Find in Files
+	    "binary_file_patterns": ["*.BAK*", "*.jpg", "*.jpeg", "*.png", "*.gif", "*.ttf", "*.tga", "*.dds", "*.ico", "*.eot", "*.pdf", "*.swf", "*.jar", "*.zip"],
+
+	}
 }
