@@ -1,7 +1,0 @@
----
-description: SQL SELECT wrap LEFT around field
-tabTrigger:
-scope:
----
-LEFT(${1:$TM_CURRENT_WORD}, ${2:20}) "$1"$0
-
