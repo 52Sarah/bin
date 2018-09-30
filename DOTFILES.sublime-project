@@ -3,9 +3,9 @@
     {
         "follow_symlinks": true,
         // "color_scheme": "Packages/User/SublimeLinter/CarbonightBlue (SL).tmTheme", // gray, white, blues
-        //"color_scheme": "Packages/Dayle Rees Color Schemes/legacy/Contrast/Carbonight.tmTheme",
+        // "color_scheme": "Packages/Dayle Rees Color Schemes/legacy/Contrast/Carbonight.tmTheme",
         // dark; brown, white, light blue, off-shite, white
-        "color_scheme": "Packages/User/SublimeLinter/Goldfish (SL).tmTheme",
+        // "color_scheme": "Packages/User/SublimeLinter/Goldfish (SL).tmTheme",
         // "color_scheme": "Packages/User/SublimeLinter/HalfLife (SL).tmTheme",  // gray, white, yellow, orange
         // "color_scheme": "Packages/User/SublimeLinter/otakon (SL).tmTheme",
         // "color_scheme": "Packages/Flatwhite/FlatWhite.sublime-color-scheme",  // light
@@ -14,7 +14,7 @@
 	[
 		{
             "name": "dotfiles",
-            "path": "/Users/toddpierzina/Dropbox/dotfiles",
+            "path": "/Users/toddpierzina/Drive/dotfiles",
 			"folder_exclude_patterns":
 			[
 				"sublime"
@@ -22,7 +22,7 @@
 		},
         {
             "name": "dotfiles | sublime",
-            "path": "/Users/toddpierzina/Dropbox/dotfiles/sublime",
+            "path": "/Users/toddpierzina/Drive/dotfiles/sublime",
             "folder_exclude_patterns":
             [
                 "*.BAK*",
@@ -38,7 +38,7 @@
         },
 		{
 			"name": "dropbox | bin",
-			"path": "/Users/toddpierzina/Dropbox/bin"
+			"path": "/Users/toddpierzina/Drive/bin"
 		},
 		{
             "name": "sublime | packages",
