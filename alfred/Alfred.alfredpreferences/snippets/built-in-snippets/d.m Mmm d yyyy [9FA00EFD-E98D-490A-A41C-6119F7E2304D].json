@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "{date:medium}",
-    "dontautoexpand" : true,
-    "uid" : "9FA00EFD-E98D-490A-A41C-6119F7E2304D",
-    "name" : "d.m | Mmm d, yyyy",
-    "keyword" : ""
-  }
-}

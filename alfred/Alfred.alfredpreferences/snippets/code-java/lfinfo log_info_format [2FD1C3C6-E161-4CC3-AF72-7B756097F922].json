@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "logger.info(String.format(\"$ %s\", VAR));",
-    "dontautoexpand" : true,
-    "uid" : "2FD1C3C6-E161-4CC3-AF72-7B756097F922",
-    "name" : "lfinfo log_info_format",
-    "keyword" : ""
-  }
-}

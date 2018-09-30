@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "log.fine(\"START {cursor}\");",
-    "dontautoexpand" : true,
-    "uid" : "8D53CBA3-4181-4303-93BA-091BD9EDB70F",
-    "name" : "log.fine START method",
-    "keyword" : ""
-  }
-}

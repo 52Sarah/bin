@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "logger.trace(\"${cursor}\");",
-    "dontautoexpand" : true,
-    "uid" : "47A5042D-0102-4675-A5C4-19D96C018CAA",
-    "name" : "ltrace log_trace",
-    "keyword" : ""
-  }
-}

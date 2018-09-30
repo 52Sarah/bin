@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "\/(FINE|TRACE|DEBUG|INFO|WARN|ERROR)\/",
-    "dontautoexpand" : true,
-    "uid" : "C4C67BA6-ADDD-4F1E-9034-B1F8CD866E0A",
-    "name" : "chrome: console log filters",
-    "keyword" : ""
-  }
-}

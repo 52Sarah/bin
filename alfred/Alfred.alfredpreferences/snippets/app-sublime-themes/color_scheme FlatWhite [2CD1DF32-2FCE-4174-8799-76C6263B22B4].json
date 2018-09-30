@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "\/\/ light; dark text with blue, green background shading\n\"color_scheme\": \"Packages\/Flatwhite\/FlatWhite.sublime-color-scheme\",",
-    "dontautoexpand" : true,
-    "uid" : "2CD1DF32-2FCE-4174-8799-76C6263B22B4",
-    "name" : "color_scheme: FlatWhite",
-    "keyword" : ""
-  }
-}

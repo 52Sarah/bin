@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
-[[ -n "$SH_VERBOSE" ]] && echo "[.alias]"
 
-[[ -e "$HOME/.functions" ]] && . "$HOME/.functions"
+# For debugging via . ~/.alias --debug, incoming SH_DEBUG=1, or existence of ~/.login_debug
+[[ "$1" == "--debug" || -e "$HOME/.alias.debug" ]] && __ALIAS_DEBUG=1
+__echo() { [[ -n "$__ALIAS_DEBUG" ]] && echo "$@"; return 0; }
+
+__echo "[.alias] starting"
+
+
+
+[[ -e "$HOME/.functions" ]] && __echo "[.alias] sourcing .functions" && . "$HOME/.functions"
 
 
 if [[ "$(hostname -s)" = "SHEFFIELD" ]]; then
@@ -106,15 +113,6 @@ alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-
 function man() {
   command man "${1:-man}" | col -b | subl --stay &
 }
-# Check out this low-rent method to colorize man pages, from https://www.cyberciti.biz/faq/linux-unix-colored-man-pages-with-less-command/#more-11860
-# man() {
-#   env \
-#     LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-#     LESS_TERMCAP_md=$(printf "\e[1;31m") \
-#     LESS_TERMCAP_me=$(printf "\e[0m") \
-#     LESS_TERMCAP_se=$(printf "\e[0m") \
-#     LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-#     LESS_TERMCAP_ue=$(printf "\e[0m") \
-#     LESS_TERMCAP_us=$(printf "\e[1;32m") \
-#       man "$@"
-# }
+
+
+__echo "[.alias] finished"

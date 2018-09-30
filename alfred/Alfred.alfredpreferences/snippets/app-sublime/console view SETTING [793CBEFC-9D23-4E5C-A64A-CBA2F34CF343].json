@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "view.settings().get('{cursor}')",
-    "dontautoexpand" : true,
-    "uid" : "793CBEFC-9D23-4E5C-A64A-CBA2F34CF343",
-    "name" : "console: view SETTING",
-    "keyword" : ""
-  }
-}

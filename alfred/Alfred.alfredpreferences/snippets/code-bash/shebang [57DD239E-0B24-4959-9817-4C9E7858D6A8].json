@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "#!\/usr\/bin\/env bash\n",
-    "dontautoexpand" : true,
-    "uid" : "57DD239E-0B24-4959-9817-4C9E7858D6A8",
-    "name" : "shebang",
-    "keyword" : ""
-  }
-}

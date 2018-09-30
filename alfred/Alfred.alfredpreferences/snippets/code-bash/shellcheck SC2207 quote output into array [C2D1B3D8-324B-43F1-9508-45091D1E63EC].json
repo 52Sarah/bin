@@ -1,8 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "# shellcheck disable=SC2207  # quote command output into array",
-    "uid" : "C2D1B3D8-324B-43F1-9508-45091D1E63EC",
-    "name" : "shellcheck SC2207 | quote output into array",
-    "keyword" : "SC2207"
-  }
-}

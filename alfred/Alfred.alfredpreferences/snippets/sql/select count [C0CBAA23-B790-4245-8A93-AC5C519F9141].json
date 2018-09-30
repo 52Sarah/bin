@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "SELECT COUNT(*) FROM {cursor};\n",
-    "dontautoexpand" : true,
-    "uid" : "C0CBAA23-B790-4245-8A93-AC5C519F9141",
-    "name" : "select count",
-    "keyword" : ""
-  }
-}

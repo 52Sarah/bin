@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "throw new RuntimeException(\"ERROR caught in ${cursor}: \" + e.getMessage(), e);",
-    "dontautoexpand" : true,
-    "uid" : "7F571813-831D-46B4-BC32-2A80E46D29AD",
-    "name" : "tnrte throw_new_runtimeexception",
-    "keyword" : ""
-  }
-}

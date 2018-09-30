@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "\/\/ dark; red, gray, orange, bright yellow\n\"color_scheme\": \"Packages\/User\/SublimeLinter\/Darkside (SL).tmTheme\",",
-    "dontautoexpand" : true,
-    "uid" : "090DF9B4-2319-49D9-B783-CEE3E49A1D65",
-    "name" : "color_scheme: Darkside",
-    "keyword" : ""
-  }
-}

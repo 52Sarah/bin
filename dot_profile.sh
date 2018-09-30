@@ -13,7 +13,12 @@
 # - 2155 (https://github.com/koalaman/shellcheck/wiki/SC2155): Declare and assign separately to
 #        avoid masking return values.
 
-[[ -n "$SH_VERBOSE" ]] && echo "[.profile]"
+# For debugging via . ~/.profile --debug, incoming SH_DEBUG=1, or existence of ~/.login_debug
+[[ "$1" == "--debug" || -e "$HOME/.profile.debug" ]] && __PROFILE_DEBUG=1
+__echo() { [[ -n "$__PROFILE_DEBUG" ]] && echo "$@"; return 0; }
+
+__echo "[.profile] starting"
+
 
 [[ -e "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
 
@@ -52,7 +57,7 @@ export PROMPT_COMMAND='(($?)) && _prompt_symbol="!\$" || _prompt_symbol="\$"; hi
 export PS1='\h:\u \w $_prompt_symbol '
 
 
-if [[ "$(hostname -s)" = "TP_I-080-MBPRO" ]]; then
+if [[ "$(hostname -s)" = "TPI-080-MBPRO" ]]; then
 
   PROMPT_COMMAND='[[ $? = 0 ]] && _prompt_symbol="\$" || _prompt_symbol="!\$"; history -a'
   # SHEFFIELD: ~ $ ls
@@ -60,42 +65,61 @@ if [[ "$(hostname -s)" = "TP_I-080-MBPRO" ]]; then
   # ~ $ ls
   export PS1='\w $_prompt_symbol '
 
-  export PATH="/usr/local/mysql/bin:$PATH"
 
-  # Homemade scripts, etc.
-  export PATH="/opt/bin:$PATH"
+  # MySQL
+  export PATH="/usr/local/Cellar/mysql@5.7/5.7.23/bin:$PATH"
 
-  # Exclude from tab completion
-  export FIGNORE='DS_Store:'
-
+  # Java JDK 1.8
   if [[ -n "$(jenv version 2> /dev/null)" ]]; then
-    [ -n "$SH_VERBOSE" ] && echo "Using jenv to set JAVA_HOME"
     eval "$(jenv init -)"
     export JAVA_HOME="$(jenv javahome)"
+    __echo "[.profile] used jenv to set JAVA_HOME"
   else
-    [ -n "$SH_VERBOSE" ] && echo "Using libexec to set JAVA_HOME"
     export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
     export PATH=$JAVA_HOME/bin:$PATH
+    __echo "[.profile] used /usr/libexec to set JAVA_HOME"
   fi
-  [ -n "$SH_VERBOSE" ] && echo "JAVA_HOME=$JAVA_HOME"
+  __echo "[.profile] JAVA_HOME=$JAVA_HOME"
 
+  # Node
+  export NVM_DIR="$HOME/.nvm"
+  . "$NVM_DIR/nvm.sh"
+  . "$NVM_DIR/bash_completion"
+  export NODE_LIB="$HOME/.nvm/versions/node/v6.11.0/lib/node_modules/"
+  export PATH="$PATH:$NODE_LIB"
+  __echo "[.profile] Node version: $(nvm current)"
 
-  export GROOVY_HOME="/opt/groovy"
-  export PATH="$PATH:$GROOVY_HOME/bin"
+  # phantomjs and mochajs
+  export PHANTOMJS_HOME="$NODE_LIB/phantomjs" 
+  export PATH="$PATH:$PHANTOMJS_HOME/bin"
+  export MOCHAPHANTOMJS_HOME="$NODE_LIB/mocha-phantomjs"
+  export PATH="$PATH:$MOCHAPHANTOMJS_HOME/bin"
 
-  export GRAILS_HOME="/opt/grails"
-  export PATH="$PATH:$GRAILS_HOME/bin"
+  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+  # Load RVM into a shell session *as a function*
+  export PATH="$PATH:$HOME/.rvm/bin"
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+  # Inkscape
+  export PATH="$PATH:/Applications/Inkscape.app/Contents/Resources/bin"
+  
+
+  # export GROOVY_HOME="/opt/groovy"
+  # export PATH="$PATH:$GROOVY_HOME/bin"
+
+  # export GRAILS_HOME="/opt/grails"
+  # export PATH="$PATH:$GRAILS_HOME/bin"
 
   # export GRADLE_HOME=/opt/gradle-1.9
   # export PATH="$PATH:$GRADLE_HOME/bin"
 
-
-  # # imagemagick 6.9.7.4 installed 1/18/2017; not symlinked into /usr/local by homebrew
-  # export LDFLAGS="$LDFLAGS:-L/usr/local/opt/imagemagick@6/lib"
-  # export CPPFLAGS="$CPPFLAGS:-I/usr/local/opt/imagemagick@6/include"
-  # export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/imagemagick@6/lib/pkgconfig"
+  # Exclude from tab completion
+  export FIGNORE='DS_Store:'
 
 fi
 
 
-[[ -e "$HOME/.alias" ]] && . "$HOME/.alias"
+[[ -e "$HOME/.alias" ]] && __echo "[.profile] sourcing .alias" && . "$HOME/.alias"
+
+
+__echo "[.profile] finished"

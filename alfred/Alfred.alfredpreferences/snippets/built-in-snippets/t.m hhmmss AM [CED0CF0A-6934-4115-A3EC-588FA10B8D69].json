@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "{time:medium}",
-    "dontautoexpand" : true,
-    "uid" : "CED0CF0A-6934-4115-A3EC-588FA10B8D69",
-    "name" : "t.m | hh:mm:ss AM",
-    "keyword" : ""
-  }
-}

@@ -5,7 +5,12 @@
 #   SC2155 - declare and assign separately
 #   SC2156 - injecting filenames in find -exec
 
-[[ -n "$SH_VERBOSE" ]] && echo "[.functions]"
+# For debugging via . ~/.alias --debug, incoming SH_DEBUG=1, or existence of ~/.login_debug
+[[ "$1" == "--debug" || -e "$HOME/.functions.debug" ]] && __FUNCTIONS_DEBUG=1
+__echo() { [[ -n "$__FUNCTIONS_DEBUG" ]] && echo "$@"; return 0; }
+
+__echo "[.functions] starting"
+
 
 shopt -s extglob
 
@@ -793,28 +798,31 @@ EOF
 
 # Move file $1 to folder/file $2, then create symlink to it in its original place.
 mv_and_ln() {
-    while [[ "${1:0:1}" = "-" ]]; do
-        case "$1" in
-            -w|--what?(-)if )   SH_WHATIF=1 && shift  ;;
-            -v|--verbose )      SH_VERBOSE=1 && shift  ;;
-            *)                  break  ::
-        esac
-    done
+    local USAGE="usage: mv_and_ln [--force] orig_file target_file"
+
+    local opt_force='-n'
+    [[ "$1" =~ ^-?-f(orce)?$ ]] && opt_force='-f' && shift
 
     local orig_file="$1"; shift
-    [[ -z "$orig_file" ]] && eecho "ERROR: Usage: mv_and_ln orig target -- missing orig" && return 1
-    [[ ! -e "$orig_file" ]] && eecho "ERROR: Usage: mv_and_ln orig target -- orig '$orig_file' not found" && return 1
-    [[ -L "$orig_file" ]] && eecho "ERROR: Usage: mv_and_ln orig target -- orig '$orig_file' cannot be a link" && return 1
+    [[ -z "$orig_file" ]] && eecho "$USAGE" && return 1
+    [[ ! -e "$orig_file" ]] && eecho "mv_and_ln: no such file or directory: $orig_file" && return 1
+    [[ -L "$orig_file" ]] && eecho "mv_and_ln: orig_file cannot be a link: $orig_file" && return 1
 
-    local target_file="${1:-$(basename "$orig_file")}"; shift
+    # if target is a directory, append the name of orig file to it since the ln command will expect the full path
+    # (rather than implicitly creating a child file inside it).
+    local target_file="$1"; shift
+    [[ -z "$target_file" ]] && eecho "$USAGE" && return 1
     if [[ -d "$target_file" ]]; then
         target_file="$target_file/$(basename "$orig_file")"
     fi
-    [[ -e "$target_file" ]] && eecho "ERROR: Usage: mv_and_ln orig target -- target '$target_file' already exists" && return 1
+    [[ "$opt_force" = '-n' && -e "$target_file" ]] && eecho "mv_and_ln: target_file already exists: $target_file" && return 1
 
-    echo -n "mv: "; wecho "mv -i -v \"$orig_file\" \"$target_file\""
-    echo -n "ln: "; wecho "ln -sv \"$target_file\" \"$orig_file\""
-    [[ -n "$SH_VERBOSE" ]] && ls -ohF  "$target_file" "$orig_file"
+    echo "mv $opt_force -v \"$orig_file\" \"$target_file\""
+    echo "ln -s -v \"$target_file\" \"$orig_file\""
+    mv $opt_force -v "$orig_file" "$target_file" || return 1
+    ln -s -v "$target_file" "$orig_file" || return 1
+
+    vecho_and_eval "ls -ohF  \"$target_file\" \"$orig_file\""
 }
 
 # Given a link $1, swap it with its target.
@@ -1286,7 +1294,7 @@ cssgrep() {
 }
 
 
-# Backup all MacOS keyboard shortcuts by creating a shell script to restore them and saving to Dropbox.
+# Backup all MacOS keyboard shortcuts by creating a shell script to restore them and saving to the cloud.
 # From https://superuser.com/questions/670584/how-can-i-migrate-all-keyboard-shortcuts-from-one-mac-to-another
 save_hotkeys() {
     DESTFILE="$HOME/Drive/backup/install-hotkeys-$(date +'%Y%m%d').sh"
@@ -1329,3 +1337,6 @@ which ffprobe >& /dev/null && vdim() {
     | \
         grep -E "^height=|^width="
 }
+
+
+__echo "[.functions] finished"

@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "SELECT * FROM {cursor};\n",
-    "dontautoexpand" : true,
-    "uid" : "5DFFCB4F-F9C7-4D41-A912-88D3E0A6C075",
-    "name" : "select *",
-    "keyword" : ""
-  }
-}

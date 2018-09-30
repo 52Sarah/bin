@@ -1,8 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "# shellcheck disable=SC2125  # unquoted brace expansion",
-    "uid" : "C1B25E39-1D64-48E3-9895-AAD34925DEF9",
-    "name" : "shellcheck SC2125 | unquoted brace expansion",
-    "keyword" : "SC2125"
-  }
-}

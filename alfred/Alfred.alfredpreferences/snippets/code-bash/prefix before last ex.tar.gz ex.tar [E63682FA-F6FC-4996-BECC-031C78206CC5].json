@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "${{cursor}%.*}",
-    "dontautoexpand" : true,
-    "uid" : "E63682FA-F6FC-4996-BECC-031C78206CC5",
-    "name" : "prefix before last: ex.tar.gz => ex.tar",
-    "keyword" : ""
-  }
-}

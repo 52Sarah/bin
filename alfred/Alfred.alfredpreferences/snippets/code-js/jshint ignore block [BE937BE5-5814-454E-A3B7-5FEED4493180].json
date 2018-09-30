@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "\/* jshint ignore:start *\/\n{cursor}\n\/* jshint ignore:end *\/",
-    "dontautoexpand" : true,
-    "uid" : "BE937BE5-5814-454E-A3B7-5FEED4493180",
-    "name" : "jshint ignore block",
-    "keyword" : ""
-  }
-}

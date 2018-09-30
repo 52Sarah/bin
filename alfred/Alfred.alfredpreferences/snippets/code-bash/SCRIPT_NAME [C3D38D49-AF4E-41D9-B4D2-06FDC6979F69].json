@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "SCRIPT_NAME=\"$(basename \"$0\")\"",
-    "dontautoexpand" : true,
-    "uid" : "C3D38D49-AF4E-41D9-B4D2-06FDC6979F69",
-    "name" : "SCRIPT_NAME",
-    "keyword" : ""
-  }
-}

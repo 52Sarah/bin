@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "\/\/ red, green, blue, gold\n\"color_scheme\": \"Packages\/chester-atom\/Chester-Atom.tmTheme\",\n",
-    "dontautoexpand" : true,
-    "uid" : "F938F8DF-9C8B-4548-A838-4E41062A1B51",
-    "name" : "color_scheme: Chester-Atom",
-    "keyword" : ""
-  }
-}

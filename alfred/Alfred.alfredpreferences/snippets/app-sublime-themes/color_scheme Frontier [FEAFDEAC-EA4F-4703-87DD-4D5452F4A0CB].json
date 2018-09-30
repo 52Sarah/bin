@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "\/\/ dark; red, white, orange, yellow\n\"color_scheme\": \"Packages\/User\/SublimeLinter\/Frontier (SL).tmTheme\",",
-    "dontautoexpand" : true,
-    "uid" : "FEAFDEAC-EA4F-4703-87DD-4D5452F4A0CB",
-    "name" : "color_scheme: Frontier",
-    "keyword" : ""
-  }
-}

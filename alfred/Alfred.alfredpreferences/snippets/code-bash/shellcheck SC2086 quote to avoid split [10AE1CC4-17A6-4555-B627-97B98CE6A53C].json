@@ -1,8 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "# shellcheck disable=SC2086  # quote to avoid split",
-    "uid" : "10AE1CC4-17A6-4555-B627-97B98CE6A53C",
-    "name" : "shellcheck SC2086 | quote to avoid split",
-    "keyword" : "SC2086"
-  }
-}

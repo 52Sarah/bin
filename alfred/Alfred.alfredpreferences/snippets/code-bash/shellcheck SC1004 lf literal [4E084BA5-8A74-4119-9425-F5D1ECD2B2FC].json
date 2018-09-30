@@ -1,8 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "  # shellcheck disable=SC1004  # linefeed literal",
-    "uid" : "4E084BA5-8A74-4119-9425-F5D1ECD2B2FC",
-    "name" : "shellcheck SC1004 | lf literal",
-    "keyword" : "SC1004"
-  }
-}

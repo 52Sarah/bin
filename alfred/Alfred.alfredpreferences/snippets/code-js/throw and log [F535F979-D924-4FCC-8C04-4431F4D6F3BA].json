@@ -1,9 +1,0 @@
-{
-  "alfredsnippet" : {
-    "snippet" : "throw new Error(log.error(\"ERROR caught in METHOD{cursor}\", {err: e}));",
-    "dontautoexpand" : true,
-    "uid" : "F535F979-D924-4FCC-8C04-4431F4D6F3BA",
-    "name" : "throw and log",
-    "keyword" : ""
-  }
-}
