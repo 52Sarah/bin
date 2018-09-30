@@ -1,9 +1,0 @@
-AbstractTextEditor.Color.Background=8,8,8
-AbstractTextEditor.Color.Background.SystemDefault=false
-AbstractTextEditor.Color.SelectionBackground=121,121,121
-AbstractTextEditor.Color.SelectionBackground.SystemDefault=false
-AbstractTextEditor.Color.SelectionForeground.SystemDefault=false
-eclipse.preferences.version=1
-lineNumberColor=121,121,121
-overviewRuler_migration=migrated_3.1
-spacesForTabs=true
