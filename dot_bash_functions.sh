@@ -5,11 +5,8 @@
 #   SC2155 - declare and assign separately
 #   SC2156 - injecting filenames in find -exec
 
-# For debugging via . ~/.alias --debug, incoming SH_DEBUG=1, or existence of ~/.login_debug
-[[ "$1" == "--debug" || -e "$HOME/.functions.debug" ]] && __FUNCTIONS_DEBUG=1
-__echo() { [[ -n "$__FUNCTIONS_DEBUG" ]] && echo "$@"; return 0; }
-
-__echo "[.functions] starting"
+. "$HOME/.__login.debug.sh" ".bash_functions" || __echo() { :; }
+__echo "[.bash_functions] starting"
 
 
 shopt -s extglob
@@ -1339,4 +1336,4 @@ which ffprobe >& /dev/null && vdim() {
 }
 
 
-__echo "[.functions] finished"
+__echo "[.bash_functions] finished"

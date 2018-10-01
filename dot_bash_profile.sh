@@ -1,15 +1,21 @@
+# DISABLED:
+# Bash reads .bash_profile || .bash_login || .profile, whichever it finds first,
+# for interactive shells. Since there's nothing bash-specific in .profile (as far as I know),
+# I will put all commands into .bashrc (called by non-interactive shells) and have it source
+# .bashrc.
+#
+# https://apple.stackexchange.com/a/13019/39935
+
+
 #!/usr/bin/env bash
 
-# For debugging via . ~/.bash_profile --debug, incoming __BASH_PROFILE_DEBUG=1, or existence of ~/.login_debug
-[[ "$1" == "--debug" || -e "$HOME/.bash_profile.debug" ]] && __BASH_PROFILE_DEBUG=1
-__echo() { [[ -n "$__BASH_PROFILE_DEBUG" ]] && echo "$@"; return 0; }
-
-__echo "[.bash_profile] starting, PATH=$PATH, PWD=$PWD"
+# . ~/.__login.debug.sh ".bash_profile" || __echo() { :; }
+# __echo "[.bash_profile] starting, PATH=$PATH"
 
 
-for dotfile in .bashrc .profile; do
-	[[ -e "$HOME/$dotfile" ]] && __echo "[.bash_profile] sourcing $dotfile" && source "$HOME/$dotfile"
-done
+# for dotfile in .bashrc .profile; do
+# 	[[ -e "$HOME/$dotfile" ]] && __echo "[.bash_profile] sourcing $dotfile" && source "$HOME/$dotfile"
+# done
 
 
-__echo "[.bash_profile] finished, PATH=$PATH, PWD=$PWD"
+# __echo "[.bash_profile] finished, PATH=$PATH, PWD=$PWD"

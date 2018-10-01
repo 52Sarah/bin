@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# shellcheck disable=1090,2009,2155
+# shellcheck disable=1090,2009,2015,2154,2155
 #
 # SublimeLinter/ShellCheck excluded issues; see https://github.com/koalaman/shellcheck/wiki/Ignore
 # - 1090 (https://github.com/koalaman/shellcheck/wiki/SC1090): Can't follow non-constant source.
@@ -13,10 +13,16 @@
 # - 2155 (https://github.com/koalaman/shellcheck/wiki/SC2155): Declare and assign separately to
 #        avoid masking return values.
 
-# For debugging via . ~/.profile --debug, incoming SH_DEBUG=1, or existence of ~/.login_debug
-[[ "$1" == "--debug" || -e "$HOME/.profile.debug" ]] && __PROFILE_DEBUG=1
-__echo() { [[ -n "$__PROFILE_DEBUG" ]] && echo "$@"; return 0; }
+# Bash reads .bash_profile || .bash_login || .profile, whichever it finds first,
+# for interactive shells. Since there's nothing bash-specific in .profile (as far as I know),
+# I will put all non-interactive-ish commands into .bashrc (called by non-interactive shells) and
+# have it source .bashrc.
+#
+# https://apple.stackexchange.com/a/13019/39935
 
+
+. "$HOME/.__login.debug.sh" ".profile" || __echo() { :; }
+__echo "-------------------"
 __echo "[.profile] starting"
 
 
@@ -61,51 +67,8 @@ export PS1='\w $_prompt_symbol '
 export FIGNORE='DS_Store:'
 
 
-if [[ "$(hostname -s)" = "TPI-080-MBPRO" ]]; then
-
-  # MySQL
-  export PATH="/usr/local/Cellar/mysql@5.7/5.7.23/bin:$PATH"
-
-  # Java JDK 1.8
-  if [[ -n "$(jenv version 2> /dev/null)" ]]; then
-    eval "$(jenv init -)"
-    export JAVA_HOME="$(jenv javahome)"
-    __echo "[.profile] used jenv to set JAVA_HOME"
-  else
-    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-    export PATH=$JAVA_HOME/bin:$PATH
-    __echo "[.profile] used /usr/libexec to set JAVA_HOME"
-  fi
-  __echo "[.profile] JAVA_HOME=$JAVA_HOME"
-
-  # Node
-  export NVM_DIR="$HOME/.nvm"
-  . "$NVM_DIR/nvm.sh"
-  . "$NVM_DIR/bash_completion"
-  export NODE_LIB="$HOME/.nvm/versions/node/v6.11.0/lib/node_modules/"
-  export PATH="$PATH:$NODE_LIB"
-  __echo "[.profile] Node version: $(nvm current)"
-
-  # phantomjs and mochajs
-  export PHANTOMJS_HOME="$NODE_LIB/phantomjs" 
-  export PATH="$PATH:$PHANTOMJS_HOME/bin"
-  export MOCHAPHANTOMJS_HOME="$NODE_LIB/mocha-phantomjs"
-  export PATH="$PATH:$MOCHAPHANTOMJS_HOME/bin"
-
-  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-  # Load RVM into a shell session *as a function*
-  export PATH="$PATH:$HOME/.rvm/bin"
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-  # Inkscape
-  export PATH="$PATH:/Applications/Inkscape.app/Contents/Resources/bin"
-  
-fi
-
-[[ -d "/opt/bin" ]] && export PATH="$PATH:/opt/bin"
-
-
-[[ -e "$HOME/.alias" ]] && __echo "[.profile] sourcing .alias" && . "$HOME/.alias"
+__echo "[.profile] sourcing .bashrc"
+. "$HOME/.bashrc"
 
 
 __echo "[.profile] finished"
