@@ -16,20 +16,16 @@ shopt -s extglob
 type gls >& /dev/null && function ls() { gls "$@"; }
 
 
+# Simplify embeddeding newlines in strings and setting IFS.
+CR=$'\n'
+
 # error, info, verbose and debug levels; uses SH_ vars which can be set pre-execution or via -q, -v and -d
-echo_with_optional_nl() {
-    if [[ "$1" = "-n" ]]; then
-        shift
-        echo -n "$*"
-    else
-        echo "$*"
-    fi
-}
 iecho() { [[ -z "$SH_QUIET" ]] && echo_with_optional_nl "$@"; return 0; }
 eecho() { >&2 echo_with_optional_nl "$@"; return 0; }  # to stderr
 vecho() { ([[ -n "$SH_VERBOSE" ]] || [[ -n "$SH_DEBUG" ]]) && echo_with_optional_nl "$@"; return 0; }
 decho() { [[ -n "$SH_DEBUG" ]] && echo_with_optional_nl "$@"; return 0; }
 evecho() { ([[ -n "$SH_VERBOSE" ]] || [[ -n "$SH_DEBUG" ]]) && >&2 echo_with_optional_nl "$@"; return 0; }
+echo_with_optional_nl() { if [[ "$1" = "-n" ]]; then shift; echo -n "$*"; else echo "$*"; fi }
 
 # If $1, $2 are --echo xecho then use 'xecho' instead of 'echo', where x is i, v, d or e
 echo_and_eval()  {
@@ -68,6 +64,10 @@ alias_defined() { [[ "$(typeof_command "$1")" = "alias" ]]; }
 function_defined() { [[ "$(typeof_command "$1")" = "function" ]]; }
 executable_exists() { [[ "$(typeof_command "$1")" = "file" ]]; }
 
+is_valid_symlink() {
+    [[ ! "$1" ]] && eecho "is_broken_link: missing argument" && return 1
+    [[ -L "$1" && -e "$1" ]] 
+}
 
 # Perform the prefixed command only on the newest file(s) in the given folder (or PWD).
 llnew() {
@@ -127,6 +127,18 @@ cpln() {
     cp -pv ${opts[@]}
 }
 
+# If any listed file is a symlink, operate on its target
+mvln() {
+    local cmd
+    while [[ -n "$1" ]]; do
+        local opt="$1"
+        [[ -L "$opt" ]] && opt="$(readlink "$opt")" && iecho "mvln: $1 -> $opt"
+        cmd="$cmd \"$opt\""
+        shift
+    done
+    eval "mv -v $cmd"
+}
+
 # Show directory of the given link's target, either the file's parent or the directory itself.
 lsln() {
     [[ -z "$1" ]] && eecho "usage: lsln symlink [...]" && return 1
@@ -168,7 +180,7 @@ touchln() {
         [[ -z "$SH_QUIET" ]] && ls -ohF -d "$link"
     done
     ((!count)) && return 1
-    iecho "INFO: touchln: updated $count links"
+    vecho "touchln: updated $count links"
 }
 touchln_R() {
     # shellcheck disable=SC2206  # quote to avoid split
@@ -183,13 +195,13 @@ touchln_R() {
 
 touchdir() {
     [[ -z "$1" ]] && eecho "usage: touchdir dir [...]" && return 1
-    local count=0
+    local count=0 SH_QUIET="$SH_QUIET" SH_VERBOSE="$SH_VERBOSE"
     for dir in "$@"; do
-        # vecho "touchdir: dir='$dir'"
-        [[ "$dir" =~ ^-?-q(uiet)?$ ]] && local SH_QUIET=1 && local SH_VERBOSE= && continue
-        [[ "$dir" =~ ^-?-v(erbose)?$ ]] && local SH_VERBOSE=1 && local SH_QUIET= && continue
-        [[ ! -e "$dir" ]] && eecho "touchdir: ${dir}: no such directory" && return 1
-        [[ ! -d "$dir" ]] && vecho "touchdir: ${dir}: not a directory" && continue
+        vecho "touchdir: dir='$dir'"
+        [[ "$dir" =~ ^-?-q(uiet)?$ ]] && SH_QUIET=1 && SH_VERBOSE= && continue
+        [[ "$dir" =~ ^-?-v(erbose)?$ ]] && SH_VERBOSE=1 && SH_QUIET= && continue
+        [[ ! -e "$dir" ]] && eecho "touchdir: $dir: no such directory" && return 1
+        [[ ! -d "$dir" ]] && vecho "touchdir: $dir: not a directory" && continue
 
         local newest_child_name="$(ls -A1t "$dir/"| head -n 1)"
         # vecho "touchdir: newest_child_name = $newest_child_name"
@@ -207,18 +219,17 @@ touchdir() {
 }
 # shellcheck disable=SC2206,SC2086  # quote to avoid split
 touchdir_R() {
-    local dirs=($@); [[ ${#dirs[@]} == 0 ]] && dirs=("$PWD")
+    local dirs=("$@")
+    [[ ${#dirs[@]} == 0 ]] && dirs=("$PWD")
     for dir in "${dirs[@]}"; do
         # local subdirs="$(find "$dir" -depth ! -type f)"
         # vecho "touchdir_R: for $dir, found subdirs: $subdirs"
         # for subdir in $subdirs; do
-        local subdirs="$(find "$dir" -depth ! -type f -print)"
-        # vecho "touchdir_R: for $dir, found subdirs: [$subdirs]"
-
+        find "$dir" -depth ! -type f -print |\
         while read -r subdir; do
             # vecho "touchdir_R: calling touchdir for subdir='$subdir'"
             touchdir "$subdir"
-        done <<< $subdirs
+        done
         # vecho "touchdir_R: calling touchdir for dir='$dir'"
         touchdir "$dir"
     done
@@ -363,10 +374,17 @@ xmv() {
 # Recursively report cksum values and sizes in tab-delimited form:
 #   path TAB size TAB cksum
 cksum_R() {
-    for d in ${@:-$PWD}; do
-        decho_vars d
-        for f in $(find "$d" -type f | sort); do
-            cksum "$f" | awk '{printf "%s\t%d\t%d\n", $3, $2, $1}'
+    local dirs=("$@")
+    [[ -z "$1" ]] && dirs=("$PWD")
+    #echo_vars dirs
+    local IFS="${CR}"
+    for d in "${dirs[@]}"; do
+        [[ ! -d "$d" ]] && continue
+        #echo '--------'; echo_vars d
+        find "$d" -type f | sort |\
+        while read -r f; do
+            #echo_vars f
+            cksum "$f" | awk -v DIR="$d" -v FILE="$f" '{FS='\t'; printf "%s\t%d\t%d\n", FILE, $2, $1}'
         done
     done
 }
@@ -428,7 +446,7 @@ countf() {
 
     local directories=( "$@" )
     # shellcheck disable=SC2207  # quote command output into array
-    [[ ${#directories} == 0 ]] && IFS=$'\n' directories=( $(ls -1Ad {.??,}*) )  # all files, including hidden files, except '..'
+    [[ ${#directories} == 0 ]] && IFS="${CR}" directories=( $(ls -1Ad {.??,}*) )  # all files, including hidden files, except '..'
     vecho "countf: directories: ${#directories}"
 
     for dir in "${directories[@]}"; do
@@ -448,6 +466,30 @@ countf() {
             "$dir"
     done
 }
+
+# Nice wrapper around du, showing nice size numbers but also sorting.
+# usage: sizef [dir ...]
+sizef() {
+    local dirs
+    [[ "$1" ]] && dirs=("$@") || dirs=(*)
+    
+    local tmp="$TMPDIR/sizef.csv"
+    rm -f "$tmp"
+    
+    local IFS=$'\t'
+    for dir in $(find . -maxdepth 1 -type d -exec printf '%s\t' '{}' \;); do
+        [[ ! -e "$dir" ]] && eecho "sizef: directory not found: $dir" && return 1
+        local bytes=$(du -s "$dir" | awk '{print $1}')
+        local nice_bytes="$(nice_byte_size $bytes)"
+        printf '%12s\t%-8s\t%s\n' "$bytes" "$nice_bytes" "$dir" >> "$tmp"
+    done
+    if [[ -e "$tmp" ]]; then
+        echo ""
+        sort -n < "$tmp"
+        rm -f "$tmp"
+    fi
+}
+
 
 type realpath >& /dev/null || \
 realpath() {
@@ -794,7 +836,8 @@ EOF
 
 
 # Move file $1 to folder/file $2, then create symlink to it in its original place.
-mv_and_ln() {
+mv_and_ln() {(
+    set -o errexit
     local USAGE="usage: mv_and_ln [--force] orig_file target_file"
 
     local opt_force='-n'
@@ -812,32 +855,109 @@ mv_and_ln() {
     if [[ -d "$target_file" ]]; then
         target_file="$target_file/$(basename "$orig_file")"
     fi
-    [[ "$opt_force" = '-n' && -e "$target_file" ]] && eecho "mv_and_ln: target_file already exists: $target_file" && return 1
+    [[ "$opt_force" = '-n' && -e "$target_file" ]] && eecho "mv_and_ln: : $target_filetarget_file already exists" && return 1
 
     decho "mv $opt_force -v \"$orig_file\" \"$target_file\""
     decho "ln -s -v \"$target_file\" \"$orig_file\""
-    iecho -n "mv: " && mv $opt_force -v "$orig_file" "$target_file" || return 1
-    iecho -n "ln: " && ln -s -v "$target_file" "$orig_file" || return 1
+    iecho -n "mv: " && mv $opt_force -v "$orig_file" "$target_file"
+    iecho -n "ln: " && ln -s -v "$target_file" "$orig_file"
 
-    vecho_and_eval "ls -ohF  \"$target_file\" \"$orig_file\""
-}
+    vecho_and_eval "ls -ohF -d  \"$target_file\" \"$orig_file\""
+)}
 
-# Given a link $1, swap it with its target.
-ln_swap() {
-    local link_file="$1"; shift
-    [[ -z "$link_file" ]] && >&2 eecho "ERROR: Usage: ln_swap link_file" && return 1
-    [[ ! -e "$link_file" ]] && >&2 eecho "ERROR: File not found: $link_file" && return 1
-    [[ ! -L "$link_file" ]] && >&2 eecho "ERROR: Not a symlink: $link_file" && return 1
-    local target_file="$(readlink "$link_file")"
-    [[ ! -e "$target_file" ]] &&  >&2 eecho "ERROR: Link's target not found: $target_file" && return 1
+# Usage 1: swap a link and its target file
+# Usage 2: move a target file to a new location, then create a link in its old location to the new
+swapln() {(
+    set -o errexit
+    local USAGE="usage: swapln [--backup --quiet] link"$'\n'"       swapln --create [--force --backup --quiet] source target"
 
-    echo -n "bak_link: " && wecho "bak \"$link_file\""
-    echo -n "bak_file: " && wecho "bak \"$target_file\""
-    echo -n "rm_link:  " && wecho "rm -v \"$link_file\""
-    echo -n "mv_file:  " && wecho "mv -v \"$target_file\" \"$link_file\""
-    echo -n "link:     " && wecho "ln -s \"$link_file\" \"${target_file}\""
-    echo -n "touchln:  " && wecho "touchln \"${target_file}\""
-    ls -ohF "${target_file}" "${link_file}"
+    local opt_create= opt_backup= opt_force= SH_QUIET=$SH_QUIET mv_f_switch= v_switch="-v"
+    while [[ "$1" =~ ^--?.+$ ]]; do
+        case "$1" in
+            -b|--backup) opt_backup=1;;
+            -c|--create) opt_create=1;;
+            -f|--force)  opt_force=1; mv_f_switch="-f";;
+            -q|--quiet)  SH_QUIET=1; v_switch="";;
+            *) eecho "$USAGE" && return 1;;
+        esac
+        shift || true
+    done
+
+    # each usage requires at least one arg
+    [[ ! "$1" ]] && eecho "$USAGE" && return 1
+
+    if ((!opt_create)); then
+        # for SWAP, make sure only the link was specified, and it is an existing, valid symlink
+        local link="$1" || true
+        [[ "$target" ]] && eecho "$USAGE" && return 1
+        [[ ! -L "$link" ]] && eecho "swapln: $link: not a symlink" && return 1
+        [[ ! -e "$link" ]] && eecho "swapln: $link: not a valid symlink" && return 1
+    else
+        # for CREATE AND SWAP, make sure target was specified, source is an existing regular file or
+        # directory, and target does not exist or it exists but --force was specified
+        local source="$1" && shift || true
+        local target="$1" && shift || true
+        [[ ! "$target" ]] && eecho "$USAGE" && return 1
+        [[ -L "$source" ]] && eecho "swapln: $source: source file is a link" && return 1
+        [[ ! -e "$source" ]] && eecho "swapln: $source: no such file or directory" && return 1
+        [[ -e "$target" ]] && ((!opt_force)) && eecho "swapln: $target: target file exists (--force overwrites)" && return 1
+    fi
+    
+    if ((!opt_create)); then
+        # for CREATE AND SWAP, verify link
+        local target_file="$(readlink "$link")"
+        
+        ((opt_backup)) && iecho -n "bak_link: " && iecho_and_eval "bak -m \"$link\""
+        ((opt_backup)) && iecho -n "bak_file: " && iecho_and_eval "bak \"$target_file\""
+        
+        iecho -n " rm_link: " && iecho_and_eval "rm $v_switch \"$link\""
+        iecho -n " mv_file: " && iecho_and_eval "mv $v_switch \"$target_file\" \"$link\""
+        iecho -n " mk_link: " && iecho_and_eval "ln -s \"$link\" \"${target_file}\""
+        iecho -n "touchln:  " && iecho_and_eval "touchln \"${target_file}\""
+
+    else
+        # for CREATE, remove the target if it exists, mv the source and link it
+        [[ -e "$target" ]] && ((opt_force)) && iecho -n "rm: " && iecho_and_eval "rm -rf $v_switch \"$target\""
+        iecho -n "mv: " && iecho_and_eval "mv $mv_f_switch $v_switch \"$source\" \"$target\""
+        iecho -n "ln: " && iecho_and_eval "ln -s $v_switch \"$target\" \"$source\""
+        ((!SH_QUIET)) && ls -ohF -d "${source}"
+        return
+    fi
+)}
+
+# For each link in @$, echo OKAY or ERROR. If --quiet is specified, only show ERRORs.
+checkln() {
+    local USAGE="checkln [--recursive] [--quiet] [link ...]${CR}       default link is each link/dir in PWD"
+    local maxdepth='-maxdepth 1' SH_QUIET=$SH_QUIET
+    while [[ "$1" =~ ^--?.+$ ]]; do
+        case "$1" in
+            -r|--recursive) maxdepth='';;
+            -q|--quiet)     SH_QUIET=1;;
+            *) eecho "$USAGE" && return 1;;
+        esac
+        shift
+    done
+
+    local files=("$@")
+    [[ ! "$1" ]] && files=(.* *)
+
+    # Loop over each incoming argument, executing find on each.
+    for file in "${files[@]}"; do
+        if [[ -L "$file" ]]; then
+            find "$file" $maxdepth -type l | sort |\
+            while read -r link; do
+                [[ ! -L "$link" ]] && continue
+                local target="$(readlink "$link")"
+                if [[ -e "$target" ]]; then
+                    (( !SH_QUIET )) && printf "    OK  %s -> %s\n" "$link" "$target"
+                else
+                    printf " ERROR  %s -> %s\n" "$link" "$target"
+                fi
+            done
+        elif [[ ! -e "$file" ]]; then
+            eecho "checkln: $file: file or directory does not exist" && return 1
+        fi
+    done
 }
 
 
@@ -978,9 +1098,13 @@ commafy() {
     echo "$nice"
 }
 
-# Expand '~' to $HOME, or compress $HOME to ~
-tilde_expand()   { echo "${1//~/$HOME}"; }
+# Expand '~' to value of $HOME, or compress $HOME to ~
 tilde_compress() { echo "${1//$HOME/~}"; }
+tilde_expand()   { echo "${1//~/$HOME}"; }
+
+# Compress user's home folder to the literal string '$HOME' (for writing commands to a script file, generally)
+home_compress() { echo "${1//$HOME/\$HOME}"; }
+home_expand() { echo "${1//\$HOME/$HOME}"; }
 
 file_opened() {
     local file=$1
@@ -1025,16 +1149,21 @@ file_modified_seconds() {
 
 file_info() {
     local all_fields="user size bdate btime cdate ctime mdate mtime adate atime size name basename suffixed_name target"
-    local usage="usage: file_info 'flag_1 flag_2 ... flag_n' FILE [...], where flags are 1+ of [$all_fields]"
+    local USAGE=$(cat <<-EOF
+    usage: file_info 'flag_1 flag_2 ... flag_n' file [...]
+           (literally including the single quotes around the flags)
+           where flags are 1+ of [$all_fields]
+EOF
+    )
 
-    [[ -z "$1" ]] && eecho "file_info: $usage" && return 1
+    [[ ! "$1" ]] && eecho "$USAGE" && return 1
     # shellcheck disable=2206  # quote to avoid split
     local -a fields=( $1 ) && shift
     ## decho_vars all_fields fields
 
     local files=( "$@" )
     if [[ ${#files[*]} = 0 ]]; then
-        decho "INFO: no file()s) specified; using .* *"
+        decho "file_info: no file()s) specified; using .* *"
         files=( .* * )
     fi
 
@@ -1118,44 +1247,90 @@ pwd_vne() {
     return 1
 }
 
-# $1 is LONG (default prompt) or SHORT (sub env var if possible)
-# From .profile (color):
-#   PROMPT_COMMAND='[[ $? = 0 ]] && _prompt_symbol="\$" || _prompt_symbol="$term_red!\$"'
-#   export PS1='\h:\u:\w $_prompt_symbol$term_reset '
+# Toggle prompt between "long" (normal) \w working directory and "short",
+# substituting in the longest matching env var via pwd_vne.
+# Prefix shortened _prompt_pwd with "$" so we know how to toggle.
 ps1() {
-    if [[ -z "$PS1_ORIGINAL" ]]; then
-        # original -> short
-        export PS1_ORIGINAL="$PS1"
-        export PROMPT_COMMAND_ORIGINAL="$PROMPT_COMMAND"
-        export PS1="${PS1_ORIGINAL/\\w/\$_prompt_working_dir}"
-        export PROMPT_COMMAND="$PROMPT_COMMAND_ORIGINAL; _prompt_working_dir=\"\\\$\$(pwd_vne)\""
+    echo_vars -t 'IN' _prompt_pwd PS1 PROMPT_COMMAND
+    if [[ "$_prompt_pwd" =~ ^\$.+$ ]]; then
+        # short -> restore original
+        reset_ps1
     else
-        # short -> original
-        export PS1="$PS1_ORIGINAL"
-        export PROMPT_COMMAND="$PROMPT_COMMAND_ORIGINAL"
-        unset PS1_ORIGINAL PROMPT_COMMAND_ORIGINAL
+        # from original prompt -> short
+        export PS1="${PS1/\\w/\$_prompt_pwd}"
+        export PROMPT_COMMAND="$PROMPT_COMMAND; _prompt_pwd=\"\\\$\$(pwd_vne)\""
     fi
-    vecho_vars PS1 PROMPT_COMMAND PS1_ORIGINAL PROMPT_COMMAND_ORIGINAL
+    echo_vars -t 'OUT' _prompt_pwd PS1 PROMPT_COMMAND
 }
 
-# Add a .BAK.YYYYMMDD suffix, using the file's modification date.
+# Add a .BAK.YYYYMMDD suffix, using the file's modification date or now if --now.
 # If file is a folder, first update its modification date, then copy/move it.
-# Optional $1 can be -m to move the file rather than copy it.
-# Ignore any files already backed up with this scheme.
+# Ignore any .BAK files in backup set.
 bak() {
-    local verb="cp -P -pvR"; [[ "${1:0:2}" = "-m" ]] && verb="mv -v"
-    [[ "${1:0:1}" = "-" ]] && shift
-    [[ -z "$1" ]] && eecho "usage: bak [-m] file [...]" && return 1
-
-    for f in "$@"; do
-        [[ ! -e "$f" ]] && eecho "bak: $f: NNo such file or directory" && return 1
-        [[ "$f" =~ .+\.BAK.[[:digit:]]{8} ]] && eecho "bak: $f: ignoring BAK file" && return 0
-        [[ -d "$f" ]] && SH_VERBOSE= touchdir_R "$f"
-        local tstamp=$(file_info 'mdate' "$f")
-        [[ -z "$tstamp" ]] && eecho "bak: $f: Ccannot determine mdate" && return 1
-        tstamp="${tstamp//-/}"  #yyymmdd
-        vecho_and_eval "$verb \"$f\" \"${f}.BAK.${tstamp}\""
+    local USAGE="usage: bak [--move --now --overwrite --ignore-errors --verbose] [--target dir] file [...]"$'\n'"       where --now means use current date, not mdate"
+    local opt_move=0 opt_now=0 opt_overwrite=0 opt_ignore_errors=0 opt_target='' SH_VERBOSE="$SH_VERBOSE"
+    while [[ "$1" ]]; do
+        case "$1" in
+            -m | --move)  opt_move=1 && shift;;
+            -n | --now)  opt_now=1 && shift;;
+            -o | --overwrite)  opt_overwrite=1 && shift;;
+            -i | --ignore-errors)  opt_ignore_errors=1 && shift;;
+            -v | --verbose)  SH_VERBOSE=1 && shift;;
+            -t|-d | --target|--dir)
+                shift
+                opt_target="$1" && shift
+                [[ ! "$opt_target" ]] && eecho "bak: missing target for --target"$'\n'"$USAGE" && return 1
+                ;;
+            *) break
+        esac
     done
+    [[ ! "$1" ]] && eecho "$USAGE" && return 1
+
+    local dstamp=''
+    ((opt_now)) && dstamp=$(date +'%Y%m%d')
+
+    # cp: -p preserve times, etc.; -n don't overwirte; -P no symlinks are followed; -R recursive
+    # mv: -n don't overwirte
+    local verb="cp -p -P -R";
+    ((opt_move)) && verb="mv"
+    ((!opt_overwrite)) && verb="$verb -n"
+    ((SH_VERBOSE)) && verb="$verb -v"
+
+    local nothing_bakked=1
+    for f in "$@"; do
+        if [[ ! -e "$f" ]]; then
+            eecho "bak: $f: no such file or directory"
+            ((opt_ignore_errors)) && continue || return 1
+        fi
+        
+        [[ "$f" =~ .+\.BAK.[[:digit:]]{8,} ]] && iecho "bak: $f: ignoring BAK file" && continue
+        
+        if ((!opt_now)); then
+            [[ -d "$f" ]] && SH_VERBOSE= touchdir_R "$f"
+            tstamp=$(iso_date $(stat -s "$f" | egrep -o st_mtime=[[:digit:]]+ | cut -d'=' -f2))
+            tstamp="${tstamp//-/}"  #yyymmdd
+        fi
+
+        local bak_dir="$(dirname "$f")"
+        local bak_name="$(basename "$f").BAK.$tstamp"
+        if [[ -d "$opt_target" ]]; then
+            bak_dir="$opt_target"
+        elif [[ "$opt_target" ]]; then
+            bak_dir="$(dirname "$opt_target")"
+            bak_name="$(basename "$opt_target")"
+        fi
+        local bak_file="$bak_dir/$bak_name"
+
+        if [[ -e "$bak_file" ]]; then
+            ((!opt_overwrite)) && eecho "bak: $bak_file: exists, use --overwrite to overwrite" && return 1
+            iecho "bak: $bak_file: exists, will be overwritten"
+        fi
+
+        vecho_and_eval "$verb \"$f\" \"$bak_file\""
+        nothing_bakked=0
+    done
+
+    return $nothing_bakked
 }
 
 # Rename a *.BAK.YYYYMMDD suffix file to the original name; if target exists, first 'bak' it.
@@ -1202,55 +1377,67 @@ memsize() {
 
 # Write a script, "mk_links.sh", to re-create each soft link in the given folder.
 # Useful to create links on a separate server.
-# Optional $1 can be -f or --force to overwrite existing mk_links.sh
-# Optional $2 is root folder
 links_to_sh() {
-    [[ "$1" =~ ^-?-f(orce)?$ ]] && local opt_force=1 && shift
-    local d="${1:-$PWD}"
+    local USAGE="usage: links_to_sh [--force] [--recursive] [--verbose|--quiet] [root] [script_name]${CR}       root defaults to PWD; script_name to 'mk_links.sh'"
 
-    local sh_file="$d/mk_links.sh"
-    [[ -z "$opt_force" && -f "$sh_file" ]] && eecho "ERROR: $sh_file alrady exists." && return 1
+    local opt_force= opt_recursive= root="." script_name="mk_links.sh"
+    local SH_QUIET="$SH_QUIET" SH_VERBOSE="$SH_VERBOSE" SH_DEBUG="$SH_DEBUG"
+    while [[ "$1" =~ ^--?.+$ ]]; do
+        case "$1" in
+            -f|--force)     opt_force=1;;
+            -r|--recursive) opt_recursive=1;;
+            -v|--verbose)   SH_VERBOSE=1; SH_QUIET=;;
+            -d|--debug)     SH_DEBUG=1; SH_VERBOSE=1; SH_QUIET=;;
+            -q|--quiet)     SH_QUIET=1; SH_VERBOSE=; SH_DEBUG=;;
+            *) eecho "$USAGE" && return 1
+        esac
+        shift
+    done
+    [[ "$1" ]] && root="$1" && shift
+    [[ "$1" ]] && script_name="$1" && shift
 
-    echo '#!/usr/bin/env bash' > "$sh_file"
+    [[ ! -d "$root" ]] && eecho "links_to_sh: directory does not exist: $root" && return 1
+    
+    local sh_file="$root/$script_name"
+    [[ ! "$opt_force" && -e "$sh_file" ]] && eecho "links_to_sh: script already exists: $sh_file." && return 1
+    rm -f "$sh_file"
+    touch "sh_file"
+
+    echo '#!/usr/bin/env bash' >> "$sh_file"
     # shellcheck disable=SC2016  # $ inside ''
-    echo 'opt_force="$1"  # "f" to add to ln -s command' >> "$sh_file"
+    echo 'opt_force="$1"  # -f to add to ln -s command' >> "$sh_file"
 
-    local dir_count=0
-    for dir in $(find "$d" -type d | sort); do
-        (( dir_count++ ))
-        if [[ "$(dirname "$dir")" != "$prev_dirname" ]]; then
-            prev_dirname="$(dirname "$dir")"
-            echo "" >> "$sh_file"
-            echo "cd $prev_dirname" >> "$sh_file"
-        fi
-        decho_vars count dir
-        echo "mkdir -pv $(basename "$dir")" >> "$sh_file"
+    # Can't modify variables in subshell, so count lines in file.
+    local sh_lines=$(wc -l "sh_file" | awk '{print $1}')
+
+    local maxdepth= 
+    (( ! opt_recursive )) && maxdepth="-maxdepth 1"
+    find "$root" $maxdepth -type l | sort |\
+    while read -r link; do
+        local link_dir="$(dirname "$link")"
+        local real_file="$(home_compress "$(readlink "$link")")"
+        vecho_vars -t "${CR}LINK $link" link_dir real_file
+        
+        [[ "$link_dir" != "." ]] && echo "mkdir -pv \"$link_dir\"" >> "$sh_file"
+        echo "ln -sv \$opt_force \"$real_file\" \"$(basename "$link")\"" >> "$sh_file"
     done
 
-    local link_count=0
-    for link in $(find "$d" -type l | sort); do
-        (( link_count++ ))
-        if [[ "$(dirname "$link")" != "$prev_dirname" ]]; then
-            prev_dirname="$(dirname "$link")"
-            echo "" >> "$sh_file"
-            echo "cd ${prev_dirname/$HOME/\~}" >> "$sh_file"
-        fi
-        local real_file="$(readlink "$link")"
-        local real_file_compressed="${real_file/$HOME/\~}"
-        decho_vars count link real_file real_file_compressed
-        if [[ "$(basename "$link")" = "$(basename "$real_file")" ]]; then
-            echo "ln -sv\${opt_force} $real_file_compressed" >> "$sh_file"
-        else
-            echo "ln -sv\${opt_force} $real_file_compressed $(basename "$link")" >> "$sh_file"
-        fi
-    done
-
-    (( link_count = 0 )) && eecho "No links." && return 1
+    local sh_lines_after=$(wc -l "$sh_file" | awk '{print $1}')
+    (( sh_lines == sh_lines_after )) && eecho "No links." && return 1
 
     chx "$sh_file"
-    echo ""
-    ll "$sh_file"
-    [[ -z "$SH_QUIET" ]] && cat "$sh_file"
+    
+    if [[ ! "$SH_QUIET" ]]; then
+        echo ""
+        
+        ls -lhF "$sh_file"
+
+        echo ""
+        echo "----------------------------------------"
+        cat "$sh_file"
+        echo "----------------------------------------"
+        echo ""
+    fi
 }
 
 
@@ -1288,25 +1475,6 @@ cssgrep() {
     # -c content only ("innerHtml")
     # -s separator between matches
     hxnormalize -x -l 240 "$in" | hxselect $inner_opt -s '\n' "$selector"
-}
-
-
-# Backup all MacOS keyboard shortcuts by creating a shell script to restore them and saving to the cloud.
-# From https://superuser.com/questions/670584/how-can-i-migrate-all-keyboard-shortcuts-from-one-mac-to-another
-save_hotkeys() {
-    DESTFILE="$HOME/Drive/backup/install-hotkeys-$(date +'%Y%m%d').sh"
-    echo '#!/usr/bin/env bash' > "$DESTFILE"
-
-    defaults find NSUserKeyEquivalents | \
-    sed \
-    -e "s/Found [0-9]* keys in domain '\\([^']*\\)':/defaults write \\1 NSUserKeyEquivalents '/" \
-    -e "s/    NSUserKeyEquivalents =     {//" \
-    -e "s/};//" -e "s/}/}'/" >> "$DESTFILE"
-
-    echo killall cfprefsd >> "$DESTFILE"
-    chmod a+x "$DESTFILE"
-
-    echo "Wrote $(grep -E -c '=.+;$' "$DESTFILE") key mappings to: $DESTFILE"
 }
 
 

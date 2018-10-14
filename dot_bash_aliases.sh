@@ -22,7 +22,7 @@ type gls >& /dev/null && ls() { gls --color=auto --group-directories-first "$@";
 lln() {
     #ls -ohF "$@" | sed -E -e '/^total .+$/d' -e 's/^.+ .+ .+ (.+) (.+ .+ .+) (.+)$/\1'$'\t''\2'$'\t''\3/'
     local -a args=("$@")
-    [[ ${#args[@]} = 0 ]] && args=(.* *). # default to all files in current folder
+    [[ ${#args[@]} = 0 ]] && args=(.* *) # default to all files in current folder
     file_info 'size mdate suffixed_name target' "${args[@]}"
 }
 lan() {
@@ -42,7 +42,6 @@ alias nfind='find -L . -name '
 alias pfind='find -L . -path '
 alias rfind='find -L -E . -regex '
 
-alias cd.dotfiles='cd $HOME/Drive/dotfiles'
 alias cd.sandbox='cd $HOME/Drive/sandbox'
 
 
@@ -54,7 +53,16 @@ uncd() {
 }
 
 # Make specified, or all in PWD, shell scripts executable.
-chx() { chmod -v +x ${1:-*.sh}; }
+chx() {
+    local opt_verbose=$(( SH_VERBOSE ))
+    [[ "$1" =~ ^(-v|--verbose)$ ]] && shift && opt_verbose=1
+    
+    local files=("$@")
+    [[ ! "$1" ]] && files=(*.sh) && opt_verbose=1
+
+    (( opt_verbose )) && opt_verbose="-vv" || opt_verbose=
+    chmod $opt_verbose +x "${files[@]}"
+}
 
 # history-grep
 hg() { if [[ -z "$1" ]]; then history; else history | grep -E "$*"; fi }
@@ -66,7 +74,7 @@ alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-
 # View man results in sublime.
 man() {
     type subl >& /dev/null || eecho "man: no 'subl' command line app; using native man"
-    command man "$#" | col -b | subl --stay &
+    command man "$@" | col -b | subl --stay &
 }
 
 
