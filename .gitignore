@@ -1,9 +1,1 @@
-**/.DS_Store
-
-**/*.BAK*
-
-# convenience links
-alfred/alfred_libdir
-office/User Content
-sublime/sublime_libdir
-sublime/user_libdir
+# see global ignores here: ~/.config/git/ignore

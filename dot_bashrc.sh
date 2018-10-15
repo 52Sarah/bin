@@ -10,9 +10,10 @@
 export BASH_ENV="$HOME/.bashrc"
 
 
-. "$HOME/.__login.debug.sh" ".bashrc" || __echo() { :; }
+# If debugging is not enabled, overwrite __echo with a no-op.
+. $HOME/.__login.debug ".bashrc" || __echo() { :; }
 __echo $"--------"
-__echo "[.bashrc] starting, PATH=$PATH"
+__echo "[.bashrc] starting; pid: $$, shell type: $(__shell_type), PS1='$PS1'"
 
 
 export ICLOUD="$HOME/iCloud"
@@ -36,20 +37,10 @@ alias cd.prefs='cd "$PREFS"'
 
 
 # Load over-engineered shell functions and aliases.
-for dotfile in .bash_functions .bash_aliases; do
-    __echo "[.bashrc] sourcing $dotfile"
-    . "$HOME/$dotfile"
-done
-
-# Load OPTIONAL over-engineered shell functions and aliases.
-for dotpath in $HOME/.bashrc_* $HOME/.bash_login_temp; do
+for dotpath in $HOME/.bashrc__*; do
     dotfile="$(basename "$dotpath")"
-    if [[ -e "$dotpath" ]]; then
-        __echo "[.bashrc] sourcing $dotfile"
-        . "$dotpath"
-    else
-        __echo "[.bashrc] missing optional $dotfile"
-    fi
+    __echo "[.bashrc] sourcing $dotfile"
+    . "$dotpath"
 done
 
 
