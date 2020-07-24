@@ -1,1 +1,5 @@
-# see global ignores here: ~/.config/git/ignore
+# Java Decompiler, Sublime binaries
+jd
+subl
+
+*.sublime-workspace

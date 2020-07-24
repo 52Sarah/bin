@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 # This file contains Eversight (promolytics) specific items.
-. $HOME/.__login.debug ".bash_profile__promo" || __echo() { :; }
-__echo "[.bash_profile__promo] starting"
+. "$HOME/.__login.debug.sh" ".bash_profile_promo" || __echo() { :; }
+__echo "[.bash_profile_promo] starting"
+
+
+[[ -e "$HOME/git-completion.sh" ]] && . "$HOME/git-completion.sh"
 
 
 # Use `git branch` to list all branches with the current branch prefixed with '* ',
@@ -15,13 +18,24 @@ git.branch.current() {
 # - if inside a git repo, include checked out branch
 # - if last command was in error, display !$ instead of $.
 # - `history -a` explicitly flushes the session history to the history file
-# - \u = user, \h = hostname, \w = working dir
 reset_prompt() {
+
     export PROMPT_COMMAND='(($?)) && _prompt_symbol="!\$" || _prompt_symbol="\$"; _prompt_branch="$(git.branch.current)"; history -a'
-    export PS1='$([[ "$_prompt_branch" ]] && echo "[$_prompt_branch] ")\w $_prompt_symbol '
+    __echo "[.bash_profile_promo reset_prompt] PROMPT_COMMAND='$PROMPT_COMMAND'"
+    
+    # \u = user
+    # \h = hostname
+    # \w = working dir
+    # export PS1='\w $ '
+     export PS1='$([[ "$_prompt_branch" ]] && echo "[$_prompt_branch] ")\w $_prompt_symbol '
+    __echo "[.bash_profile_promo reset_prompt] PS1='$PS1'"
 }
 reset_prompt
 
+
+# A few convenience aliases for git command line work
+alias glog='iecho_and_eval      "git log --pretty=medium"'
+alias gdiff='iecho_and_eval     "git diff --name-status"'
 
 git.user.name() {
     sed -E -n '/\s*name = (.+)/s/.* = (.+)/\1/p' ~/.gitconfig
@@ -127,4 +141,4 @@ EOF
 alias p='promo'
 
 
-__echo "[.bash_profile__promo] finished"
+__echo "[.bash_profile_promo] finished"

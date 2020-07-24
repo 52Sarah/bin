@@ -13,7 +13,7 @@ export BASH_ENV="$HOME/.bashrc"
 # If debugging is not enabled, overwrite __echo with a no-op.
 . $HOME/.__login.debug ".bashrc" || __echo() { :; }
 __echo $"--------"
-__echo "[.bashrc] starting; pid: $$, shell type: $(__shell_type), PS1='$PS1'"
+__echo "[.bashrc] starting; pid: $$, PS1='$PS1'"
 
 
 export ICLOUD="$HOME/iCloud"
@@ -37,11 +37,12 @@ alias cd.prefs='cd "$PREFS"'
 
 
 # Load over-engineered shell functions and aliases.
-for dotpath in $HOME/.bashrc__*; do
-    dotfile="$(basename "$dotpath")"
-    __echo "[.bashrc] sourcing $dotfile"
-    . "$dotpath"
-done
+ls "$HOME/.bash_profile__*" >& /dev/null && \
+	for dotpath in $HOME/.bashrc__*; do
+	    dotfile="$(basename "$dotpath")"
+	    __echo "[.bashrc] sourcing $dotfile"
+	    . "$dotpath"
+	done
 
 
 __echo "[.bashrc] finished"

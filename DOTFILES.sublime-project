@@ -3,7 +3,7 @@
 	[
 		{
 			"name": "bin",
-			"path": "/Users/toddpierzina/Drive/bin"
+			"path": "/Users/tpierzina/git/bin"
 		},
 		{
 			"name": "dotfiles",
@@ -11,11 +11,11 @@
 		},
 		{
 			"name": "prefs",
-			"path": "/Users/toddpierzina/Drive/prefs/sublime"
+			"path": "/Users/tpierzina/prefs"
 		},
 		{
 			"name": "[sublime | packages]",
-			"path": "/Users/toddpierzina/Library/Application Support/Sublime Text 3/Packages"
+			"path": "/Users/tpierzina/Library/Application Support/Sublime Text 3/Packages"
 		},
 	],
 	"settings":
