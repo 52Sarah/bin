@@ -1,8 +1,0 @@
-# annoying macOS files
-**/.DS_Store
-
-# ignore transient Sublime Text workspace files
-**/*.sublime-workspace
-
-# ignore all backup files
-**/*.BAK
