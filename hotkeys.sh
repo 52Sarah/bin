@@ -55,11 +55,11 @@ define_hotkeys() {
   domain="com.ScooterSoftware.BeyondCompare"
   if [[ -z "$target" || "$target" = "$domain" ]]; then
     defaults write "$domain" NSUserKeyEquivalents '{
-      "\033Session\033Session Settings..." = "@$,";
+      "\033Session\033Session Settings..." = "@~,";
       "\033Actions\033Open" = "@$o";
       "\033Actions\033Open With\033Associated Application" = "@o";
-      "\033Actions\033Set as Base Folder" = "^b";
-      "\033Actions\033Set as Base Folders" = "^b";
+      "\033Actions\033Set as Base Folder" = "@b";
+      "\033Actions\033Set as Base Folders" = "@$b";
       "\033Actions\033Compare Contents" = "@^c";
       "\033Actions\033Copy to Left" = "^l";
       "\033Actions\033Copy to Right" = "^r";
