@@ -4,13 +4,15 @@
 # for this function to pop.
 g.popb() {
   local git_dir="$(git rev-parse --git-dir)"
+  vecho "git_dir: [$git_dir]"
+
+  local hooks_dir="$(git config --get core.hooksPath)"
+  # local hooks_dir="$(tilde_expand "$hooks_dir")"
+  [[ -z "$hooks_dir" || ! -e "$hooks_dir/post-checkout" ]] && hooks_dir="$git_dir/hooks"
+
+  [[ ! -e "$hooks_dir/post-checkout" ]] && echo 1>&2 "g.popb: git post-checkout hook not found in $hooks_dir" && return 1
   
-  if [[ ! -e "$git_dir/hooks/post-checkout" ]]; then
-    echo 1>&2 "g.popb: git post-checkout hook not installed; adding now"
-    ln -sv "$DOTFILES/dot_git_hooks/post-checkout" "$git-dir/" || return 1
-  fi
-  
-  local heads="$git_dir/HEADS"
+  local heads="$git_dir/HEADS_HISTORY"
   [[ ! -s "$heads" ]] && echo 1>&2 "g.popb: no branches to pop" && return 1
   sed -i -e '$ d' "$heads"  # remove last line, which is current branch
   [[ ! -s "$heads" ]] && echo 1>&2 "g.popb: no branches to pop" && return 1

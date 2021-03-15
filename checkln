@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# For each link in @$, echo OKAY or ERROR. If --quiet is specified, only show ERRORs.
+checkln() {
+  local USAGE='usage: checkln [--recursive] [--quiet] [link ...]'$'\n''       default link is each link/dir in PWD'
+  local maxdepth='-maxdepth 1'
+  local opt_quiet=$SH_QUIET
+  while [[ "$1" =~ ^--?.+$ ]]; do
+    case "$1" in
+      -r|--recursive) maxdepth='';;
+      -q|--quiet)     opt_quiet=1;;
+      *) >&2 echo "$USAGE" && return 1;;
+    esac
+    shift
+  done
+
+  local files=("$@")
+  [[ -z "$1" ]] && files=(.* *)
+
+  # Loop over each incoming argument, executing find on each.
+  for file in "${files[@]}"; do
+    if [[ -L "$file" ]]; then
+      find "$file" $maxdepth -type l |\
+      sort |\
+      while read -r link; do
+        [[ ! -L "$link" ]] && continue
+        local target="$(readlink "$link")"
+        if [[ -e "$target" ]]; then
+          (( !SH_QUIET )) && printf "    OK  %-25s -> %s\n" "$link" "${target/$HOME/~}"
+        else
+          printf " ERROR  %-25s -> %s\n" "$link" "${target/$HOME/~}"
+        fi
+      done
+    elif [[ ! -e "$file" ]]; then
+      >&2 echo "checkln: $file: file or directory does not exist" && return 1
+    fi
+  done
+}
+checkln "$@"
