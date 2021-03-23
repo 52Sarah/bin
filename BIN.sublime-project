@@ -1,0 +1,59 @@
+{
+  "settings":
+  {
+    "color_scheme": "Packages/BlackBird-ColorScheme/BlackBird-Theme.tmTheme",
+    "follow_symlinks": true,
+
+      // folder_exclude_patterns and file_exclude_patterns control which files
+      // are listed in folders on the side bar. These can also be set on a per-
+      // project basis.
+      "folder_exclude_patterns": [
+        "*.BAK.*", 
+        ".git", ".svn", "CVS",
+      ],
+      "file_exclude_patterns": [
+        "*.pyc", "*.pyo", 
+        "*.exe", "*.dll", "*.obj",
+        "*.o", "*.a", "*.lib", "*.so", "*.dylib", "*.class",
+        "*.ncb", "*.sdf", "*.suo", "*.pdb", "*.idb", "*.psd", "*.db", 
+        "*.sublime-workspace",
+      ],
+      
+  },
+  "folders":
+  [
+    {
+      "name": "~/bin",
+      "path": "~/bin"
+    },
+    {
+      "name": "~/dotfiles",
+      "path": "~/dotfiles"
+    },
+    {
+      "name": "~",
+      "path": "~",
+      "folder_include_patterns": [
+        "bak",
+        "ch-bash-profile",
+        ".docker",
+        ".iterm2",
+        ".jenv",
+        ".m2",
+        "prefs",
+        ".pyenv",
+        ".ssh"
+      ],
+      "file_exclude_patterns": [
+        ".%*.png",
+        ".bash_history",
+        ".Box_*",
+        ".CFUserTextEncoding",
+        ".lesshst",
+        ".viminfo",
+        ".zprofile*", ".zsh*",
+      ],
+    },
+  ]
+}
+
