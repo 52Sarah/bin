@@ -9,11 +9,13 @@
 #
 # \\U2191  =  ▲  up arrow 
 # \\U2193  =  ▼  down arrow 
+#
+# \\Uf70a  =  F7
 
-define_hotkeys() {
-  local SH_VERBOSE="$SH_VERBOSE" SH_QUIET="$SH_QUIET"
-  [[ "$1" =~ ^--?v ]] && SH_VERBOSE=1 && SH_QUIET= && shift 1
-  [[ "$1" =~ ^--?q ]] && SH_VERBOSE= && SH_QUIET=1 && shift 1
+define-hotkeys() {
+  local opt_verbose="$SH_VERBOSE" opt_quiet="$SH_QUIET"
+  [[ "$1" =~ ^--?v ]] && opt_verbose=1 && opt_quiet= && shift 1
+  [[ "$1" =~ ^--?q ]] && opt_verbose= && opt_quiet=1 && shift 1
 
   shopt -s extglob
   local target
@@ -34,19 +36,20 @@ define_hotkeys() {
       target="com.stairways.keyboardmaestro.editor";;
     music | mus* | itunes)
       target="com.apple.Music";;
-    outlook | out*)
-      target="com.microsoft.Outlook";;
-    patina | pat*)
-      target="com.atek.Patina";;
-    typora | typ*)
-      target="abnerworks.Typora";;
+    # outlook | out*)
+    #   target="com.microsoft.Outlook";;
+    # patina | pat*)
+    #   target="com.atek.Patina";;
+    # typora | typ*)
+    #   target="abnerworks.Typora";;
     *)
-      1>&2 echo "Invalid option: $opt" && return 1;;
+      >&2 echo "define-hotkeys: warning: invalid option: $opt; passing thru"
+      target="opt";;
   esac
   if [[ -n "$target" ]]; then
-    ((SH_VERBOSE)) && echo "opt: $opt, target: $target"
+    ((opt_verbose)) && echo "opt: $opt, target: $target"
   else
-    ((!SH_QUIET)) && echo "Loading all domains."
+    ((!opt_quiet)) && echo "Loading all domains."
   fi
 
   #
@@ -56,6 +59,7 @@ define_hotkeys() {
   if [[ -z "$target" || "$target" = "$domain" ]]; then
     defaults write "$domain" NSUserKeyEquivalents '{
       "\033Session\033Session Settings..." = "@~,";
+
       "\033Actions\033Open" = "@$o";
       "\033Actions\033Open With\033Associated Application" = "@o";
       "\033Actions\033Set as Base Folder" = "@b";
@@ -68,8 +72,11 @@ define_hotkeys() {
 
       "\033Edit\033Expand All" = "@$=";
       "\033Edit\033Collapse All" = "@$-";
+
+      "\033Search\033Next Difference" = "\\Uf70a";
+      "\033Search\033Previous Difference" = "$\\Uf70a";
     }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
+    ((!opt_quiet)) && list-hotkeys "$domain"
   fi
 
   #
@@ -79,7 +86,7 @@ define_hotkeys() {
   if [[ -z "$target" || "$target" = "$domain" ]]; then
     defaults write "$domain" NSUserKeyEquivalents '{
     }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
+    ((!opt_quiet)) && list-hotkeys "$domain"
   fi
   
   #
@@ -90,7 +97,7 @@ define_hotkeys() {
     defaults write "$domain" NSUserKeyEquivalents '{
       "\033Format\033Column\033AutoFit Selection" = "@^a";
     }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
+    ((!opt_quiet)) && list-hotkeys "$domain"
   fi
 
   #
@@ -106,7 +113,7 @@ define_hotkeys() {
       "\033File\033Rename 5 Items..." = "^r";
       "\033File\033Rename 6 Items..." = "^r";
     }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
+    ((!opt_quiet)) && list-hotkeys "$domain"
   fi
 
   #
@@ -132,7 +139,7 @@ define_hotkeys() {
       "\033Actions\033Disable Action" = "@~e";
       "\033Actions\033Help" = "@~h";
     }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
+    ((!opt_quiet)) && list-hotkeys "$domain"
   fi
   
   #
@@ -141,7 +148,8 @@ define_hotkeys() {
   domain="com.apple.Music"
   if [[ -z "$target" || "$target" = "$domain" ]]; then
     defaults write "$domain" NSUserKeyEquivalents '{
-      "\033File\033New\033Playlist Folder" = "^n";
+      "\033File\033New\033Playlist Folder" = "^@$";
+      "\033File\033New\033Playlist from Selection" = "^n";
       "\033Song\033Love" = "^l";
       "\033Song\033Loved" = "^l";
       "\033Song\033Dislike" = "^d";
@@ -151,49 +159,49 @@ define_hotkeys() {
       "\033View\033as Albums" = "@$b";
       "\033View\033as Songs" = "@$s";
     }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
+    ((!opt_quiet)) && list-hotkeys "$domain"
   fi
 
-  #
-  # OUTLOOK
-  #
-  domain="com.microsoft.Outlook"
-  if [[ -z "$target" || "$target" = "$domain" ]]; then
-    defaults write "$domain" NSUserKeyEquivalents '{
-      "\033Message\033Archive" = "@$e";
-      "\033Tools\033Rules..." = "@$u";
-    }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
-  fi
+  # #
+  # # OUTLOOK
+  # #
+  # domain="com.microsoft.Outlook"
+  # if [[ -z "$target" || "$target" = "$domain" ]]; then
+  #   defaults write "$domain" NSUserKeyEquivalents '{
+  #     "\033Message\033Archive" = "@$e";
+  #     "\033Tools\033Rules..." = "@$u";
+  #   }'
+  #   ((!opt_quiet)) && list-hotkeys "$domain"
+  # fi
 
-  #
-  # PATINA
-  #
-  domain="com.atek.Patina"
-  if [[ -z "$target" || "$target" = "$domain" ]]; then
-    defaults write "$domain" NSUserKeyEquivalents '{
-      "\033Image\033Adjust Selection Size..." = "@~s";
-    }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
-  fi
+  # #
+  # # PATINA
+  # #
+  # domain="com.atek.Patina"
+  # if [[ -z "$target" || "$target" = "$domain" ]]; then
+  #   defaults write "$domain" NSUserKeyEquivalents '{
+  #     "\033Image\033Adjust Selection Size..." = "@~s";
+  #   }'
+  #   ((!opt_quiet)) && list-hotkeys "$domain"
+  # fi
 
-  #
-  # TYPORA
-  #
-  domain="abnerworks.Typora"
-  if [[ -z "$target" || "$target" = "$domain" ]]; then
-    defaults write "$domain" NSUserKeyEquivalents '{
-      "\033Paragraph\033Ordered List" = "@$7";
-      "\033Paragraph\033Unordered List" = "@$8";
-    }'
-    ((!SH_QUIET)) && list_hotkeys "$domain"
-  fi
+#   #
+#   # TYPORA
+#   #
+#   domain="abnerworks.Typora"
+#   if [[ -z "$target" || "$target" = "$domain" ]]; then
+#     defaults write "$domain" NSUserKeyEquivalents '{
+#       "\033Paragraph\033Ordered List" = "@$7";
+#       "\033Paragraph\033Unordered List" = "@$8";
+#     }'
+#     ((!opt_quiet)) && list-hotkeys "$domain"
+#   fi
 
   killall cfprefsd
 }
 
-# usage: list_hotkeys [domain]
-list_hotkeys() {
+# usage: list-hotkeys [domain]
+list-hotkeys() {
   local domain="$1"; shift 1
 
   if [[ -z "$domain" ]]; then
@@ -208,7 +216,8 @@ list_hotkeys() {
         -e 's/( = .*)~/\1Option-/;' \
         -e 's/( = .*)\^/\1Control-/;' \
         -e 's/( = .*)\$/\1Shift-/;' \
-        -e "s/( = .*)\\$RETURN/\1Return/;"
+      -e 's/( = .*)\\\\\\\\U21a9/\1Return/;' \
+      -e 's/( = .*)\\\\\\\\Uf70a/\1F7/;'
     # /:|=.+;$/! d;  ...  if line has no = or : in it, delete
     # /^Found 1 keys ... s/^.+ '([^']+)'.+$/\1:/  ...  trim header to only domain and colon
     # s/"\\033/"/g; s/\\033/ -> /g  ...  remove leading \033s, replace innner with ' -> ''
@@ -225,8 +234,9 @@ list_hotkeys() {
       -e 's/( = .*)~/\1Option-/;' \
       -e 's/( = .*)\^/\1Control-/;' \
       -e 's/( = .*)\$/\1Shift-/;' \
-      -e 's/( = .[^\\]+)\\\\+U21a9/\1Return/;'
+      -e 's/( = .*)\\\\\\\\U21a9/\1Return/;' \
+      -e 's/( = .*)\\\\\\\\Uf70a/\1F7/;'
   fi
 }
 
-define_hotkeys "$@"
+>&2 echo "Only sourced hotkeys.sh; execute define-hotkeys or list-hotkeys."

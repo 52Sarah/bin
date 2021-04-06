@@ -2,44 +2,48 @@
 
 # Source only; execute functions after loading file.
 
+bkup-gmail-filters() {
+  bkup "$HOME/ttpp/gmail-filters" "$HOME/bak/bak.gmail-filters"
+}
+
 bkup-iterm() {
-  local FROM_DIR="$HOME/prefs/iterm"
-  local TO_DIR="$HOME/bak/bak.iterm"
-  local bak_file="${TO_DIR}/iterm_prefs.BAK.$(today-formatted).zip"
-
-  rm -f "$bak_file"
-
-  # zip options:
-  #   --latest-time   set timestamp on archive to match newest file inside
-  #   --quiet         minimal output
-  #   -J              omit (junk) folders
-  #   -9              maximum compression
-  zip --latest-time --quiet -J -9 \
-    "$bak_file" "$FROM_DIR"/*.plist
-
-  ls -ohF "$bak_file"
+  bkup "$HOME/prefs/iterm" "$HOME/bak/bak.iterm" -i '*.plist'
 }
 
 bkup-notes() {
-  local FROM_DIR="$HOME/notes/notes-main"
-  local TO_DIR="$HOME/bak/bak.notes"
-  local bak_file="${TO_DIR}/notes-main.BAK.$(today-formatted).zip"
+  bkup "$HOME/notes/notes-main" "$HOME/bak/bak.notes"
+}
 
-  rm -f "$bak_file"
+
+# Usage: bkup from_dir to_dir [--include or --exclude lists]
+bkup() {
+  local from_dir="$1" && shift
+  local to_dir="$1" && shift
+  local opt_zip="$*"
+
+  [[ -z "$from_dir" ]] && >&2 echo "usage: bkup from_dir to_dir" && return 1
+  [[ ! -d "$from_dir" ]] && >&2 echo "bkup: from_dir does not exist" && return 1
+
+  local from_dirname="$(basename "$from_dir")"
+  local bak_file="${to_dir}/${from_dirname}.BAK.$(today-formatted).zip"
+
+  mkdir -pv "$to_dir"
+  rm -fv "$bak_file"
 
   # zip options:
-  #   --latest-time   set timestamp on archive to match newest file inside
-  #   --quiet         minimal output
-  #   -r              recurse
-  #   -x              exclude file(s)
-  #   -9              maximum compression
-  pushd "$FROM_DIR"
-  zip --latest-time --quiet -r -9 \
+  #   --quiet
+  #   --recurse-paths
+  #   --latest-time     set timestamp on archive to match newest file inside
+  #   -9                maximum compression
+  #   -x                exclude-files
+  pushd "$from_dir" >/dev/null
+  zip --quiet --recurse-paths --latest-time -9 \
     "$bak_file" . \
-    -x .DS_Store
-  popd
+    -x .DS_Store $opt_zip
+  popd >/dev/null
 
   ls -ohF "$bak_file"
+  unzip -l "$bak_file" | head
 }
 
 # Print today's date in any format, defaulting to YYYYMMDD.
@@ -47,6 +51,7 @@ today-formatted() {
   local opt_format="${1:-%Y%m%d}" && shift
   date +"$opt_format"
 }
+
 
 # # Print the given filename's basename root, not including the extension or its period.
 # # If file has no period in it in its basename, print full filename.
