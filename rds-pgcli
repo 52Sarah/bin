@@ -12,22 +12,26 @@ rds-pgcli() {
   db_host="${!db_host}"
   [[ -z "$db_host" ]] && >&2 echo "rds-pgcli: $db_env: no environment defined" && return 1
   pbcopy <<< "$db_host"
+  echo "RDS_ENV: [$RDS_ENV]"
 
   local db_user="RDS_${RDS_ENV}_USER"
   db_user="${!db_user}"
   [[ -z "$db_user" ]] && >&2 echo "rds-pgcli: $db_env: no user defined" && return 1
   pbcopy <<< "$db_user"
+  echo "db_user: [$db_user]"
 
   local db_cred="RDS_${RDS_ENV}_CRED"
   db_cred="${!db_cred}"
   if [[ -z "$db_cred" ]]; then
-    >&2 echo "warning: no password defined"
+    >&2 echo "rds-pgcli: warning: no password defined"
   else
     pbcopy <<< "$db_cred"
+    echo "db_cred: [${db_cred:0:2}***${db_cred:$((${#db_cred}-2))}]"
   fi
 
   local opt_db="--list" && [[ -n "$db_name" ]] && opt_db="-d $db_name"
 
+  echo "pgcli -h "$db_host" -u "$db_user" $opt_db"
   pgcli -h "$db_host" -u "$db_user" $opt_db
 
 }

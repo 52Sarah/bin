@@ -15,8 +15,11 @@ bkup-notes() {
 }
 
 
-# Usage: bkup from_dir to_dir [--include or --exclude lists]
+# Usage: bkup [-q] from_dir to_dir [--include or --exclude lists]
 bkup() {
+  local opt_quiet=$SH_VERBOSE && [[ "$1" =~ ^(-q|--quiet)$ ]] && opt_quiet=1 && shift
+  local sw_verbose='' && ((!opt_quiet)) && sw_verbose='v'
+
   local from_dir="$1" && shift
   local to_dir="$1" && shift
   local opt_zip="$*"
@@ -27,8 +30,8 @@ bkup() {
   local from_dirname="$(basename "$from_dir")"
   local bak_file="${to_dir}/${from_dirname}.BAK.$(today-formatted).zip"
 
-  mkdir -pv "$to_dir"
-  rm -fv "$bak_file"
+  mkdir -p$sw_verbose "$to_dir" | tilde-compress
+  rm -f$sw_verbose "$bak_file" | tilde-compress
 
   # zip options:
   #   --quiet
@@ -39,11 +42,17 @@ bkup() {
   pushd "$from_dir" >/dev/null
   zip --quiet --recurse-paths --latest-time -9 \
     "$bak_file" . \
-    -x .DS_Store $opt_zip
+    -x .DS_Store *.sublime-workspace $opt_zip
   popd >/dev/null
 
-  ls -ohF "$bak_file"
-  unzip -l "$bak_file" | head
+  if type -t lln >&/dev/null; then
+    ((!opt_quiet)) && lln "$bak_file"
+  else
+    ((!opt_quiet)) && ls -ohF "$bak_file"
+  fi
+
+  printf "\n"
+  unzip -l "$bak_file" | head -n $((LINES/2)) | tilde-compress
 }
 
 # Print today's date in any format, defaulting to YYYYMMDD.
