@@ -12,6 +12,8 @@
 #
 # \\Uf70a  =  F7
 
+shopt -s extglob
+
 wrapper() {
   # eecho "wrapper: debug: #:${#*}, @:[$@]"
   local opt_verbose="$SH_VERBOSE" opt_quiet="$SH_QUIET"
@@ -28,7 +30,6 @@ wrapper() {
       keyboardmaestro
     ' | tr -d '\n'
   )"
-
 
   # usage: hotkeys-list [-v] [-q] [domain]
   hotkeys-list() {
@@ -92,6 +93,9 @@ wrapper() {
       fi
     done
 
+    ((d_count == 0)) && eecho "hotkeys-define: error: all $d_total_domains hotkey domains failed" && return 1
+    local sw_verbose= && ((opt_verbose)) && sw_verbose='-v'
+    killall $sw_verbose cfprefsd
     ((d_count < d_total)) && eecho "hotkeys-define: error: only defined hotkeys for $d_count/$d_total domains" && return 1
     return 0
   }
@@ -110,12 +114,16 @@ wrapper() {
       # [⌥]+[^]+1   Window > Move to VX228
       # [⌥]+[^]+2   Window > Move to Thunderbolt Display
       # [⌥]+[^]+3   Window > Move to Built-in Retina Display
+      # [⌥]+[^]+[   Window > Tile Window to Left of Screen
+      # [⌥]+[^]+]   Window > Tile Window to Right of Screen
       #
       NSGlobalDomain)
         defaults write "$domain" NSUserKeyEquivalents '{
           "\033Window\033Move to VX228" = "~^1";
           "\033Window\033Move to Thunderbolt Display" = "~^2";
           "\033Window\033Move to Built-in Retina Display" = "~^3";
+          "\033Window\033Tile Window to Left of Screen" = "~^[";
+          "\033Window\033Tile Window to Right of Screen" = "~^]";
         }'
         return 0;;
 
@@ -288,12 +296,11 @@ wrapper() {
   hotkeys-domain() {
     [[ -z "$1" ]] && return 0
 
-    shopt -s extglob
     local domain
 
     local abb="$1" && shift
     case "$abb" in
-      nsglobaldomain | n?(s)gd | appleglobaldemain | agd | glo*)
+      nsglobaldomain | n?(s)gd | ngd | appleglobaldemain | agd | glo*)
         domain='NSGlobalDomain';;
       beyondcompare | bc*)
         domain='com.ScooterSoftware.BeyondCompare';;
