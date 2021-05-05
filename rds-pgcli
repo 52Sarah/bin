@@ -1,38 +1,81 @@
 #!/usr/bin/env bash
 
-rds-pgcli() {
-  local db_env="${1:-$RDS_ENV}" && shift
-  [[ -z "$db_env" ]] && >&2 echo "usage: rds-pgcli db_env [db_name]" && return 1
-  export RDS_ENV="$(upper "$db_env")"
-  pbcopy <<< "$RD_ENV"
-  
-  local db_name="$1" && shift
+wrapper() {
 
-  local db_host="RDS_${RDS_ENV}_HOST"
-  db_host="${!db_host}"
-  [[ -z "$db_host" ]] && >&2 echo "rds-pgcli: $db_env: no environment defined" && return 1
-  pbcopy <<< "$db_host"
-  echo "RDS_ENV: [$RDS_ENV]"
+  _rds_pgcli() {
+    local ENVS="$(pipe-delim-vars 'RDS_*' '_HOST$' '_CRED_HOST$')"
+    local USAGE="usage: rds-pgcli [--tunnel] [${ENVS:-ENV}] [db_name]"
 
-  local db_user="RDS_${RDS_ENV}_USER"
-  db_user="${!db_user}"
-  [[ -z "$db_user" ]] && >&2 echo "rds-pgcli: $db_env: no user defined" && return 1
-  pbcopy <<< "$db_user"
-  echo "db_user: [$db_user]"
+    local opt_tunnel=; [[ "$1" =~ -t|--tunnel ]] && opt_tunnel=1 && shift
+    printv 'opt_tunnel'
+    
+    local db_env="${1:-$RDS_ENV}" && shift
+    [[ -z "$db_env" ]] && eecho "$USAGE" && return 1
+    export RDS_ENV="$(upper "$db_env")"
+    pbcopy <<< "$RDS_ENV"
+    printv 'RDS_ENV'
+    
+    local db_name="$1" && shift
+    pbcopy <<< "$db_name"
+    printv 'db_name'
 
-  local db_cred="RDS_${RDS_ENV}_CRED"
-  db_cred="${!db_cred}"
-  if [[ -z "$db_cred" ]]; then
-    >&2 echo "rds-pgcli: warning: no password defined"
-  else
+    local db_hostv="RDS_${RDS_ENV}_HOST"
+    local db_host="${!db_hostv}"
+    [[ -z "$db_host" ]] && eecho "rds-pgcli: $RDS_ENV: no host defined" && return 1
+    pbcopy <<< "$db_host"
+    printv 'db_hostv'
+    printv 'db_host'
+
+    local db_userv="RDS_${RDS_ENV}_USER"
+    local db_user="${!db_userv}"
+    [[ -z "$db_user" ]] && eecho "rds-pgcli: $RDS_ENV: no user defined" && return 1
+    pbcopy <<< "$db_user"
+    printv "db_userv"
+    printv "db_user"
+
+    local db_credv="RDS_${RDS_ENV}_CRED"
+    local db_cred="${!db_credv}"
+    [[ -z "$db_cred" ]] && eecho "rds-pgcli: warning: no password defined" && return 1
     pbcopy <<< "$db_cred"
-    echo "db_cred: [${db_cred:0:2}***${db_cred:$((${#db_cred}-2))}]"
-  fi
+    printv "db_credv"
+    printv "db_cred"
 
-  local opt_db="--list" && [[ -n "$db_name" ]] && opt_db="-d $db_name"
+    local opt_db="--list" && [[ -n "$db_name" ]] && opt_db="-d $db_name"
+    printv 'opt_db'
 
-  echo "pgcli -h "$db_host" -u "$db_user" $opt_db"
-  pgcli -h "$db_host" -u "$db_user" $opt_db
+    local opt_local_port=5432
+    if ((opt_tunnel)); then
+      ssh -f -p 22 -L localhost:5433:$db_host:5432 -N toddpierzina@bastion.aws.uswest2.cchh.io
+      opt_local_port="5433"
+      db_host="localhost"
+    fi
 
+    printf '\n-----\n%s\n' "pgcli -p '$opt_local_port' -h '$db_host' -u '$db_user' $opt_db"
+    pgcli -p "$opt_local_port" -h "$db_host" -u "$db_user" $opt_db
+  }
+
+  eecho() { >&2 echo "$*"; return 0; }
+
+  printv() {
+    local vname="$1"; shift
+    local vvalue="$*"; [[ -z "$vvalue" ]] && vvalue="${!vname}"
+    printf 'INFO %-16s: %s\n' "$vname" "$vvalue"
+  }
+
+  pipe-delim-vars() {
+    local glob_pattern="$1"; shift
+    local regex_accept_pattern="$1"; shift
+    local regex_reject_pattern="$1"; shift
+    for v in $(eval "echo $(printf "\${!%s}\n" "$glob_pattern")"); do
+      [[ ! "$v" =~ ${regex_accept_pattern:-.} ]] && continue
+      [[ -n "$regex_reject_pattern" && "$v" =~ $regex_reject_pattern ]] && continue
+      cut -d'_' -f 2 <<< $v
+    done |\
+    join-lines '|'
+  }
+
+  _rds_pgcli "$@"
 }
-rds-pgcli "$@"
+wrapper "$@"
+unset -f wrappeer
+

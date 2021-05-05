@@ -1,38 +1,13 @@
 #!/usr/bin/env bash
 
-# @  =  ⌘ command
-# ~  =  ⌥ option
-# ^  =  ⌃ control
-# $  =  shift
-#
-# \\U21a9  =  ↩︎  return
-#
-# \\U2191  =  ▲  up arrow 
-# \\U2193  =  ▼  down arrow 
-#
-# \\Uf70a  =  F7
-
 shopt -s extglob
 
 wrapper() {
-  # eecho "wrapper: debug: #:${#*}, @:[$@]"
-  local opt_verbose="$SH_VERBOSE" opt_quiet="$SH_QUIET"
+  decho "wrapper: #:${#*}, @:[$@]"
+  local opt_verbose="$SH_VERBOSE" opt_quiet="$SH_QUIET" opt_debug="$SH_DEBUG"
 
-  local ALL_DOMAINS="$(
-    tr -s ' ' <<<'
-      global
-      calendar
-      contacts
-      finder
-      music
-      beyondcompare
-      excel
-      keyboardmaestro
-    ' | tr -d '\n'
-  )"
-
-  # usage: hotkeys-list [-v] [-q] [domain]
-  hotkeys-list() {
+  # usage: camutil-rename [-qvd] file [...]
+  camutil-rename() {
     # eecho "hotkeys-list: debug: #:${#*}, @:[$@]"
     parse-verbose-quiet "$@" || shift $?
 
@@ -122,10 +97,8 @@ wrapper() {
           "\033Window\033Move to VX228" = "~^1";
           "\033Window\033Move to Thunderbolt Display" = "~^2";
           "\033Window\033Move to Built-in Retina Display" = "~^3";
-          "\033Window\033Move Window to Left Side of Screen" = "~^[";
-          "\033Window\033Move Window to Right Side of Screen" = "~^]";
-          "\033Window\033Tile Window to Left of Screen" = "~^$[";
-          "\033Window\033Tile Window to Right of Screen" = "~^$]";
+          "\033Window\033Tile Window to Left of Screen" = "~^[";
+          "\033Window\033Tile Window to Right of Screen" = "~^]";
         }'
         return 0;;
 
@@ -333,40 +306,46 @@ wrapper() {
     return 0
   }
 
-  # Given $@ from the caller, determine if 0, 1 or 2 of the leading arguments are -v or -q,
-  # set the appropriate opt_ wrapper variable, and return as the status code the number of
-  # positions to shift.
-  parse-verbose-quiet() {
-    # eecho "parse-verbose-quiet: debug: #:${#*}, @:[$@]"
-    local shift_count=0
-    [[ -z "$1" ]] && return $shift_count
+  # Given $@ from the caller:
+  # -  determine if 0, 1, 2 or 3 of the leading arguments are -v, -q or -d
+  # - set the appropriate opt_ wrapper variables
+  # - return as the status code the number of positions to shift
+  parse-quiet-verbose-debug() {
+    [[ -z "$1" ]] && return 0
 
-    for opt in $1 $2; do
-      if [[ "$opt" =~ ^--?v(erbose)?$ ]]; then
-        opt_verbose=1
-        opt_quiet=
-        ((shift_count++))
-      elif [[ "$opt" =~ ^--?q(uiet)?$ ]]; then
+    local shift_count=0
+    for opt in $1 $2 $3; do
+      if [[ "$opt" =~ ^--?q(uiet)?$ ]]; then
         opt_quiet=1
         opt_verbose=
-        ((shift_count++))
+        opt_debug=
+      elif [[ "$opt" =~ ^--?v(erbose)?$ ]]; then
+        opt_quiet=
+        opt_verbose=1
+      elif [[ "$opt" =~ ^--?d(ebug)?$ ]]; then
+        opt_quiet=
+        opt_verbose=1
+        opt_debug=1
+      else
+        break
       fi
+      ((shift_count++))
     done
 
-    # eecho "parse-verbose-quiet: info: opt_verbose=[$opt_verbose], opt_quiet=[$opt_quiet], shift_count=[$shift_count]"
+    decho "parse-quiet-verbose-debug: opt_quiet=[$opt_quiet], opt_verbose=[$opt_verbose], opt_debug=[$opt_debug], shift_count=[$shift_count]"
     return $shift_count
   }
 
-  eecho() { >&2 echo $@; return 0; }
+  decho() { ((opt_debug)) && echo "DEBUG: $@"; return 0; }
+  eecho() { >&2 echo "$@"; return 0; }
+  qecho() { ((opt_quiet)) || echo "$@;" return 0; }
+  vecho() { ((opt_verbose)) && echo "$@"; return 0; }
 
-  if [[ "$1" =~ ^-{0,2}d ]]; then
+  if [[ "$1" =~ ^-{0,2}[rm] ]]; then
     shift
-    hotkeys-define "$@"
-  elif [[ "$1" =~ ^-{0,2}l ]]; then
-    shift
-    hotkeys-list "$@"
+    camutil-rename "$@"
   else
-    eecho "Only sourced hotkeys.sh; execute hotkeys-define or hotkeys-list."
+    eecho "Only sourced camutil.sh; execute camutil-rename, etc."
   fi
 
 }

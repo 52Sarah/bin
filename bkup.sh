@@ -3,7 +3,7 @@
 # Source only; execute functions after loading file.
 
 bkup-gmail-filters() {
-  bkup "$HOME/ttpp/gmail-filters" "$HOME/bak/bak.gmail-filters"
+  bkup "$HOME/prefs/gmail-filters" "$HOME/bak/bak.gmail-filters"
 }
 
 bkup-iterm() {
