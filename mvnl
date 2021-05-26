@@ -4,40 +4,43 @@
 # "Maven List", describe the plugins, phases and goals for a given project or projects.
 # Created based on https://stackoverflow.com/a/35610377/529256
 
-mvnl() {
-  [[ ! -e "${MAVEN_HOME:-$HOME/.m2}/settings.xml" ]] && >&2 echo "No .m2/settings.xml found" && return 1
+_mvnl() {
+  [[ ! -e "${MAVEN_HOME:-$HOME/.m2}/settings.xml" ]] && eecho "No .m2/settings.xml found" && return 1
   
-  local opt_quiet=$SH_QUIET opt_verbose=$SH_VERBOSE
-  local goal='list-phase' build_plan='clean,deploy' dirs= mvn_opts=
+  local SH_QUIET=$SH_QUIET SH_VERBOSE=$SH_VERBOSE
+  local goal='list-phase' build_plan='clean' dirs= mvn_opts=
 
+  _mvn_help() {
+    echo "Lists the goals of mvn project(s) by phase in a table"
+    echo
+    echo "Usage:"
+    echo "    mvnl [-v|--verbose | -q|--quiet]  -g|--goal goal  -b|--build_plan build_plan [mvn_opt ...] [dir ...]"
+    echo
+    echo "           --goal  The goal for the buildplan-maven-plugin (default: $goal)"
+    echo "                   (possible values: list, list-plugin, list-phase)"
+    echo
+    echo "     --build_plan  The value of the buildplan.tasks parameter (default: $build_plan)"
+    echo "                   (examples: 'clean,install', 'deploy', 'install', etc...) "
+    echo
+    echo "     [*directory]  The directories (with pom.xml files) to run the command in"
+  }
+  
   while [[ -n "$1" ]]; do
     local opt="$1" && shift
     case "$opt" in
-      -h|--help)
-        echo "Lists the goals of mvn project(s) by phase in a table"
-        echo
-        echo "Usage:"
-        echo "    mvnl [-v|--verbose | -q|--quiet]  -g|--goal goal  -b|--build_plan build_plan [mvn_opt ...] [dir ...]"
-        echo
-        echo "           --goal  The goal for the buildplan-maven-plugin (default: $goal)"
-        echo "                   (possible values: list, list-plugin, list-phase)"
-        echo
-        echo "     --build_plan  The value of the buildplan.tasks parameter (default: $build_plan)"
-        echo "                   (examples: 'clean,install', 'deploy', 'install', etc...) "
-        echo
-        echo "     [*directory]  The directories (with pom.xml files) to run the command in"
-        return 0;;
-      -v|--verbose) opt_verbose=1;;
-      -q|--quiet) opt_quiet=1;;
+      -h|--help) _mvn_help; return 0;;
+
+      -v|--verbose) SH_VERBOSE=1 SH_QUIET=;;
+      -q|--quiet) SH_QUIET=1 SH_VERBOSE=;;
       
       -b|--build_plan)
         build_plan="$1" && shift
-        [[ -z "$build_plan" ]] && >&2 echo "mvnl: -b|--build-plan requires a parameter, comma-separated tasks; e.g., 'clean,install', 'deploy', 'install'" && return 1
+        [[ -z "$build_plan" ]] && eecho "mvnl: -b|--build-plan requires a parameter, comma-separated tasks; e.g., 'clean,install', 'deploy', 'install'" && return 1
         ;;
       
       -g|--goal)
           goal="$1" && shift
-          [[ -z "$goal" ]] && >&2 echo "mvnl: -g|--goal requires a parameter, one of: [list, list-plugin, list-phase]" && return 1
+          [[ -z "$goal" ]] && eecho "mvnl: -g|--goal requires a parameter, one of: [list, list-plugin, list-phase]" && return 1
           ;;
 
       -*)
@@ -45,8 +48,8 @@ mvnl() {
 
       *)
           local dir="$opt"
-          [[ ! -d "$dir" ]] && >&2 echo "mvnl: $dir: No such directory" && return 1
-          [[ ! -e "$dir/pom.xml" ]] && >&2 echo "mvnl: $dir: No pom.xml found" && return 1
+          [[ ! -d "$dir" ]] && eecho "mvnl: $dir: No such directory" && return 1
+          [[ ! -e "$dir/pom.xml" ]] && eecho "mvnl: $dir: No pom.xml found" && return 1
           dir="$(tilde_compress "$dir")"
           [[ -z "$dirs" ]] && dirs="'$dir'" || dirs="$dirs '$dir'"
           ;;
@@ -54,15 +57,16 @@ mvnl() {
   done
 
   [[ -z "$dirs" ]] && dirs="$PWD"
-  (( opt_verbose )) && echo "goal='$goal', build_plan='$build_plan', dirs=[$dirs], mvn_opts=[$mvn_opts]"
+  (( SH_VERBOSE )) && echo "goal='$goal', build_plan='$build_plan', dirs=[$dirs], mvn_opts=[$mvn_opts]"
 
   for dir in $dirs; do
     local mvn_cmd='mvn' && [[ -e "$dir/mvnw" ]] && mvn_cmd='./mvnw'
-    (( ! opt_quiet )) echo "cd $dir"
+    qecho "cd $dir"
     pushd $dir > /dev/null
-    (( ! opt_quiet )) "$mvn_cmd fr.jcgay.maven.plugins:buildplan-maven-plugin:$goal -Dbuildplan.tasks=$build_plan $mvn_opts"
+    qecho "$mvn_cmd fr.jcgay.maven.plugins:buildplan-maven-plugin:$goal -Dbuildplan.tasks=$build_plan $mvn_opts"
     $mvn_cmd fr.jcgay.maven.plugins:buildplan-maven-plugin:$goal -Dbuildplan.tasks=$build_plan $mvn_opts
     popd > /dev/null
   done
 }
 
+_mvnl "$@"

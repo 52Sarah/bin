@@ -12,13 +12,18 @@ g.popb() {
 
   [[ ! -e "$hooks_dir/post-checkout" ]] && echo 1>&2 "g.popb: git post-checkout hook not found in $hooks_dir" && return 1
   
-  local heads="$git_dir/HEADS_HISTORY"
+  local heads="$git_dir/HEADS"
   [[ ! -s "$heads" ]] && echo 1>&2 "g.popb: no branches to pop" && return 1
   sed -i -e '$ d' "$heads"  # remove last line, which is current branch
   [[ ! -s "$heads" ]] && echo 1>&2 "g.popb: no branches to pop" && return 1
 
-  export GITBR="$(tail -n 1 "$heads")"
-  git checkout --quiet "$GITBR"
+  export GIT_BRANCH="$(tail -n 1 "$heads")"
+  git checkout --quiet "$GIT_BRANCH"
   git st
 }
+
+vecho() {
+  ((SH_VERBOSE)) && echo "$*"
+}
+
 g.popb "$@"

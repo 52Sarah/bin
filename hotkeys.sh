@@ -161,11 +161,12 @@ wrapper() {
 
           "\033Edit\033Expand All" = "@$=";
           "\033Edit\033Collapse All" = "@$-";
-
-          "\033Search\033Next Difference" = "\\Uf70a";
-          "\033Search\033Previous Difference" = "$\\Uf70a";
         }'
         return 0;;
+
+          # 5/5 these were interpreted as the actual keystroke "U".
+          # "\033Search\033Next Difference" = "\\Uf70a";
+          # "\033Search\033Previous Difference" = "$\\Uf70a";
 
       # CONTACTS
       #
