@@ -2,15 +2,25 @@
 
 wrapper() {
   local ENVS="$(pipe-delim-vars 'RDS_*')"
-  local USAGE="usage: rds-dbadmin ${ENVS:-RDS_ENV} login-only|create-user [info|debug]"
+  local USAGE="usage: rds-dbadmin [--skip-health-check] ${ENVS:-RDS_ENV} [login-only|create-user] [info|debug]"
   local INFO_FMT="INFO %-20s: %s\n"
+  vecho "ENVS=$ENVS"
+  vecho "USAGE=$USAGE"
+  vecho "INFO_FMT=$INFO_FMT"
+  vecho "\$1=$1"
+  vecho "\$2=$2"
 
-  local opt_login_only= opt_create_user=
+  local opt_login_only= opt_create_user= opt_skip_health_check=
   
-  local opt_env="$1" && shift && \
-      [[ -z "$opt_env" ]] && eecho "$USAGE" && return 1
-  local opt_action="$1" && shift && \
-      [[ -z "$opt_action" ]] && eecho "$USAGE" && return 1
+  [[ "$1" =~ --skip-health-check|-s ]] && shift && opt_skip_health_check=1
+  
+  local opt_env="$1" && shift
+  vecho "opt_env=$opt_env"
+  [[ -z "$opt_env" ]] && eecho "$USAGE" && return 1
+  
+  local opt_action="$1"
+  [[ -n "$opt_action" ]] && shift || opt_action='create-user'
+  vecho "opt_action=$opt_action"
   if [[ "$opt_action" =~ ^l ]]; then
     opt_login_only=1
   elif [[ "$opt_action" =~ ^c ]]; then
@@ -40,8 +50,12 @@ wrapper() {
   printf "$INFO_FMT" "opt_log_level" "$opt_log_level"
 
 
-  printf "INFO dbadmin health:\n"
-  dbadmin --log-level $opt_log_level health || return 1
+  if ((opt_skip_health_check)); then
+    printf "INFO skipping dbadmin health check\n"
+  else
+    printf "INFO dbadmin health:\n"
+    dbadmin --log-level $opt_log_level health || return 1
+  fi
 
 
   printf "INFO dbadmin login:\n"

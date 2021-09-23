@@ -55,12 +55,6 @@ bkup() {
   unzip -l "$bak_file" | head -n $((LINES/2)) | tilde-compress
 }
 
-# Print today's date in any format, defaulting to YYYYMMDD.
-today-formatted() {
-  local opt_format="${1:-%Y%m%d}" && shift
-  date +"$opt_format"
-}
-
 
 # # Print the given filename's basename root, not including the extension or its period.
 # # If file has no period in it in its basename, print full filename.
