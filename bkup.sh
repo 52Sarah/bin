@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Source only; execute functions after loading file.
+# Only source (.) this file; it loads functions but does not do anything.
 
 bkup-gmail-filters() {
   bkup "$HOME/prefs/gmail-filters" "$HOME/bak/bak.gmail-filters"
@@ -56,39 +56,63 @@ bkup() {
 }
 
 
-# # Print the given filename's basename root, not including the extension or its period.
-# # If file has no period in it in its basename, print full filename.
-# filename-root() {
-#   local in_file="$1" && shift
-#   [[ -z "$in_file" ]] && >&2 echo "usage: filename-root: filename" && return 1
+# Print the given filename's root, not including the extension or its period.
+# If file has no period in it in its basename, print full filename.
+filename-root() {
+  local in_file="$1" && shift
+  [[ -z "$in_file" ]] && >&2 echo "usage: filename-root filename" && return 1
 
-#   # Ensure name includes text after the last slash (if any), then after the last dot
-#   [[ ! "$in_file" =~ /?[^/]*\.[^/.]+$ ]] && echo "$in_file" && return 0
+  # Ensure name includes text after the last slash (if any)
+  [[ ! "$in_file" =~ /?[^/]*[^/]+$ ]] && echo "$in_file" && return 0
 
-#   # Return everything before the last dot
-#   echo "${in_file%.*}"
-# }
+  # Return everything before the last dot
+  echo "${in_file%.*}"
+}
 
-# # Print the given filename's extension only, excluding the leading period.
-# # If file has no period in it in its basename, print ''.
-# filename-ext() {
-#   local in_file="$1" && shift
-#   [[ -z "$in_file" ]] && >&2 echo "usage: filename-ext: filename" && return 1
+# Print the given filename's extension only, including the leading period.
+# If file has no period in it in its basename, print ''.
+filename-extension() {
+  local in_file="$1" && shift
+  [[ -z "$in_file" ]] && >&2 echo "usage: filename-ext: filename" && return 1
 
-#   # Ensure name includes text after the last slash (if any), then after the last dot
-#   [[ ! "$in_file" =~ /?[^/]*\.[^/.]+$ ]] && return 0
+  # Ensure the basename includes a period; else ''
+  [[ ! "$in_file" =~ \. ]] && return 0
 
-#   # Return everything after the last dot
-#   echo "${in_file##*.}"
-# }
+  # Return everything after and including the last period
+  echo ".${in_file##*.}"
+}
 
-# # Convert the given filename into its "BAK" version.
-# bak-filename() {
-#   local in_file="$1" && shift
-#   [[ -z "$in_file" ]] && >&2 echo "usage: bak-filename: filename" && return 1
+# Convert the given filename into its "BAK" version.
+filename-bak() {
+  local in_file="$1" && shift
+  [[ -z "$in_file" ]] && >&2 echo "usage: filename-bak filename" && return 1
 
-#   local bak_date="BAK.$(today-formatted)"
-#   local root="$(filename-root "$in_file")"
-#   local ext="$(filename-ext "$in_file")"
-#   echo "${root}.${bak_date}.${ext}"
-# }
+  local bak_date="BAK.$(today-formatted)"
+  local root="$(filename-root "$in_file")"
+  local ext="$(filename-extension "$in_file")"
+  echo "${root}.BAK.$(today-formatted)${ext}"
+}
+
+# Create a dated BAK copy of given file(s).
+# Skip and filenames already in the BAK format.
+# cp options:
+#   -i  prompt if target bak file, if it exists [used by default]
+#   -n  fail if target bak file exists
+#   -p  preserve attributes like modify time, permissions, etc.
+#   -R  recursively copy directory
+bak() {
+  [[ -z "$1" ]] && >&2 echo "usage: bak [cp options ...] filename [...]" && return 1
+
+  local cp_options='-i'
+  ((SH_VERBOSE)) && cp_options="$cp_options -v"
+  for arg in $@; do
+    if [[ "$arg" =~ ^- ]]; then
+      cp_options="$cp_options $arg"
+    else
+      local f="$arg"
+      [[ "$f" =~ .+\.BAK\.[0-9]{8} ]] && eecho "bak: skipping BAK file: $f" && continue
+      local f_bak="$(filename-bak "$arg")"
+      cp -p $cp_options "$f" "$f_bak" || return $?
+    fi
+  done
+}

@@ -1,81 +1,84 @@
 #!/usr/bin/env bash
 
+# Note that `pbcopy <<< "string"` adds an implicit linefeed.
+
 wrapper() {
 
-  _rds_pgcli() {
-    local ENVS="$(pipe-delim-vars 'RDS_*' '_HOST$' '_CRED_HOST$')"
-    local USAGE="usage: rds-pgcli [--tunnel] [${ENVS:-ENV}] [db_name]"
+  local SH_VERBOSE=$SH_VERBOSE SH_QUIET=$SH_QUIET
+  local info_fmt="INFO %-20s: %s\n"
+  local envs="$(pipe-delim-vars 'RDS_*' '_HOST$' '_CRED_HOST$')"
+  local usage="usage: rds-pgcli [-v|-q] [--tunnel] ${envs:-ENV} [db_name]"
 
-    local opt_tunnel=; [[ "$1" =~ -t|--tunnel ]] && opt_tunnel=1 && shift
-    printv 'opt_tunnel'
-    
-    local db_env="${1:-$RDS_ENV}" && shift
-    [[ -z "$db_env" ]] && eecho "$USAGE" && return 1
-    export RDS_ENV="$(upper "$db_env")"
-    pbcopy <<< "$RDS_ENV"
-    printv 'RDS_ENV'
-    
-    local db_name="$1" && shift
-    pbcopy <<< "$db_name"
-    printv 'db_name'
+  while [[ "$1" =~ ^(-[[:alpha:]]|--[[:alpha:]]+)$ ]]; do
+    case "$1" in
+      -v|--verbose) SH_VERBOSE=1 SH_QUIET=;;
+      -q|--quiet) SH_QUIET=1 SH_VERBOSE=;;
+      -t|--tunnel) opt_tunnel=1;;
+      *) break;;
+    esac
+    shift
+  done
 
-    local db_hostv="RDS_${RDS_ENV}_HOST"
-    local db_host="${!db_hostv}"
-    [[ -z "$db_host" ]] && eecho "rds-pgcli: $RDS_ENV: no host defined" && return 1
-    pbcopy <<< "$db_host"
-    printv 'db_hostv'
-    printv 'db_host'
+  vprintf "$info_fmt" opt_tunnel "$opt_tunnel"
 
-    local db_userv="RDS_${RDS_ENV}_USER"
-    local db_user="${!db_userv}"
-    [[ -z "$db_user" ]] && eecho "rds-pgcli: $RDS_ENV: no user defined" && return 1
-    pbcopy <<< "$db_user"
-    printv "db_userv"
-    printv "db_user"
+  [[ -z "$1" ]] && eecho "$usage" && return 1
+  export RDS_ENV="$(upper "$1")" && shift
+  pbcopy <<< "$RDS_ENV" && sleep 0.1
+  qprintf "$info_fmt" RDS_ENV "$RDS_ENV"
+  
+  if [[ -n "$1" ]]; then
+    export PGDATABASE="$1" && shift
+    pbcopy <<< "$PGDATABASE" && sleep 0.1
+  fi
+  qprintf "$info_fmt" PGDATABASE "$PGDATABASE"
+    # local opt_db="--list" && [[ -n "$PGDATABASE" ]] && opt_db="-d $PGDATABASE"
+    # vprintf "$info_fmt" opt_db "$opt_db"
 
-    local db_credv="RDS_${RDS_ENV}_CRED"
-    local db_cred="${!db_credv}"
-    [[ -z "$db_cred" ]] && eecho "rds-pgcli: warning: no password defined" && return 1
-    pbcopy <<< "$db_cred"
-    printv "db_credv"
-    printv "db_cred"
 
-    local opt_db="--list" && [[ -n "$db_name" ]] && opt_db="-d $db_name"
-    printv 'opt_db'
+  export PGHOST="$(eval echo \$RDS_${RDS_ENV}_HOST)"
+  [[ -z "$PGHOST" ]] && eecho "rds-pgcli: $RDS_ENV: no host defined" && return 1
+  echo -n "$PGHOST" | pbcopy && sleep 0.1
+  qprintf "$info_fmt" PGHOST "$PGHOST"
 
-    local opt_local_port=5432
-    if ((opt_tunnel)); then
-      ssh -f -p 22 -L localhost:5433:$db_host:5432 -N toddpierzina@bastion.aws.uswest2.cchh.io
-      opt_local_port="5433"
-      db_host="localhost"
+  export PGUSER="$(eval echo \$RDS_${RDS_ENV}_USER)"
+  [[ -z "$PGUSER" ]] && eecho "rds-pgcli: $RDS_ENV: no user defined" && return 1
+  echo -n "$PGUSER" | pbcopy && sleep 0.1
+  qprintf "$info_fmt" PGUSER "$PGUSER"
+
+  export PGPASSWORD="$(eval echo \$RDS_${RDS_ENV}_CRED)"
+  [[ -z "$PGPASSWORD" ]] && eecho "rds-pgcli: $RDS_ENV: no password defined" && return 1
+  echo -n "$PGPASSWORD" | pbcopy && sleep 0.1
+  qprintf "$info_fmt" PGPASSWORD "$PGPASSWORD"
+
+
+  local opt_local_port=5432
+  if ((opt_tunnel)); then
+    opt_local_port=5433
+    if nc -z localhost $opt_local_port; then
+      qecho "Tunnelling to already-open port $opt_local_port"
+    else
+      qecho "Creating tunnel on local port $opt_local_port"
+      qeval ssh -f -p 22 -L localhost:$opt_local_port:$PGHOST:5432 -N toddpierzina@bastion.aws.uswest2.cchh.io
     fi
-
-    printf '\n-----\n%s\n' "pgcli -p '$opt_local_port' -h '$db_host' -u '$db_user' $opt_db"
-    pgcli -p "$opt_local_port" -h "$db_host" -u "$db_user" $opt_db
-  }
-
-  eecho() { >&2 echo "$*"; return 0; }
-
-  printv() {
-    local vname="$1"; shift
-    local vvalue="$*"; [[ -z "$vvalue" ]] && vvalue="${!vname}"
-    printf 'INFO %-16s: %s\n' "$vname" "$vvalue"
-  }
-
-  pipe-delim-vars() {
-    local glob_pattern="$1"; shift
-    local regex_accept_pattern="$1"; shift
-    local regex_reject_pattern="$1"; shift
-    for v in $(eval "echo $(printf "\${!%s}\n" "$glob_pattern")"); do
-      [[ ! "$v" =~ ${regex_accept_pattern:-.} ]] && continue
-      [[ -n "$regex_reject_pattern" && "$v" =~ $regex_reject_pattern ]] && continue
-      cut -d'_' -f 2 <<< $v
-    done |\
-    join-lines '|'
-  }
-
-  _rds_pgcli "$@"
+    PGHOST=localhost
+  fi
+  
+  qeval pgcli -p $opt_local_port $( [[ -n "$PGDATABASE" ]] && echo "-d $PGDATABASE" || echo '--list' )
 }
+
+pipe-delim-vars() {
+  local glob_pattern="$1"; shift
+  local regex_accept_pattern="$1"; shift
+  local regex_reject_pattern="$1"; shift
+  for v in $(eval "echo $(printf "\${!%s}\n" "$glob_pattern")"); do
+    [[ ! "$v" =~ ${regex_accept_pattern:-.} ]] && continue
+    [[ -n "$regex_reject_pattern" && "$v" =~ $regex_reject_pattern ]] && continue
+    cut -d'_' -f 2 <<< $v
+  done |\
+  join-lines '|'
+
+}
+
 wrapper "$@"
 unset -f wrappeer
 
