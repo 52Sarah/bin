@@ -28,7 +28,8 @@ bkup() {
   [[ ! -d "$from_dir" ]] && >&2 echo "bkup: from_dir does not exist" && return 1
 
   local from_dirname="$(basename "$from_dir")"
-  local bak_file="${to_dir}/${from_dirname}.BAK.$(today-formatted).zip"
+  local today_formatted="$(date +'%Y%m%m')"
+  local bak_file="${to_dir}/${from_dirname}.BAK.$today_formatted.zip"
 
   mkdir -p$sw_verbose "$to_dir" | tilde-compress
   rm -f$sw_verbose "$bak_file" | tilde-compress
@@ -87,10 +88,11 @@ filename-bak() {
   local in_file="$1" && shift
   [[ -z "$in_file" ]] && >&2 echo "usage: filename-bak filename" && return 1
 
-  local bak_date="BAK.$(today-formatted)"
+  local today_formatted="$(date +'%Y%m%m')"
+  local bak_date="BAK.$today_formatted"
   local root="$(filename-root "$in_file")"
   local ext="$(filename-extension "$in_file")"
-  echo "${root}.BAK.$(today-formatted)${ext}"
+  echo "${root}.BAK.${today_formatted}${ext}"
 }
 
 # Create a dated BAK copy of given file(s).
