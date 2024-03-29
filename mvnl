@@ -7,7 +7,7 @@
 _mvnl() {
   [[ ! -e "${MAVEN_HOME:-$HOME/.m2}/settings.xml" ]] && eecho "No .m2/settings.xml found" && return 1
   
-  local SH_QUIET=$SH_QUIET SH_VERBOSE=$SH_VERBOSE
+  local _LOG_QUIET=$_LOG_QUIET _LOG_VERBOSE=$_LOG_VERBOSE
   local goal='list-phase' build_plan='clean' dirs= mvn_opts=
 
   _mvn_help() {
@@ -30,8 +30,8 @@ _mvnl() {
     case "$opt" in
       -h|--help) _mvn_help; return 0;;
 
-      -v|--verbose) SH_VERBOSE=1 SH_QUIET=;;
-      -q|--quiet) SH_QUIET=1 SH_VERBOSE=;;
+      -v|--verbose) _LOG_VERBOSE=1 _LOG_QUIET=;;
+      -q|--quiet) _LOG_QUIET=1 _LOG_VERBOSE=;;
       
       -b|--build_plan)
         build_plan="$1" && shift
@@ -57,7 +57,7 @@ _mvnl() {
   done
 
   [[ -z "$dirs" ]] && dirs="$PWD"
-  (( SH_VERBOSE )) && echo "goal='$goal', build_plan='$build_plan', dirs=[$dirs], mvn_opts=[$mvn_opts]"
+  (( _LOG_VERBOSE )) && echo "goal='$goal', build_plan='$build_plan', dirs=[$dirs], mvn_opts=[$mvn_opts]"
 
   for dir in $dirs; do
     local mvn_cmd='mvn' && [[ -e "$dir/mvnw" ]] && mvn_cmd='./mvnw'
@@ -69,4 +69,4 @@ _mvnl() {
   done
 }
 
-_mvnl "$@"
+_mvnl $@

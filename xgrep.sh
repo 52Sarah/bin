@@ -24,7 +24,7 @@ where:
 --all-files does NOT add log-like extensions to the exlcude extension list: .log .log.*  .out .out.*  .csv .csv.*
 --all-folders does NOT add hidden, BAK, etc. folders to the exclude directory list
 -a implies both --all-files and --all-folders
---verbose/-v sets SH_VERBOSE; --debug sets SH_DEBUG; --quiet/-q sets SH_QUIET
+--verbose/-v sets _VERBOSE; --debug sets _DEBUG; --quiet/-q sets _QUIET
 EOF
 
     local root_dir='.' all_files='' all_folders=''
@@ -64,16 +64,16 @@ EOF
             shift
             ;;
             -v* | --verbose )
-            SH_VERBOSE=1
-            unset SH_QUIET SH_DEBUG
+            _VERBOSE=1
+            unset _QUIET _DEBUG
             ;;
             --debug )
-            SH_DEBUG=1 SH_VERBOSE=1
-            unset SH_QUIET
+            _DEBUG=1 _VERBOSE=1
+            unset _QUIET
             ;;
             -q* | --quiet )
-            SH_QUIET=1
-            unset SH_VERBOSE SH_DEBUG
+            _QUIET=1
+            unset _VERBOSE _DEBUG
             ;;
             -* )
             eecho "xgrep: illegal option $opt"
@@ -86,7 +86,7 @@ EOF
         esac
     done
     [[ ${#patterns} -eq 0 ]] && eecho "xgrep: missing pattern" && eecho "$USAGE" && return 1
-    ## decho_vars --prefix "  " --quote patt root_dir no_logs ext_excl ext_incl SH_VERBOSE SH_QUIET
+    ## decho_vars --prefix "  " --quote patt root_dir no_logs ext_excl ext_incl _VERBOSE _QUIET
 
     [[ -z "$all_files" ]] && ext_excl+=(".log\\*" ".out\\*" ".csv\\*")
     [[ -z "$all_folders" ]] && dir_excl+=("\\*/.\\*" "\\*.BAK\\*" "\\*.cache" )
@@ -116,4 +116,4 @@ EOF
     c="grep ${grep_cmd[*]}"
     iecho_and_eval "$ $c"
 }
-xgrep "$@"
+xgrep $@

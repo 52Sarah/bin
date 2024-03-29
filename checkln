@@ -4,11 +4,11 @@
 checkln() {
   local USAGE='usage: checkln [--recursive] [--quiet] [link ...]'$'\n''       default link is each link/dir in PWD'
   local maxdepth='-maxdepth 1'
-  local opt_quiet=$SH_QUIET
+  local _LOG_QUIET=$_LOG_QUIET
   while [[ "$1" =~ ^--?.+$ ]]; do
     case "$1" in
       -r|--recursive) maxdepth='';;
-      -q|--quiet)     opt_quiet=1;;
+      -q|--quiet)     _quiet=1;;
       *) >&2 echo "$USAGE" && return 1;;
     esac
     shift
@@ -26,14 +26,14 @@ checkln() {
         [[ ! -L "$link" ]] && continue
         local target="$(readlink "$link")"
         if [[ -e "$target" ]]; then
-          (( !SH_QUIET )) && printf "    OK  %-25s -> %s\n" "$link" "${target/$HOME/~}"
+          ! ((_LOG_QUIET )) && printf "    OK  %-25s -> %s\n" "$link" "${target/$HOME/~}"
         else
           printf " ERROR  %-25s -> %s\n" "$link" "${target/$HOME/~}"
         fi
       done
     elif [[ ! -e "$file" ]]; then
-      >&2 echo "checkln: $file: file or directory does not exist" && return 1
+      echo-error "checkln: $file: file or directory does not exist" && return 1
     fi
   done
 }
-checkln "$@"
+checkln $@

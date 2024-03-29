@@ -101,4 +101,4 @@ cat << EOB
 EOB
 
 }
-hexa "$@"
+hexa $@

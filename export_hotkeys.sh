@@ -12,7 +12,7 @@ print_usage() {
 }
 
 export_hotkeys() {
-	[[ "$1" = "-v" ]] && local SH_VERBOSE=1 && shift
+	[[ "$1" = "-v" ]] && local _VERBOSE=1 && shift
 	local OUT="$1"
 	[[ -z "$OUT" ]] && OUT="mac-hotkeys-$(date +'%Y%m%d').sh"
 
@@ -29,4 +29,4 @@ export_hotkeys() {
 
     iecho "Wrote $(grep -E -c '=.+;$' "$OUT") key mappings to $OUT"
 }
-export_hotkeys "$@"
+export_hotkeys $@

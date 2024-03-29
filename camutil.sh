@@ -4,12 +4,12 @@ shopt -s extglob
 
 wrapper() {
   decho "wrapper: #:${#*}, @:[$@]"
-  local opt_verbose="$SH_VERBOSE" opt_quiet="$SH_QUIET" opt_debug="$SH_DEBUG"
+  local _VERBOSE="$_VERBOSE" _QUIET="$_QUIET" _DEBUG="$_DEBUG"
 
   # usage: camutil-rename [-qvd] file [...]
   camutil-rename() {
     # eecho "hotkeys-list: debug: #:${#*}, @:[$@]"
-    parse-verbose-quiet "$@" || shift $?
+    parse-verbose-quiet $@ || shift $?
 
     local abbrevs="$@"
     local target_domains="${@:-$ALL_DOMAINS}"
@@ -52,7 +52,7 @@ wrapper() {
   # usage: hotkeys-define [-v] [-q] [domain...]
   hotkeys-define() {
     # eecho "hotkeys-define: debug: #:${#*}, @:[$@]"
-    parse-verbose-quiet "$@" || shift $?
+    parse-verbose-quiet $@ || shift $?
 
     local abbrevs="$@"
     local target_domains="${@:-$ALL_DOMAINS}"
@@ -64,12 +64,12 @@ wrapper() {
       full_domain="$(hotkeys-domain "$d")"
       if hotkeys-write-domain "$full_domain"; then
         ((d_count++))
-        ((!opt_quiet)) && hotkeys-list "$full_domain"
+        ((!_QUIET)) && hotkeys-list "$full_domain"
       fi
     done
 
     ((d_count == 0)) && eecho "hotkeys-define: error: all $d_total_domains hotkey domains failed" && return 1
-    local sw_verbose= && ((opt_verbose)) && sw_verbose='-v'
+    local sw_verbose= && ((_VERBOSE)) && sw_verbose='-v'
     killall $sw_verbose cfprefsd
     ((d_count < d_total)) && eecho "hotkeys-define: error: only defined hotkeys for $d_count/$d_total domains" && return 1
     return 0
@@ -298,7 +298,7 @@ wrapper() {
       # typora | typ*)
       #   domain='abnerworks.Typora';;
       *)
-        ((opt_verbose)) && eecho "hotkeys-domain: warning: unrecognized domain abbreviation: [$abb]; passing thru"
+        ((_VERBOSE)) && eecho "hotkeys-domain: warning: unrecognized domain abbreviation: [$abb]; passing thru"
         domain="$abb";;
     esac
     
@@ -316,37 +316,37 @@ wrapper() {
     local shift_count=0
     for opt in $1 $2 $3; do
       if [[ "$opt" =~ ^--?q(uiet)?$ ]]; then
-        opt_quiet=1
-        opt_verbose=
-        opt_debug=
+        _QUIET=1
+        _VERBOSE=
+        _DEBUG=
       elif [[ "$opt" =~ ^--?v(erbose)?$ ]]; then
-        opt_quiet=
-        opt_verbose=1
+        _QUIET=
+        _VERBOSE=1
       elif [[ "$opt" =~ ^--?d(ebug)?$ ]]; then
-        opt_quiet=
-        opt_verbose=1
-        opt_debug=1
+        _QUIET=
+        _VERBOSE=1
+        _DEBUG=1
       else
         break
       fi
       ((shift_count++))
     done
 
-    decho "parse-quiet-verbose-debug: opt_quiet=[$opt_quiet], opt_verbose=[$opt_verbose], opt_debug=[$opt_debug], shift_count=[$shift_count]"
+    decho "parse-quiet-verbose-debug: _QUIET=[$_QUIET], _VERBOSE=[$_VERBOSE], _DEBUG=[$_DEBUG], shift_count=[$shift_count]"
     return $shift_count
   }
 
-  decho() { ((opt_debug)) && echo "DEBUG: $@"; return 0; }
-  eecho() { >&2 echo "$@"; return 0; }
-  qecho() { ((opt_quiet)) || echo "$@;" return 0; }
-  vecho() { ((opt_verbose)) && echo "$@"; return 0; }
+  decho() { ((_DEBUG)) && echo "DEBUG: $@"; return 0; }
+  eecho() { >&2 echo $@; return 0; }
+  qecho() { ! _quiet_on || echo "$@;" return 0; }
+  vecho() { ((_VERBOSE)) && echo $@; return 0; }
 
   if [[ "$1" =~ ^-{0,2}[rm] ]]; then
     shift
-    camutil-rename "$@"
+    camutil-rename $@
   else
     eecho "Only sourced camutil.sh; execute camutil-rename, etc."
   fi
 
 }
-wrapper "$@"
+wrapper $@

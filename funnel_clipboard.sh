@@ -4,8 +4,8 @@
 # Pass the clipboard through the command given as $* and save its results as a new
 # clipboard entry. Generally called by Alfred.)
 #
-# Enable vecho by setting SH_VERBOSE=1
-# Disable iecho by setting SH_QUIET=1
+# Enable vecho by setting _VERBOSE=1
+# Disable iecho by setting _QUIET=1
 
 SCRIPT_NAME="$(basename "$0")"
 vecho "START $SCRIPT_NAME"
@@ -13,20 +13,19 @@ vecho "START $SCRIPT_NAME"
 cmd="$*"
 vecho "cmd=$cmd"
 
-INTEXT="$( pbpaste )"
-#OUTTEXT="$(pbpaste | $cmd)"
+IN="$(pbpaste)"
 pipeline="pbpaste | $cmd"
 vecho "pipeline=$pipeline"
-OUTTEXT="$( eval "$pipeline" )"
-pbcopy <<<"$OUTTEXT"
+OUT="$(eval "$pipeline")"
+pbcopy <<<"$OUT"
 
 # Unless we're troubleshooting, minimize output
-if [[ -n "$SH_VERBOSE" ]]; then
+if [[ -n "$_VERBOSE" ]]; then
     # pass first 80 characters of IN and OUT to output
-    (( ${#INTEXT} > 80 )) && INTEXT="${INTEXT:1:80}..."
-    echo "INTEXT='$INTEXT'"
+    (( ${#IN} > 80 )) && IN="${IN:1:80}..."
+    echo "IN='$IN'"
     echo "--"
 fi
 
-(( ${#OUTTEXT} > 80 )) && OUTTEXT="${OUTTEXT:1:80}..."
-iecho "$OUTTEXT"
+(( ${#OUT} > 80 )) && OUT="${OUT:1:80}..."
+iecho "$OUT"

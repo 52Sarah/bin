@@ -38,9 +38,9 @@ print_help() {
     ALF_USERNAME:=admin
     ALF_PASSWORD:=alfresco
 
-    SH_DEBUG            linked with --debug
-    SH_VERBOSE          linked with --verbose
-    SH_QUIET            linked with --quiet
+    _LOG_DEBUG    linked with --debug
+    _IFVERBOSE linked with --verbose
+    _LOG_UNQUIET   linked with --quiet
 
     At startup, the following local override shell scripts are run, if they exist:
       * PWD/tom_setenv.sh
@@ -52,7 +52,7 @@ EOF
 }
 
 shopt -s extglob  # Enable extended pattern matching in case statements
-type gls >& /dev/null && ls() { gls "$@"; }  # Try and use gnu ls if possible, flexibler date formatting.
+type gls >& /dev/null && ls() { gls $@; }  # Try and use gnu ls if possible, flexibler date formatting.
 
 # Print an optional error_msg $1, then show usage if print_usage $2 is true.
 abort() {
@@ -76,14 +76,14 @@ tomcat() {
 
   # quiet/verbose/debug/whatif can all be set via switches or env vars; peek ahead at switches to see if these are there
   # and if so, set them now so the earliest commands will utilize them.
-  if [[ -n "$SH_DEBUG" || "$*" =~ (^|[[:space:]])-{1,2}d(ebug)?([[:space:]]|$) ]]; then
-    SH_DEBUG=1; SH_VERBOSE=1; unset SH_QUIET
+  if [[ -n "$_LOG_DEBUG" || "$*" =~ (^|[[:space:]])-{1,2}d(ebug)?([[:space:]]|$) ]]; then
+    _LOG_DEBUG=1; _IFVERBOSE=1; unset _LOG_UNQUIET
     echo "Debugging enabled."
-  elif [[ -n "$SH_VERBOSE" || "$*" =~ (^|[[:space:]])-{1,2}v(erbose)?([[:space:]]|$) ]]; then
-    unset SH_DEBUG; SH_VERBOSE=1; unset SH_QUIET
+  elif [[ -n "$_IFVERBOSE" || "$*" =~ (^|[[:space:]])-{1,2}v(erbose)?([[:space:]]|$) ]]; then
+    unset _LOG_DEBUG; _IFVERBOSE=1; unset _LOG_UNQUIET
     echo "Maximum verbosity."
-  elif [[ -n "$SH_QUIET" || "$*" =~ (^|[[:space:]])-{1,2}q(uiet)?([[:space:]]|$) ]]; then
-    unset SH_DEBUG; unset SH_VERBOSE; SH_QUIET=1
+  elif [[ -n "$_LOG_UNQUIET" || "$*" =~ (^|[[:space:]])-{1,2}q(uiet)?([[:space:]]|$) ]]; then
+    unset _LOG_DEBUG; unset _IFVERBOSE; _LOG_UNQUIET=1
   fi
 
   # Make the debugging output pretty
@@ -304,17 +304,17 @@ tomcat() {
 
     case "$CMD" in
 
-      -?(-)d?(ebug) )     SH_DEBUG=1 && SH_VERBOSE=1 && unset SH_QUIET  ;;
-      -?(-)D?(EBUG) )     unset SH_DEBUG ;;
-      -?(-)v?(erbose) )   unset SH_DEBUG && SH_VERBOSE=1 && unset SH_QUIET  ;;
-      -?(-)V?(ERBOSE) )   unset SH_DEBUG && unset SH_VERBOSE  ;;
-      -?(-)q?(uiet) )     unset SH_DEBUG && unset SH_VERBOSE && SH_QUIET=1  ;;
-      -?(-)Q?(UIET) )     unset SH_QUIET  ;;
+      -?(-)d?(ebug) )     _LOG_DEBUG=1 && _IFVERBOSE=1 && unset _LOG_UNQUIET  ;;
+      -?(-)D?(EBUG) )     unset _LOG_DEBUG ;;
+      -?(-)v?(erbose) )   unset _LOG_DEBUG && _IFVERBOSE=1 && unset _LOG_UNQUIET  ;;
+      -?(-)V?(ERBOSE) )   unset _LOG_DEBUG && unset _IFVERBOSE  ;;
+      -?(-)q?(uiet) )     unset _LOG_DEBUG && unset _IFVERBOSE && _LOG_UNQUIET=1  ;;
+      -?(-)Q?(UIET) )     unset _LOG_UNQUIET  ;;
 
-      -?(-)w?(hatif) )    SH_WHATIF=1 && iecho "What-if mode enabled."  ;;
-      -?(-)W?(HATIF) )    unset SH_WHATIF & iecho "# WHAT-IF mode disabled."  ;;
+      -?(-)w?(hatif) )    _WHATIF=1 && iecho "What-if mode enabled."  ;;
+      -?(-)W?(HATIF) )    unset _WHATIF & iecho "# WHAT-IF mode disabled."  ;;
 
-      ^* ) ${CMD:1} "$@"; echo \$?=$?; exit 0 ;; #output exit status after executing function, for testing
+      ^* ) ${CMD:1} $@; echo \$?=$?; exit 0 ;; #output exit status after executing function, for testing
 
       ps )
         exec_ps  ;;
@@ -526,7 +526,7 @@ exec_down() {
 
   local check_interval_seconds=2
   local wait_seconds=$TOMCAT_DOWN_WAIT
-  if [[ -z "$SH_WHATIF" && -n "$(exec_pid)" ]]; then
+  if [[ -z "$_WHATIF" && -n "$(exec_pid)" ]]; then
     echo -n "Waiting on shutdown of pid $(exec_pid)"
     while [[ -n "$(exec_pid)" ]]; do
       echo -n "."
@@ -565,7 +565,7 @@ exec_clean_tomcat() {
   local count="$($SUDO_CMD ls -R "${TOMCAT_HOME}/{temp,work}/*" 2> /dev/null | wc -c)"  # ignore stderr
   if (( !count )); then
     echo "INFO: Work folders are already empty, no logs to remove for: ${TOMCAT_HOME}/{temp,work}"
-  elif [[ -n "$SH_WHATIF" ]]; then
+  elif [[ -n "$_WHATIF" ]]; then
     echo "# WHAT-IF: Would delete $count work and temp files"
   else
     echo "Deleted $($SUDO_CMD rm -rfv "${TOMCAT_HOME}/{temp,work}/*" | wc -l) temp and work files"
@@ -742,14 +742,14 @@ exec_amp() {
   [[ -d "$war_folder" ]] && what_if "$SUDO_CMD rm -r $war_folder" && iecho "Deleted existing webapp folder: $war_folder"
   [[ "${war_file}.CLEAN" -ot "$war_file" ]] && iecho "NOTE: war file is newer than the .CLEAN version"
 
-  if [[ -n "$SH_WHATIF" ]]; then
+  if [[ -n "$_WHATIF" ]]; then
     local mmt_mode="-force -preview"
     local mmt_verb="PREVIEWING"
   else
     local mmt_mode="-force"
     local mmt_verb="INSTALLING"
   fi
-  [[ -n "$SH_VERBOSE" ]] && verbose_mode="-verbose"
+  [[ -n "$_IFVERBOSE" ]] && verbose_mode="-verbose"
 
   iecho "$mmt_verb $amp_file (modified $(file_info $amp_file mtime)) into $war_file ($(file_info $war_file mtime))..."
   echo "### $JAVA_HOME/bin/java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $amp_file $war_file $verbose_mode $mmt_mode"
@@ -758,7 +758,7 @@ exec_amp() {
 
 exec_clean_solr_index() {
   [[ -z "$SOLR_HOME" ]] && abort "ERROR: SOLR_HOME not set" || vecho "Using SOLR_HOME=$SOLR_HOME"
-  if [[ -n "$SH_WHATIF" ]]; then
+  if [[ -n "$_WHATIF" ]]; then
     wecho -n "Delete Alfresco's $SOLR_HOME/index/*/SpacesStore files: "
     decho_and_eval "find ${SOLR_HOME}/index/*/SpacesStore -mindepth 1 -print | wc -l"
     wecho -n "Delete Alfresco's $SOLR_HOME/content files: "
@@ -845,7 +845,7 @@ rotate_file() {
     echo -n "mv: "
     what_if "$SUDO_CMD mv -v $f $f_newfullname"
   fi
-  [[ -n "$SH_VERBOSE" ]] && ls -ohF "$f_newfullname"
+  [[ -n "$_IFVERBOSE" ]] && ls -ohF "$f_newfullname"
 }
 
 rotate_log_files() {
@@ -863,14 +863,14 @@ rotate_log_files() {
     rotate_file "$f" "$to_dir" "$suffix" "$force_mv"
   done
 
-  [[ -z "$SH_QUIET" ]] && ls -ohF "$from_dir/"
+  [[ -z "$_LOG_UNQUIET" ]] && ls -ohF "$from_dir/"
 }
 
 
-# If SH_WHATIF set, what_if will only echo command. wecho prepends the what-if prefix before echoing.
+# If _WHATIF set, what_if will only echo command. wecho prepends the what-if prefix before echoing.
 what_if() {
   [[ "$1" = "-n" ]] && local e_flags="-n" && shift 1
-  [[ -n "$SH_WHATIF" ]] && wecho $e_flags "$@" || iecho_and_eval $e_flags "$@"
+  [[ -n "$_WHATIF" ]] && wecho $e_flags $@ || iecho_and_eval $e_flags $@
 }
 wecho() { [[ "$1" = "-n" ]] && local e_flags="-n" && shift 1; echo $e_flags "# WHAT-IF: $*"; }
 
@@ -907,5 +907,5 @@ if [[ "$0" = "-bash" || -n "$SH_SOURCE" ]]; then
   decho "\$0=$0, SH_SOURCE=$SH_SOURCE"
   iecho "Not executing tomcat(); just sourcing variables and functions in $SCRIPT_NAME."
 else
-  tomcat "$@"
+  tomcat $@
 fi

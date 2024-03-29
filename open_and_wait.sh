@@ -39,4 +39,4 @@ function open_and_wait() {
     fi
     return 0
 }
-open_and_wait "$@"
+open_and_wait $@

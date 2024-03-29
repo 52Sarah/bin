@@ -3,11 +3,11 @@ shopt -s extglob  # Enable extended pattern matching in case statements
 
 abort() {
   echo ""
-  [ -n "$@" ] && echo $@
+  [ -n $@ ] && echo $@
   echo "Usage: $(basename $0) --filename filename --title title [--what-if --verbose|-V]"
   exit 1
 }
-vecho() { [ -n "$SH_VERBOSE" ] && echo "${SCRIPT_NAME}: $@"; }
+vecho() { [ -n "$_VERBOSE" ] && echo "${SCRIPT_NAME}: $@"; }
 
 SCRIPT_NAME=$(basename $0)
 SCRIPT_DIR=$(dirname $0)
@@ -28,20 +28,20 @@ while [ -n "$1" ]; do
       ;;
 
     -w ) 
-      export SH_WHATIF=1
+      export _WHATIF=1
       vecho "... --what-if ENABLED"
       ;;
     -W )
-      unset SH_WHATIF
+      unset _WHATIF
       vecho "... -W what-if DISABLED"
       ;;
 
     -v ) 
-      export SH_VERBOSE=1
+      export _VERBOSE=1
       vecho "... --verbose maximum verbosity"
       ;;
     -V )
-      unset SH_VERBOSE
+      unset _VERBOSE
       ;;
 
     * )
@@ -49,7 +49,7 @@ while [ -n "$1" ]; do
       ;;
   esac
 done
-vecho "FILENAME=$FILENAME, TITLE=$TITLE, SH_WHATIF=$WH_WHATIF, SH_VERBOSE=$SH_VERBOSE"
+vecho "FILENAME=$FILENAME, TITLE=$TITLE, _WHATIF=$WH_WHATIF, _VERBOSE=$_VERBOSE"
 
 [ -z "$FILENAME" ] && abort "ERROR: missing required filename"
 [ ! -e "$FILENAME" ] && abort "ERROR: file not found: $FILENAME"
@@ -60,4 +60,4 @@ vecho "new_filename=$new_filename"
 
 [ "$FILENAME" = "$new_filename" ] && echo "Skipping $FILENAME, no pattern match" && exit 1
 
-[ -z $SH_WHATIF ] && mv -v "$FILENAME" "$new_filename" || echo "WHAT-IF: mv -v \"$FILENAME\" \"$new_filename\""
+[ -z $_WHATIF ] && mv -v "$FILENAME" "$new_filename" || echo "WHAT-IF: mv -v \"$FILENAME\" \"$new_filename\""

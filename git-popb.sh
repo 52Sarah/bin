@@ -23,7 +23,7 @@ g.popb() {
 }
 
 vecho() {
-  ((SH_VERBOSE)) && echo "$*"
+  ((_VERBOSE)) && echo "$*"
 }
 
-g.popb "$@"
+g.popb $@

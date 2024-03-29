@@ -25,4 +25,4 @@ function ntc() {
 
   echo "${out_desc,,}"
 }
-ntc "$@"
+ntc $@

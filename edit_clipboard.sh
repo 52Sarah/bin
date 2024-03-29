@@ -20,4 +20,4 @@ function edit_clipboard() {
     pbcopy < "$tempfile"
     rm "$tempfile"
 }
-edit_clipboard "$@"
+edit_clipboard $@

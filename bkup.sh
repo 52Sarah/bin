@@ -17,8 +17,8 @@ bkup-notes() {
 
 # Usage: bkup [-q] from_dir to_dir [--include or --exclude lists]
 bkup() {
-  local opt_quiet=$SH_VERBOSE && [[ "$1" =~ ^(-q|--quiet)$ ]] && opt_quiet=1 && shift
-  local sw_verbose='' && ((!opt_quiet)) && sw_verbose='v'
+  local _QUIET=$_VERBOSE && [[ "$1" =~ ^(-q|--quiet)$ ]] && _QUIET=1 && shift
+  local sw_verbose='' && ((!_QUIET)) && sw_verbose='v'
 
   local from_dir="$1" && shift
   local to_dir="$1" && shift
@@ -47,9 +47,9 @@ bkup() {
   popd >/dev/null
 
   if type -t lln >&/dev/null; then
-    ((!opt_quiet)) && lln "$bak_file"
+    ((!_QUIET)) && lln "$bak_file"
   else
-    ((!opt_quiet)) && ls -ohF "$bak_file"
+    ((!_QUIET)) && ls -ohF "$bak_file"
   fi
 
   printf "\n"
@@ -106,7 +106,7 @@ bak() {
   [[ -z "$1" ]] && >&2 echo "usage: bak [cp options ...] filename [...]" && return 1
 
   local cp_options='-i'
-  ((SH_VERBOSE)) && cp_options="$cp_options -v"
+  ((_VERBOSE)) && cp_options="$cp_options -v"
   for arg in $@; do
     if [[ "$arg" =~ ^- ]]; then
       cp_options="$cp_options $arg"

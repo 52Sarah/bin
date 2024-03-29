@@ -28,8 +28,8 @@ function canary() {
   else
 
     echo "$(date): Started Canary for URL(s): ${*:-<none>}" | tee -a "$CANARY_LOG"
-    exec "${exe_file}-bin" "--args" "--disable-gpu" "$@"
+    exec "${exe_file}-bin" "--args" "--disable-gpu" $@
 
   fi
 }
-canary "$@"
+canary $@

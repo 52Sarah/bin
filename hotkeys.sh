@@ -16,8 +16,8 @@ _hotkeys_domains="global beyondcompare calendar contacts dupin excel finder iter
 
 # usage: hotkeys-list [--verbose] [--quiet] [--all] [domain]
 hotkeys-list() {
-  ((SH_VERBOSE)) && printf 'hotkeys-list: start: "%s"\n' "$*"
-  parse-verbose-quiet "$@" || shift $?
+  vrintf 'hotkeys-list: start: "%s"\n' "$*"
+  parse-verbose-quiet $@ || shift $?
 
   if [[ "$1" =~ ^(-a|--all)$ ]]; then
     shift
@@ -41,8 +41,8 @@ hotkeys-list() {
 
 # usage: hotkeys-define [-v] [-q] [domain...]
 hotkeys-define() {
-  ((SH_VERBOSE)) && printf 'hotkeys-define: start: "%s"\n' "$*"
-  parse-verbose-quiet "$@" || shift $?
+  ((_VERBOSE)) && printf 'hotkeys-define: start: "%s"\n' "$*"
+  parse-verbose-quiet $@ || shift $?
 
   local target_domains="${@:-$_hotkeys_domains}"
 
@@ -52,12 +52,12 @@ hotkeys-define() {
     full_domain="$(_map_domain "$d")"
     if _write_one_domain "$full_domain"; then
       ((d_count++))
-      ((!SH_QUIET)) && hotkeys-list "$full_domain"
+      ((!_QUIET)) && hotkeys-list "$full_domain"
     fi
   done
 
-  ((! d_count)) && eecho "hotkeys-define: error: all $d_total_domains hotkey domains failed" && return 1
-  local sw_verbose= && ((SH_VERBOSE)) && sw_verbose='-v'
+  ! ((d_count)) && eecho "hotkeys-define: error: all $d_total_domains hotkey domains failed" && return 1
+  local sw_verbose= && ((_VERBOSE)) && sw_verbose='-v'
   killall $sw_verbose cfprefsd
 
   ((d_count < d_total)) && eecho "hotkeys-define: error: only defined hotkeys for $d_count/$d_total domains" && return 1
@@ -138,7 +138,7 @@ _read_all_domains_keys() {
 # Given $1 is a valid defaults domain, define its hotkeys and return 0; else return 1.
 # For the rare domains with spaces in their names, replace underscores with spaces.
 _write_one_domain() {
-  ((SH_VERBOSE)) && printf '_write_one_domain: start: "%s"\n' "$*"
+  ((_VERBOSE)) && printf '_write_one_domain: start: "%s"\n' "$*"
   local domain="${1//_/ }" && shift
   [[ -z "$domain" ]] && eecho "usage: _write_one_domain domain" && return 1
 
@@ -370,46 +370,46 @@ _write_one_domain() {
 }
 
 # Given $@ from the caller, determine if 0, 1 or 2 of the leading arguments are -v or -q,
-# set the appropriate SH_ wrapper variable, and return as the status code the number of
+# set the appropriate _ wrapper variable, and return as the status code the number of
 # positions to shift.
 #
-# Example ussage: parse-verbose-quiet "$@" || shift $?
+# Example ussage: parse-verbose-quiet $@ || shift $?
 #
 parse-verbose-quiet() {
-  ((SH_VERBOSE)) && printf 'parse-verbose-quiet: start: \"%s\" $V=%s $Q=%s\n' "$*" $SH_VERBOSE $SH_QUIET
+  ((_VERBOSE)) && printf 'parse-verbose-quiet: start: \"%s\" $V=%s $Q=%s\n' "$*" $_VERBOSE $_QUIET
   [[ -z "$1" ]] && return 0
   
   local shift_count=0
   for opt in $1 $2; do
     if [[ "$opt" =~ ^(-v|--verbose)$ ]]; then
-      SH_VERBOSE=1
-      SH_QUIET=
+      _VERBOSE=1
+      _QUIET=
       ((shift_count++))
     elif [[ "$opt" =~ ^(-q|--quiet)$ ]]; then
-      SH_QUIET=1
-      SH_VERBOSE=
+      _QUIET=1
+      _VERBOSE=
       ((shift_count++))
     fi
   done
   
-  ((SH_VERBOSE)) && printf 'parse-verbose-quiet: finish: $shift_count=%s $V=%s $Q=%s\n' $shift_count $SH_VERBOSE $SH_QUIET
+  ((_VERBOSE)) && printf 'parse-verbose-quiet: finish: $shift_count=%s $V=%s $Q=%s\n' $shift_count $_VERBOSE $_QUIET
   return $shift_count
 }
 
 
 # During sourcing, -d|--define or list, -l|--list, call the appropriate function.
 _wrapper() {
-  ((SH_VERBOSE)) && printf 'hotkeys.sh: start: "%s"\n' "$*"
+  ((_VERBOSE)) && printf 'hotkeys.sh: start: "%s"\n' "$*"
   local opt_action="$1" && shift
-  parse-verbose-quiet "$@" || shift $?
+  parse-verbose-quiet $@ || shift $?
   if [[ "$opt_action" =~ ^(-d|(--)?define)$ ]]; then
-    hotkeys-define "$@"
+    hotkeys-define $@
   elif [[ "$opt_action" =~ ^(-l|(--)?list)$ ]]; then
-    hotkeys-list "$@"
+    hotkeys-list $@
   else
     eecho "Sourced hotkeys.sh; use hotkeys-define or hotkeys-list"
   fi
-  ((SH_VERBOSE)) && printf 'hotkeys.sh: finish\n'
+  ((_VERBOSE)) && printf 'hotkeys.sh: finish\n'
 }
-_wrapper "$@"
+_wrapper $@
 unset _wrapper

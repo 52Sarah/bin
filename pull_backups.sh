@@ -25,4 +25,4 @@ pull_one_backup() {
     find -L "$from_path" -depth 1 ! -name '.git' -print -exec cp -p -R -L "{}" "$to_dir_path/" \;
 }
 
-pull_backups "$@"
+pull_backups $@

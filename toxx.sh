@@ -9,10 +9,10 @@ toxx() {
 
 	[[ -z "$PPF_HOME" ]] && eprintf "toxx: PPF_HOME must point to the root of the P-Pipeline-Framework project/repo" && return 1
 
-	local SH_VERBOSE=$SH_VERBOSE && [[ "$1" =~ ^(-v|--verbose)$ ]] && shift && SH_VERBOSE=1 && SH_QUIET=
-	local SH_QUIET=$SH_QUIET && [[ "$1" =~ ^(-q|--quiet)$ ]] && shift && SH_QUIET=1 && SH_VERBOSE=
+	local _VERBOSE=$_VERBOSE && [[ "$1" =~ ^(-v|--verbose)$ ]] && shift && _VERBOSE=1 && _QUIET=
+	local _QUIET=$_QUIET && [[ "$1" =~ ^(-q|--quiet)$ ]] && shift && _QUIET=1 && _VERBOSE=
 
-	iprintf "toxx: starting({v=%s, q=%s} %s)\n" "$SH_VERBOSE" "$SH_QUIET" "$*"
+	iprintf "toxx: starting({v=%s, q=%s} %s)\n" "$_VERBOSE" "$_QUIET" "$*"
 
 	local TOXX_LOGS="$HOME/log"
 	local TOXX_SUMMARY="$TOXX_LOGS/toxx-summary.log"
@@ -29,17 +29,17 @@ toxx() {
 	local opt_json= && [[ "$1" =~ -j|--json ]] && shift && opt_json=1
 
 	if [[ "$1" = "lint" ]]; then
-		shift && toxx_lint "$@"
+		shift && toxx_lint $@
 	elif [[ "$1" =~ ^(logs?)$ ]]; then
-		shift && toxx_logs "$@"
+		shift && toxx_logs $@
 	elif [[ "$1" =~ ^(summ(ary)?)$ ]]; then
-		shift && toxx_summary "$@"
+		shift && toxx_summary $@
 	elif [[ "$1" = "tail" ]]; then
-		shift && toxx_tail "$@"
+		shift && toxx_tail $@
 	# elif [[ "$1" =~ -a|--all ]]; then
-	# 	shift && toxx_all "$@"
+	# 	shift && toxx_all $@
 	else
-		toxx_many "$@"
+		toxx_many $@
 	fi
 	iprintf "toxx: finished(%s)\n" "$*"
 }
@@ -240,11 +240,11 @@ toxx_tail() {
 }
 
 
-eecho() { 1>&2 echo "$@"; }
-eprintf() { 1>&2 printf "$@"; }
+eecho() { 1>&2 echo $@; }
+eprintf() { 1>&2 printf $@; }
 
-vprintf() { [[ -n "$SH_VERBOSE" ]] && eprintf "$@"; }
-iprintf() { [[ -z "$SH_QUIET" ]] && eprintf "$@"; }
+vprintf() { [[ -n "$_VERBOSE" ]] && eprintf $@; }
+iprintf() { [[ -z "$_QUIET" ]] && eprintf $@; }
 
 
 alias .reload-toxx=". $HOME/bin/toxx.sh"

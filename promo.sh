@@ -34,7 +34,7 @@ EOF
 
     local LOG_LINES=1000
 
-    local SH_QUIET=$SH_QUIET SH_VERBOSE=$SH_VERBOSE SH_WHATIF=$SH_WHATIF
+    local _QUIET=$_QUIET _VERBOSE=$_VERBOSE _WHATIF=$_WHATIF
     [[ "$PWD" != "$PROMO_HOME" ]] && iecho_and_eval "cd $(tilde_compress $PROMO_HOME)"
     shopt -s extglob
 
@@ -176,12 +176,12 @@ EOF
                     --ssl-key="keys/promolytics/client-key.pem""
                 ;;
 
-            --verbose | -v)     SH_VERBOSE=1 && SH_QUIET= && echo "# Maximum verbosity";;
-                        -V)     SH_VERBOSE=;;
-            --quiet | -q)       SH_QUIET=1 && SH_VERBOSE=;;
-                      -Q)       SH_QUIET=;;
-            --whatif | -w)      SH_WHATIF=1 && echo "# Whatif/preview enabled";;
-                       -W)      SH_WHATIF=;;
+            --verbose | -v)     _VERBOSE=1 && _QUIET= && echo "# Maximum verbosity";;
+                        -V)     _VERBOSE=;;
+            --quiet | -q)       _QUIET=1 && _VERBOSE=;;
+                      -Q)       _QUIET=;;
+            --whatif | -w)      _WHATIF=1 && echo "# Whatif/preview enabled";;
+                       -W)      _WHATIF=;;
                 
             *)
                 local msg="promo: $1: invalid command"
