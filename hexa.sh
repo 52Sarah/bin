@@ -9,18 +9,18 @@
 
 function hexa() {
 
-  local rgb_input="$1"; shift
-  local out_format="$1"; shift
-  #>&2 echo "rgb='$rgb', out_format='$out_format'"
+  [[ -z "$1" ]] && eecho "Usage: hexa #rgb|#rrggbb [alfred]" && return 1
 
-  [[ -z "$rgb_input" ]] && return 1
-  local rgb="${rgb_input}"
+  local rgb_as_input="$1"; shift
+  local rgb="$rgb_as_input"
+  local out_format="$1"; shift
+  vecho "... rgb='$rgb', out_format='$out_format'"
 
   # Strip optional leading #
   [[ "$rgb" =~ ^#.+ ]] && rgb="${rgb:1}"
 
   # Must be length 3 or 6
-  (( ${#rgb} != 3 && ${#rgb} != 6 )) && return 1
+  (( ${#rgb} != 3 && ${#rgb} != 6 )) && eecho "hexa: #rgb must be exactly 3 or 6 hex digits" && return 1
 
   # If in RGB form, expand to RRGGBB
   if [[ ${#rgb} == 3 ]]; then
@@ -30,11 +30,7 @@ function hexa() {
     done
     rgb="$rgb_new"
   fi
-  #>&2 echo "rgb='$rgb'"
-
-  # Depending on context in which this is run, the html-xml tools may not be on the PATH.
-  which hxnormalize &> /dev/null || export PATH="$PATH:/usr/local/bin"
-
+  vecho "... rgb='$rgb'"
 
   # On a Mac: brew install html-xml-utils
   # -x xml conventions, empty elements are written with /> at the end
@@ -42,21 +38,27 @@ function hexa() {
   # -c content only ("innerHtml")
   # -s separator between matches
 
-  local out_desc="$(hxnormalize -x -l 240 "https://www.colorhexa.com/$rgb" |\
-    hxselect -c -s ' ' '#information > div.color-description > p > strong' |\
-    tr '[:upper:]' '[:lower:]' |\
-    sed -e 's/^[[:space:]]*//;' |\
-    sed -e 's/[[:space:]]*$//;' |\
-    sed 's/light /lt /g; s/dark /dk /g; s/very /v /g;' \
-  )"
+  # Depending on context in which this is run, the html-xml tools may not be on the PATH.
+  which hxnormalize &> /dev/null || path-append "/usr/local/bin"
+  if ! which hxnormalize &> /dev/null; then eecho "hexa: html-xml-utils must be installed vi Homebrew"; return 1; fi
 
-  # local ntc="$(/opt/bin/ntc.sh "$rgb")"
-  # [[ "$out_desc" != "$ntc" ]] && out_desc="css: $ntc; $out_desc"
+  local out_desc="$(hxnormalize -x -l 240 "https://www.colorhexa.com/$rgb" <<< "$out_desc" |\
+    hxselect -c -s ' ' '#information > div.color-description > p > strong'
+  )"
+  local out_desc_trimmed="$( echo $out_desc |\
+    tr '[:upper:]' '[:lower:]' |\
+    sed 's/light /lt /g; s/dark /dk /g; s/very /v /g;'
+  )"
+  vecho "... out_desc='$out_desc', out_desc_trimmed='$out_desc_trimmed'"
+
+  # I think ntc is a custom tool to look up the official CSS name; but I've lost it.
+  # local ntc="$(/opt/bin/ntc.sh $rgb)"
+  # [[ "$out_desc" != "$ntc" ]] && out_desc_trimmed="css: $ntc; $out_desc_trimmed"
 
   # If not using Alfred output format, just return the color description
-  if [[ ! "$out_format" =~ ^[aA] ]]; then
-    echo "$out_desc"
-    return 1
+  if [[ ! "$out_format" =~ ^[aA]lfred$ ]]; then
+    echo "$out_desc_trimmed"
+    return 0
   fi
 
   # For Alfred, look up nearest web-safe color and wrap everything in JSON
@@ -65,7 +67,7 @@ function hexa() {
     sed -e 's/^[[:space:]]*//;' |\
     sed -e 's/[[:space:]]*$//;' \
   )"
-  #>&2 echo "out_desc='$out_desc', out_websafe='$out_websafe'"
+  vecho "... out_websafe='$out_websafe'"
 
   # If web-safe RGB is not our intiial color, lookup that color's name and if it differs
   # from the original name, add it to the subtitle.
@@ -81,13 +83,14 @@ function hexa() {
       subtitle="Closest web-safe: $out_websafe, $websafe_desc"
     fi
   fi
+  vecho "... subtitle='$subtitle'"
 
 cat << EOB
   {
     "variables": {
-      "rgb_input": "$rgb_input",
+      "rgb_as_input": "$rgb_as_input",
       "rgb": "$rgb",
-      "out_desc": "$out_desc",
+      "out_desc": "$out_desc_trimmed",
       "out_websafe": "$out_websafe",
       "subtitle": "$subtitle",
       "websafe_desc": "$websafe_desc"
@@ -95,7 +98,7 @@ cat << EOB
     "items": [{
         "title": "$out_desc",
         "subtitle": "$subtitle",
-        "arg": "$out_desc"
+        "arg": "$out_desc_trimmed"
     }]
   }
 EOB
